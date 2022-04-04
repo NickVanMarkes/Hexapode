@@ -1,0 +1,55 @@
+site_name: Hexapode
+repo_url: https://github.com/NickVanMarkes/Hexapode
+repo_name: NickVanMarkes/Hexapode
+theme:
+  name: material
+  language: fr
+  palette:
+    primary: black
+    accent: black
+  icon:
+    repo: fontawesome/brands/github
+plugins:
+  - with-pdf:
+      author: Nicolas Oliveira
+      copyright: 2021-2022 cfpt
+      #
+      #cover: false
+      #back_cover: true
+      cover_title: Travail de semestre
+      cover_subtitle: Documentation Interface Flask
+      cover_logo: "./images/logo.png"
+      #custom_template_path: TEMPLATES PAT
+      #
+      toc_title: Table des matières
+      #heading_shift: false
+      #toc_level: 3
+      #ordered_chapter_level: 2
+      #excludes_children:
+      #    - 'release-notes/:upgrading'
+      #    - 'release-notes/:changelog'
+      #
+      #exclude_pages:
+      #    - 'bugs/'
+      #    - 'appendix/contribute/'
+      #convert_iframe:
+      #    - src: IFRAME SRC
+      #      img: POSTER IMAGE URL
+      #      text: ALTERNATE TEXT
+      #    - src: ...
+      #two_columns_level: 3
+      #
+      # render_js: true
+      # headless_chrome_path: headless-chromium
+      #
+      #output_path: any-place/document.pdf
+      #enabled_if_env: ENABLE_PDF_EXPORT
+      #
+      #debug_html: true
+      #show_anchors: true
+      #verbose: true
+markdown_extensions:
+  - attr_list
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
