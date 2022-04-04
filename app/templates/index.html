@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Interface_FlaskV3</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="icon" href="static/icon/favicon.ico" />
+    {{ turbo() }}
+</head>
+
+<body>
+    <div class="container-fluid"><img style="margin-left: -6.6rem; margin-bottom: -4rem;  height: 124.3%; width: 114.5%; position: absolute; bottom: 0; left: 0; right: 0; z-index: -50;" src="{{ url_for('video') }}"{{video}} >
+        <div id="load" class="row" style="background: rgba(0,0,0,0.6); width: 103.5%; left: 0; right: 0;">
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col d-sm-flex align-items-sm-center"><img src="static/img/Icon_Angle.png" width="17px" height="17px">
+                        <p class="d-sm-flex justify-content-sm-center align-items-sm-end" style="width: 54px;height: 30px;font-size: 16px;margin-bottom: 0px;color: var(--bs-white);font-family: Roboto, sans-serif;">X : {{angleX}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col d-sm-flex align-items-sm-center"><img src="static/img/Icon_Angle.png" width="17px" height="17px">
+                        <p class="d-sm-flex justify-content-sm-center align-items-sm-end" style="width: 54px;height: 30px;font-size: 16px;margin-bottom: 0px;font-family: Roboto, sans-serif;color: var(--bs-white);">Y : {{angleY}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col d-sm-flex align-items-sm-center"><img src="static/img/Icon_Angle.png" width="17px" height="17px">
+                        <p class="d-sm-flex justify-content-sm-center align-items-sm-end" style="width: 54px;height: 30px;font-size: 16px;margin-bottom: 0px;font-family: Roboto, sans-serif;color: var(--bs-white);">Z : {{angleZ}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col d-sm-flex align-items-sm-center"><img src="static/img/Icon_Battery.png" width="17px" height="17px" style="transform: rotate(270deg);">
+                        <p class="d-sm-flex justify-content-sm-center align-items-sm-end" style="width: 54px;height: 30px;font-size: 16px;margin-bottom: 0px;font-family: Roboto, sans-serif;color: var(--bs-white);">{{batterie}}%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col d-sm-flex align-items-sm-center"><img src="static/img/Icon_Battery.png" width="17px" height="17px" style="transform: rotate(270deg);">
+                        <p class="d-sm-flex justify-content-sm-center align-items-sm-end" style="width: 54px;height: 30px;font-size: 16px;margin-bottom: 0px;font-family: Roboto, sans-serif;color: var(--bs-white);">S {{batterieServo}}%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col d-sm-flex align-items-sm-center"><img src="static/img/Icon_Obstacle.png" width="17px" height="17px">
+                        <p class="d-sm-flex justify-content-sm-center align-items-sm-end" style="width: 54px;height: 30px;font-size: 16px;margin-bottom: 0px;color: var(--bs-white);">{{obstacleDist}} cm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height: 150px;">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div id="plotdiv" class="col-sm-4 d-sm-flex d-xl-flex justify-content-sm-end justify-content-xl-end align-items-xl-center">
+                <img id="plot" class="border rounded-circle border-dark" alt="plot" src="/plot?{{increment_plot}}" style="width: 150px; background: rgb(0, 0, 0, 0.2);">
+            </div>
+        </div>
+        <form method="post" action="#">
+            <div class="row">
+                <div class="col-sm-3 col-xl-2">
+                    <div class="row">
+                        <div class="col d-sm-flex justify-content-sm-center align-items-sm-center">
+                            <button type="submit" name="submit_button" value="Avance" style="border: 0; padding: 0; background: none;"><img src="static/img/Arrow_Up_Key_Light.png" width="50px"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-sm-flex justify-content-sm-end align-items-sm-center">
+                            <button type="submit" name="submit_button" value="Gauche" style="border: 0; padding: 0; background: none;"><img src="static/img/Arrow_Left_Key_Light.png" width="50px"></button>
+                        </div>
+                        <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+                            <button type="submit" name="submit_button" value="Droite" style="border: 0; padding: 0; background: none;"><img src="static/img/Arrow_Right_Key_Light.png" width="50px"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-sm-flex justify-content-sm-center align-items-sm-center">
+                            <button type="submit" name="submit_button" value="Recule" style="border: 0; padding: 0; background: none;"><img src="static/img/Arrow_Down_Key_Light.png" width="50px"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col-sm-3 col-md-3 col-xl-3">
+                    <div class="row d-sm-flex" style="margin-top: 70px;">
+                        <div class="col-sm-6 d-sm-flex justify-content-sm-center">
+                            <button type="submit" name="submit_button" value="Rotation_AntiHoraire" style="border: 0; padding: 0; background: none;"><img src="static/img/Vive_Touch_Scroll_Left.png" width="70px"></button>
+                        </div>
+                        <div class="col-sm-6 d-sm-flex justify-content-sm-center">
+                            <button type="submit" name="submit_button" value="Rotation_Horaire" style="border: 0; padding: 0; background: none;"><img src="static/img/Vive_Touch_Scroll_Right.png" width="70px"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        /*
+        const interval=setInterval(refresh_plot(),10000);
+
+        function refresh_plot()
+        {
+            var plot= document.getElementById("plot");
+            plot.src="/plot?random="+new Date().getTime();
+        }
+        clearInterval(interval);*/
+    </script>
+</body>
+
+</html>
