@@ -39,7 +39,7 @@ class Lidar():
     #fonction qui permet d'arrêter le lidar, et le déconnecter proprement
     def reset(self,ld):
         try:
-            ld.stop_motor()
+            #ld.stop_motor()
             ld.stop()
             ld.disconnect()
         except Exception as e:

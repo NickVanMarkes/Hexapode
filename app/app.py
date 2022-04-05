@@ -8,6 +8,7 @@ import cv2
 import numpy as np
 from sense_hat import SenseHat
 import io
+import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import matplotlib.pyplot as plt
 from threading import Timer
@@ -199,6 +200,8 @@ def mouvement():
         else:
             pass # unknown
 
+
+
 @app.route('/plot')
 def radar():
     lidar.run()
@@ -212,10 +215,17 @@ def radar():
         line.set_array(intens)
 
     buf= io.BytesIO()
-    FigureCanvas(fig).print_png(buf)
+    fig.savefig(buf,format='png')
+    buf.seek(0)
+    plot_url= base64.b64encode(buf.getvalue()).decode()
 
-    return Response(buf.getvalue(),mimetype='image/png')
 
+    #FigureCanvas(fig).print_png(buf)
+    #fig.savefig("static/img/plot.png")
+
+
+    #return Response(buf.getvalue(),mimetype='image/png')
+    return '<img src="data:image/png;base64,{}">'.format(plot_url)
 def InitFig():
     #INIT matplotlib
     plt.ion()

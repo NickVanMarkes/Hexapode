@@ -62,7 +62,7 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4"></div>
             <div id="plotdiv" class="col-sm-4 d-sm-flex d-xl-flex justify-content-sm-end justify-content-xl-end align-items-xl-center">
-                <img id="plot" class="border rounded-circle border-dark" alt="plot" src="/plot?{{increment_plot}}" style="width: 150px; background: rgb(0, 0, 0, 0.2);">
+                <img id="plot" class="border rounded-circle border-dark" alt="plot" src="/plot?{{increment_plot}}" style="width: 150px; height: 150px; background: rgb(0, 0, 0, 0.2);">
             </div>
         </div>
         <form method="post" action="#">
@@ -102,18 +102,6 @@
         </form>
     </div>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
-
-    <script>
-        /*
-        const interval=setInterval(refresh_plot(),10000);
-
-        function refresh_plot()
-        {
-            var plot= document.getElementById("plot");
-            plot.src="/plot?random="+new Date().getTime();
-        }
-        clearInterval(interval);*/
-    </script>
 </body>
 
 </html>
