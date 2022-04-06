@@ -34,6 +34,8 @@ Ce robot de type hexapode aura comme fonctionalitées de :
 
 ### Planning prévisionnel
 
+![Planning Prévisionnel](img/Planning_Pr%C3%A9visionnel.png)
+
 ### Planning effectif
 
 ## Généralité concernant l'implémentation
