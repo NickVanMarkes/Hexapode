@@ -1,3 +1,7 @@
 <div id="plotdiv" class="col-sm-4 d-sm-flex d-xl-flex justify-content-sm-end justify-content-xl-end align-items-xl-center">
-    <img id="plot" alt="plot" class="border img-fluid rounded-circle border-dark shadow-lg" src="data:image/png;base64, {{ plot_url }}" style="width: 150px; height: 150px; background: url(/plot); background-size: 148px 148px;">
+    <img id="plot" alt="plot" class="border img-fluid rounded-circle border-dark shadow-lg" src="/plot?{{increment_plot}}" style="width: 150px; height: 150px; background: url(/plot); background-size: 148px 148px;">
+    <script>
+        document.getElementById("plot").src = "/plot";
+        console.log("called");
+    </script>
 </div>

@@ -6,7 +6,6 @@ from turbo_flask import Turbo
 import threading
 import cv2
 import numpy as np
-from sense_hat import SenseHat
 import io
 import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -19,15 +18,6 @@ from mod_classes.Lidar import Lidar
 
 app = Flask(__name__)
 turbo = Turbo(app)
-sense = SenseHat()
-
-
-#Constantes
-X = [255, 0, 0]  # Red
-Z = [0, 255, 0]  # Green
-Y = [0, 0, 255]  # Green
-A = [0,255,255]
-O = [0, 0, 0]  # OFF
 
 DMAX = 2000
 IMIN = 0
@@ -37,77 +27,6 @@ fig=None
 line=None
 scans=None
 
-Fleche = [
-O, O, O, X, X, O, O, O,
-O, O, X, X, X, X, O, O,
-O, X, X, X, X, X, X, O,
-O, O, O, X, X, O, O, O,
-O, O, O, X, X, O, O, O,
-O, O, O, X, X, O, O, O,
-O, O, O, X, X, O, O, O,
-O, O, O, X, X, O, O, O
-]
-
-Fleche_G = [
-O, O, O, O, O, O, O, O,
-O, O, Z, O, O, O, O, O,
-O, Z, Z, O, O, O, O, O,
-Z, Z, Z, Z, Z, Z, Z, Z,
-Z, Z, Z, Z, Z, Z, Z, Z,
-O, Z, Z, O, O, O, O, O,
-O, O, Z, O, O, O, O, O,
-O, O, O, O, O, O, O, O
-]
-
-Fleche_D = [
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, Y, O, O,
-O, O, O, O, O, Y, Y, O,
-Y, Y, Y, Y, Y, Y, Y, Y,
-Y, Y, Y, Y, Y, Y, Y, Y,
-O, O, O, O, O, Y, Y, O,
-O, O, O, O, O, Y, O, O,
-O, O, O, O, O, O, O, O
-]
-
-Fleche_AH = [
-O, O, O, O, O, O, O, O,
-O, O, O, A, A, A, A, O,
-O, O, A, O, O, O, O, A,
-O, A, A, O, O, O, O, O,
-O, A, O, O, A, A, A, A,
-O, A, A, O, O, O, A, A,
-O, O, A, A, A, A, O, A,
-O, O, O, O, O, O, O, A
-]
-
-Fleche_H = [
-O, O, O, O, O, O, O, O,
-O, O, A, A, A, A, O, O,
-O, A, A, O, O, A, A, O,
-O, O, O, O, O, O, A, O,
-O, A, A, A, O, O, A, O,
-O, A, A, O, O, A, O, O,
-O, A, O, A, A, A, O, O,
-O, A, O, O, A, O, O, O
-]
-
-clean_LED = [
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O,
-O, O, O, O, O, O, O, O
-]
-
-sense.set_pixels(clean_LED)
-
-
-
-
 _incr=0
 _angleX=0
 _angleY=0 
@@ -116,7 +35,7 @@ _vitesse=0
 _batterie=0 
 _batterieServo=0
 _obstacleDist=0
-
+Onload=False
 
 
 
@@ -144,7 +63,7 @@ def inject_load():
 
     return {'angleX': _angleX, 'angleZ': _angleZ, 'angleY': _angleY, "vitesse":_vitesse,
     "batterie":_batterie,"batterieServo":_batterieServo,
-    "obstacleDist": _obstacleDist, "increment_plot": _incr}
+    "obstacleDist": _obstacleDist, "increment_plot": _incr, "increment_plot2": _incr+1}
 
 
 # Fonction permettant de lancer le rafraîchissement de la page
@@ -157,13 +76,16 @@ def update_load():
     with app.app_context():
         i=0
         while True:
-            time.sleep(1)
+            time.sleep(1.0)
             i+=1 
             turbo.push(turbo.replace(render_template('index_update.html'), 'load'))
-            if i == 3:
+            if i == 0:
                 lst_push=[(turbo.replace(render_template('update_plot.html'), 'plotdiv')),(turbo.replace(render_template('index_update.html'), 'load'))]
                 turbo.push(lst_push)
-                i=0
+            elif i==1:
+                lst_push=[(turbo.replace(render_template('update_plot2.html'), 'plotdiv')),(turbo.replace(render_template('index_update.html'), 'load'))]
+                turbo.push(lst_push)
+                i=-1
 
 
 # Route principale
@@ -180,52 +102,54 @@ def video():
 def mouvement():
     if request.method == 'POST':
         if request.form['submit_button'] == 'Avance':
-            sense.set_pixels(Fleche)
+            #sense.set_pixels(Fleche)
             pass
         elif request.form['submit_button'] == 'Recule':
-            sense.set_pixels(clean_LED)
+            #sense.set_pixels(clean_LED)
             pass
         elif request.form['submit_button'] == 'Droite':
-            sense.set_pixels(Fleche_D)
+            #sense.set_pixels(Fleche_D)
             pass
         elif request.form['submit_button'] == 'Gauche':
-            sense.set_pixels(Fleche_G)
+            #sense.set_pixels(Fleche_G)
             pass
         elif request.form['submit_button'] == 'Rotation_AntiHoraire':
-            sense.set_pixels(Fleche_AH)
+            #sense.set_pixels(Fleche_AH)
             pass
         elif request.form['submit_button'] == 'Rotation_Horaire':
-            sense.set_pixels(Fleche_H)
+            #sense.set_pixels(Fleche_H)
             pass
         else:
             pass # unknown
 
 
 
-@app.route('/plot')
+@app.route('/plot', methods=['GET', 'POST'])
 def radar():
-    lidar.run()
-    
-    scans=lidar.Get_Scans()
+    global Onload
+    global lidar
+    if not Onload:
+        Onload=True
+        lidar.run()
 
-    for scan in scans:
-        offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
-        line.set_offsets(offsets)
-        intens = np.array([meas[0] for meas in scan])
-        line.set_array(intens)
+        scans=lidar.Get_Scans()
+        for scan in scans:
+            offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
+            line.set_offsets(offsets)
+            intens = np.array([meas[0] for meas in scan])
+            line.set_array(intens)
 
-    buf= io.BytesIO()
-    fig.savefig(buf,format='png')
-    buf.seek(0)
-    plot_url= base64.b64encode(buf.getvalue()).decode()
+        buf= io.BytesIO()
 
+        FigureCanvas(fig).print_png(buf)
+        #fig.savefig("static/img/plot.png")
 
-    #FigureCanvas(fig).print_png(buf)
-    #fig.savefig("static/img/plot.png")
-
-
-    #return Response(buf.getvalue(),mimetype='image/png')
-    return '<img src="data:image/png;base64,{}">'.format(plot_url)
+        Onload=False
+        return Response(buf.getvalue(),mimetype='image/png')
+    else:
+        time.sleep(50/1000)        
+        return radar() 
+    #return '<img src="data:image/png;base64,{}">'.format(plot_url)
 def InitFig():
     #INIT matplotlib
     plt.ion()
@@ -247,5 +171,6 @@ if __name__ == '__main__':
     fig=InitFig()
     line=InitLine()
     lidar=Lidar()
+    Onload=False
     app.run(debug=False, host='0.0.0.0')
     
