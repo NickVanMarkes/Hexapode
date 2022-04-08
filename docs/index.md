@@ -97,8 +97,8 @@ Le Raspberry Pi est un nano-ordinateur monocarte à processeur ARM de la taille 
 
 La librairie "Servokit" d'adafruit, est une librairie qui permet de contrôler les servomoteurs du robot grâce au module PCA9685.
 
-### Servomoteurs Parallax
-
+### Servomoteurs Parallax 
+![Logo](img/ParalaxLogo.png){width="100", align="right"}
 Un servomoteur est un moteur capable de maintenir une opposition à un effort statique et dont la position est vérifiée en continu et corrigée en fonction de la mesure.
 
 ### RPLidar 
@@ -118,16 +118,16 @@ Ce module est un contrôleur de Servomoteurs PWM à 16 Canaux.
 Ce module est un système micro-électromécanique (MEMS), il se compose d'un accéléromètre à trois axes et d'un gyroscope à trois axes.
 
 ### CR10-S pro v2
-
+![Logo](img/CrealityLogo.png){width="100", align="right"}
 Imprimante 3D permettant d'imprimer les pièces du robot.
 
-### Git
+### Git ![Logo](img/GitLogo.png){width="100", align="right"}
 
 Git est un logiciel de gestion de version qui a été utilisé durant la réalisation du projet afin d'avoir un historique du projet. Le code source est disponible [ici](https://github.com/NickVanMarkes).
 
-### Trello
-
-
+### Trello 
+![Logo](img/TrelloLogo.png){width="100", align="right"}
+Trello est un outil de gestion de projet en ligne. Inspiré par la méthode Kanban de Toyota. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches.
 
 ## Analyse des fonctionnalités majeures
 
@@ -144,6 +144,8 @@ Git est un logiciel de gestion de version qui a été utilisé durant la réalis
 ## Conclusion
 
 ### Difficultés rencontrés
+
+#### Vue Radar
 
 ### Améliorations possibles
 
