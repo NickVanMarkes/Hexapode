@@ -125,6 +125,10 @@ Imprimante 3D permettant d'imprimer les pièces du robot.
 
 Git est un logiciel de gestion de version qui a été utilisé durant la réalisation du projet afin d'avoir un historique du projet. Le code source est disponible [ici](https://github.com/NickVanMarkes).
 
+### Trello
+
+
+
 ## Analyse des fonctionnalités majeures
 
 ## Plan de test et tests
