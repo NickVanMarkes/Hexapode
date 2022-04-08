@@ -1,4 +1,8 @@
-#Lidar.py
+### Author      : Nicolas Oliveira
+### Project     : The Big Bug
+### File        : mod_classes/Lidar.py
+### Date        : 07/04/2022
+### Description : Classe qui récupère les données du lidar, et qui les retournes si besoin.
 
 #packages
 from adafruit_rplidar import RPLidar, RPLidarException
