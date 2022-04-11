@@ -27,3 +27,5 @@ Après les cours j'ai fait le programme que m'avais dit M. Bonvin, et j'ai remar
 ### 08.04.2022
 
 Ce matin, j'ai continué à travailler sur le débugage de de la vue radar, et M. Bonvin m'as appelé en me disant de faire un autre script, et m'as dit de prendre le code d'exemple. Puis, ne voyant toujours pas le bout de la solution à se problème, j'ai commencé à faire le câblage pour les rallonges des servos moteurs, car aujourd'hui j'ai reçu la commande avec les gaines thermoretractables. Ensuite je les ai essayée, en regardant dans les pires position voir si tout était assez long, et tout est comme il faut. Puis, vers la fin de la journée, je me suis réattaqué sur la solution de la vue radar. En testant, j'ai vu que même avec l'exemple cela prennait 30 secondes pour avec 400 scans. Mais en regardant ce qu'il y avait dans les 400 scans, il y avait 400*360°, ce qui est problématique. J'ai essayé alors avec 1 seul scan, il y manque beaucoup d'information, car il prend que de là où il est en ° jusqu'à ~360°. De ce fait, pour être sûr d'avoir toutes les infos, 2 scans sont nécessaires, ce qui prend 0.46 secondes.
+
+### 11.04.2022

@@ -66,6 +66,7 @@ class Radar(object):
             #intens = np.array([meas[0] for meas in scan])
             #self.line.set_array(intens)
 
+
         buf= io.BytesIO()
         FigureCanvas(self.fig).print_png(buf)
         self.fig.savefig("plot.png")
