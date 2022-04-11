@@ -46,6 +46,6 @@ except KeyboardInterrupt:
     lidar.stop_motor()
     lidar.disconnect()
     print('Stoping.')
-except RPLidarException:
-    print('RPLidar exception')
+except RPLidarException as le :
+    print('RPLidar exception :', str(le))
     process_data(scan_data)
