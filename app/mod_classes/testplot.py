@@ -8,4 +8,11 @@ retradar=Radar()
 totalTime=End-Begin
 print("Time import Radar at testplot.py: ")
 print(totalTime)
-test=retradar.CreatePlot()
+Begin=0
+End=0
+Begin=time.time()
+for i in range(10):
+    test=retradar.CreatePlot()
+End=time.time()
+print("Time to make 10 plots")
+print(End-Begin)

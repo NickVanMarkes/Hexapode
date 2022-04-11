@@ -31,7 +31,7 @@ class Lidar():
         try:
             lidar = RPLidar(None, PORT_NAME, timeout=3, logging=False)
             #lidar.logging = True
-            lidar.stop()
+            lidar.stop()            
         except Exception as e:
             print("init-Exception " + str(e))
             return None
@@ -54,8 +54,9 @@ class Lidar():
             return False
 
     #fonction qui récupère les données du lidar
-    def loop(self,ld, iter=400):
+    def loop(self,ld, iter=2):
         scans.clear()
+        
         try:
             for scan in ld.iter_scans(iter):
                 scans.append(scan)

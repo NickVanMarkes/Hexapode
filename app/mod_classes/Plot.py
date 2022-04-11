@@ -8,7 +8,7 @@ import time
 #MatPlotLib
 
 Begin=time.time()
-from matplotlib.pyplot import figure as plt
+import matplotlib.pyplot as plt
 End=time.time()
 print("Time to import matplotlib in Plot.py :")
 print(End-Begin)
@@ -55,13 +55,16 @@ class Radar(object):
     #Brief: Lance une lecture des points avec le lidar, et mets les points sur le plot.
     #Return: le plot avec les points dedans
     def CreatePlot(self):
+        self.lidar.run()
         scans=self.lidar.Get_Scans()
 
         for scan in scans:
+            
+            #Insertion des points
             offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
             self.line.set_offsets(offsets)
-            intens = np.array([meas[0] for meas in scan])
-            self.line.set_array(intens)
+            #intens = np.array([meas[0] for meas in scan])
+            #self.line.set_array(intens)
 
         buf= io.BytesIO()
         FigureCanvas(self.fig).print_png(buf)

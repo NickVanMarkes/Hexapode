@@ -196,7 +196,7 @@ def radar():
         Onload=False
         return Response(buf.getvalue(),mimetype='image/png')
     else:
-        time.sleep(50/1000)        
+        time.sleep(1)        
         return radar() 
     #return '<img src="data:image/png;base64,{}">'.format(plot_url)
 def InitFig():
