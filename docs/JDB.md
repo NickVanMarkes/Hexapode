@@ -35,3 +35,11 @@ Aujourd'hui, j'ai continué à travailler sur le programme pour le lidar. Ensuit
 ![Schema](img/JDB/Schema11_04.png)
 
 Et enfin, à la fin de la journée, j'ai décidé d'avancer le câblage du robot. Avec du veroboard, j'ai soudé tout les câbles utiles pour l'I2C (SDA et SCL). Et demain, je vais faire la même chose mais pour les alimentations des modules, ainsi je pourrais tester les modules des servos moteurs et commencer à faire bouger le robot.
+
+### 12.04.2022
+
+Aujourd'hui, j'ai commencé la journée et continuant de transformer ma classe Lidar en asynchrone. Puis avec certains problèmes, j'ai décidé d'avancer le câblage et de le finir, car ainsi, je pourrais commencer à travailler sur les servos. Dès le début de l'après-midi, j'avais finis avec le câblage, et j'ai commencé à tester les servomoteurs. Ils marchent tous correctement. Mais, habitué à n'avoir que des servos non-continus, j'ai un peu peiné au début, pour les faire bouger. Ils se tapaient sur tout, car ils allaient toujours du min au max, ou du max au min, mais jamais le degré que je voulais. Ensuite je suis allé voir la documentation de la librairie adafruit, et ils expliquent implicitement comment ils fonctionnent. J'ai calculé, ensuite, le temps que prennent les servos pour faire un degré :
+
+en 1 min le servo fait 50 tour, il faut donc savoir combien de temps pour 1 tour. une simple règle de 3 pour le trouver, ce qui nous donne 1.2 secondes pour un tour. Ensuite, il faut juste diviser ce 1.2 secondes par 360 pour savoir le temps pour faire 1 degré, ce qui nous donne 0.003 secondes. Puis, j'ai préparé un code conséquent et faire certains tests avec les servos. Et à la fin de la journée, j'ai demandé conseil à M. Bonvin, et il me conseilla sur ce que je dois faire.
+
+Je pense qu'en Off chez moi j'imprimerais certaines pièces de la façon dont il m'a expliqué, afin de réduire le poids des pièces.
