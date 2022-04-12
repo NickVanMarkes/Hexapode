@@ -12,10 +12,10 @@ max_distance = 0
 Begin=0
 End=0
 scans=[]
-class Lidarasync():
+class Lidarasync(object):
 
-    def __init__ (self) -> RPLidar:
-        """  brief       : Constructor of the class
+    def __init__ (self):
+        """  brief       : Constructeur de la classe RPLidar
               param-type  : None
               return-type : Lidar 
         """ 
@@ -23,7 +23,6 @@ class Lidarasync():
         self.lidar=None
         self.scans=[]
         self.lidar = RPLidar(None, PORT_NAME,timeout=3.0)
-        return self.lidar
 
     def __del__ (self) -> None:
         """  brief       : Destructeur de l'objet RPLidar
@@ -37,7 +36,7 @@ class Lidarasync():
         print('Stoping.')
 
 
-    def process_data(self):
+    async def process_data(self):
         """  brief       : Function to process the data
               param-type  : None
               return-type : List(list(int,int,int))
@@ -45,20 +44,25 @@ class Lidarasync():
         End=time.time()
         print("Time to process data: ")
         print(End-Begin)
-        return self.scans
+        return await self.scans
     
-    async def Get_Data(self):
-        """  brief       : Function to process the data
+    # async def Get_Data(self):
+    #     """  brief       : Function to get the data
+    #           param-type  : None
+    #           return-type : List(list(int,int,int))
+    #     """
+    #     return await self.process_data()
+
+    def DoScan(self):
+        """  brief       : Function to scan with the lidar
               param-type  : None
               return-type : List(list(int,int,int))
         """
-        return await self.process_data()
-
-    def DoScan(self):
         scan_data = [0]*400
         scans.clear()
 
         try:
+            global Begin
             Begin=time.time()
             for scan in self.lidar.iter_scans():
                 scans.append(scan)
@@ -70,8 +74,6 @@ class Lidarasync():
             self.lidar.stop_motor()
             self.lidar.disconnect()
             print('Stoping.')
-            print(self.scans[1])
-            print(len(self.scans[0])+len(self.scans[1]))
 
         except KeyboardInterrupt:
             self.lidar.stop()

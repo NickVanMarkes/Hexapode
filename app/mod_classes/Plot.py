@@ -7,23 +7,13 @@ import time
 
 #MatPlotLib
 
-Begin=time.time()
 import matplotlib.pyplot as plt
-End=time.time()
-print("Time to import matplotlib in Plot.py :")
-print(End-Begin)
-Begin=time.time()
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-End=time.time()
-print("Time to import matplotlib.backend in Plot.py :")
-print(End-Begin)
 
 BeginLidar=time.time()
 # Lidar pour les données
-from Lidar import Lidar
-EndLidar=time.time()
-print("Time to import Lidar in Plot.py :")
-print(EndLidar-BeginLidar)
+from Lidarv2async import Lidarasync as Lidar
+
 
 # Autres librairies
 import numpy as np
@@ -55,8 +45,8 @@ class Radar(object):
     #Brief: Lance une lecture des points avec le lidar, et mets les points sur le plot.
     #Return: le plot avec les points dedans
     def CreatePlot(self):
-        self.lidar.run()
-        scans=self.lidar.Get_Scans()
+        self.lidar.DoScan()
+        scans=self.lidar.process_data()
 
         for scan in scans:
             
