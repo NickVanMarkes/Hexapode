@@ -23,8 +23,11 @@ pca.frequency = 50
 # Create all servo objects, specifying pin number, min and max values.
 
 #Patte Avant Gauche
+#Hanche
 servo0 = servo.ContinuousServo(pca.channels[0], min_pulse=1300, max_pulse=MAXPULSE)
+#Tibia
 servo1 = servo.ContinuousServo(pca.channels[1], min_pulse=1300, max_pulse=MAXPULSE)
+#Pointe
 servo2 = servo.ContinuousServo(pca.channels[2], min_pulse=1300, max_pulse=MAXPULSE)
 
 #Patte Milieu Gauche
@@ -36,9 +39,12 @@ servo5 = servo.ContinuousServo(pca.channels[5], min_pulse=1300, max_pulse=MAXPUL
 servo6 = servo.ContinuousServo(pca.channels[6], min_pulse=1300, max_pulse=MAXPULSE)
 
 #Patte Arriere Gauche
-servo13 = servo.ContinuousServo(pca.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
-servo14 = servo.ContinuousServo(pca.channels[14], min_pulse=1300, max_pulse=MAXPULSE)
-servo15 = servo.ContinuousServo(pca.channels[15], min_pulse=1300, max_pulse=MAXPULSE)
+#Hanche
+servo13 = servo.ContinuousServo(pca.channels[12], min_pulse=1300, max_pulse=MAXPULSE)
+#Tibia
+servo14 = servo.ContinuousServo(pca.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
+#Pointe
+servo15 = servo.ContinuousServo(pca.channels[14], min_pulse=1300, max_pulse=MAXPULSE)
 
 #Patte Avant Droite
 
@@ -63,36 +69,46 @@ while True:
     if(angle>0):
         servo4.throttle = -1.0
         servo2.throttle = -1.0
+        servo15.throttle = -1.0
     elif(angle<0):
         servo4.throttle = 1.0
         servo2.throttle = 1.0
+        servo15.throttle = 1.0
     else:
         servo4.throttle = 0.0
         servo2.throttle=0.0
+        servo15.throttle=0.0
     time.sleep(0.003*abs(angle))
     servo4.throttle=0.0
     servo2.throttle=0.0
+    servo15.throttle=0.0
     
     angle5=int(input("Entrez l'angle du Tibia : "))
     if(angle5>0):
         servo5.throttle = -1.0
         servo1.throttle = -1.0
+        servo14.throttle = -1.0
     elif(angle5<0):
         servo5.throttle = 1.0
         servo1.throttle = 1.0
+        servo14.throttle = 1.0
     else:
         servo5.throttle = 0.0
         servo1.throttle=0.0
+        servo14.throttle=0.0
     time.sleep(0.003*abs(angle5))
     if(angle5>0):
         servo5.throttle = -0.5
         servo1.throttle = -0.5
+        servo14.throttle = -0.5
     elif(angle5<0):
         servo5.throttle = 0.5
         servo1.throttle = 0.5
+        servo14.throttle = 0.5
     else:
         servo5.throttle = 0.0
         servo1.throttle=0.0
+        servo14.throttle=0.0
     
 
 
