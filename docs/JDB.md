@@ -47,3 +47,7 @@ Je pense qu'en Off chez moi j'imprimerais certaines pièces de la façon dont il
 ### 13.04.2022
 
 Aujourd'hui, j'ai commencé ma journée en faisant des tests sur le module gyroscope/acceleromètre. J'ai eu quelques soucis pour trouver la bonne adresse, j'ai dû chercher dans la documentation technique, mais il n'y avait pas pour le module. Ce que j'ai fait, c'est que je suis allé chercher dans tout mes projets d'électronique, et j'ai réussi trouvé dans un dossier caché au milieu de tout mes dossiers, un ancien programme qui utilisait ce module et I2C et j'ai réussis à trouver l'adresse. J'ai testé voir si il marchait correctement, et tout m'as l'air assez juste. Ensuite, durant l'après-midi, j'ai continué à travailler sur les servomoteurs. En branchant 2 pattes je voyais qu'il arrivait déjà à soulever mais légèrement, et les servos du milieu chauffent pas mal, alors j'ai testé avec une troisième patte, et là, tout le corps du robot c'est soulever avec aisance. Cela m'as fait très plaisir, car je me dit que finalement (sans le poids des batteries et du lidar) il arrive a soulever le robot! Je pense donc essayer durant toutes les vacances à faire des pseudo animations, ou du moins réussir à le soulever complètement.
+
+### 18.04.2022
+
+Aujourd'hui, j'ai avancé la documentation technique avec ce que j'avais déjà, ainsi qu'expliquer les différents protocols de communication que j'utilise.
