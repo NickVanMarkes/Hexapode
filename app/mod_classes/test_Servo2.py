@@ -91,20 +91,20 @@ servo14.throttle = -0.01
     #Pointes
 angle=150
 if(angle>0):
-    servo4.throttle = -1.0
+    #servo4.throttle = -1.0
     servo2.throttle = -1.0
-    servo15.throttle = -1.0
+    #servo15.throttle = -1.0
 elif(angle<0):
-    servo4.throttle = 1.0
+    #servo4.throttle = 1.0
     servo2.throttle = 1.0
-    servo15.throttle = 1.0
+    #servo15.throttle = 1.0
 else:
-    servo4.throttle = 0.0
+    #servo4.throttle = 0.0
     servo2.throttle=0.0
-    servo15.throttle=0.0
+    #servo15.throttle=0.0
 time.sleep(0.003*abs(angle))
 
-    
+#Oscillation "stable"
 while True:
     # #Tibia
     # servo5.throttle = -0.01
@@ -117,13 +117,14 @@ while True:
     # servo14.throttle = 0.01
 
     #pointes
-    servo4.throttle = -0.03
-    servo2.throttle = -0.03
-    servo15.throttle = -0.03
+    #servo4.throttle = -0.3
+    servo2.throttle = -0.05
+    #servo15.throttle = -0.03
     time.sleep(0.003*1)
-    servo4.throttle=0.03
-    servo2.throttle=0.03
-    servo15.throttle=0.03
+    #servo4.throttle=0.1
+    servo2.throttle=0.08
+    #servo15.throttle=0.03
+    time.sleep(0.003*1)
     
     
 

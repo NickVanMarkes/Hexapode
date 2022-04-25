@@ -98,13 +98,13 @@ while True:
         servo14.throttle=0.0
     time.sleep(0.003*abs(angle5))
     if(angle5>0):
-        servo5.throttle = -0.5
-        servo1.throttle = -0.5
-        servo14.throttle = -0.5
+        servo5.throttle = -0.06
+        servo1.throttle = -0.06
+        servo14.throttle = -0.06
     elif(angle5<0):
-        servo5.throttle = 0.5
-        servo1.throttle = 0.5
-        servo14.throttle = 0.5
+        servo5.throttle = 0.06
+        servo1.throttle = 0.06
+        servo14.throttle = 0.06
     else:
         servo5.throttle = 0.0
         servo1.throttle=0.0

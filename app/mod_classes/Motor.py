@@ -5,7 +5,7 @@
 ### Description : Classe qui permet de contrôler les servomoteur du robot hexapode.
 
 
-class Motor(object):
+class Patte(object):
     def __init__ (self) -> None:
      """  brief       : Initialisation du servo
           param-type  : None
@@ -13,16 +13,35 @@ class Motor(object):
      """ 
         #DO SOMETHING
 
-    def set_angle(self, angle: int) -> None:
-        """  brief       : Permet de définir l'angle du servo
-            param-type  : int
+    def Avance(self) -> None:
+        """  brief       : Animation de la patte vers l'avant
+            param-type  : None
             return-type : None 
         """ 
         #DO SOMETHING
-    def get_angle(self) -> int:
+    def Recule(self) -> None:
         """  brief       : Permet de récupérer l'angle du servo
             param-type  : None
             return-type : int 
         """ 
         #DO SOMETHING
-        return 0
+    def Gauche(self) -> None:
+        """  brief       : Animation de la patte vers la gauche
+            param-type  : None
+            return-type : None 
+        """ 
+        #DO SOMETHING
+    
+    def Droite(self) -> None:
+        """  brief       : Animation de la patte vers la droite
+            param-type  : None
+            return-type : None 
+        """ 
+        #DO SOMETHING
+    
+    def Stop(self) -> None:
+        """  brief       : Maintient la patte à son état
+            param-type  : None
+            return-type : None 
+        """ 
+        #DO SOMETHING

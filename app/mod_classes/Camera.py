@@ -10,20 +10,28 @@ import cv2
 class VideoCamera(object):
     
     #Constructeur
-    #Brief: Trouve la caméra et Capture le flux vidéo
     def __init__(self):
+        """  brief       : Initialisation de la caméra et du flux vidéo
+             param-type  : None
+             return-type : None 
+        """ 
        # capturing video
-       self.video = cv2.VideoCapture(cv2.CAP_V4L2)
+        self.video = cv2.VideoCapture(cv2.CAP_V4L2)
     
     #destructeur
-    #Brief: Se déconnecte de la caméra
     def __del__(self):
+        """  brief       : Arrêt de la saisie de la caméra
+             param-type  : None
+             return-type : None 
+        """ 
         # releasing camera
         self.video.release()
     
-    #Brief: Fonction qui permet de récupérer le flux vidéo
-    #Retourne: Chaîne de bytes
     def get_frame(self):
+        """  brief       : capture du flux vidéo de la caméra et retourne le flux vidéo
+             param-type  : None
+             return-type : bytes 
+        """ 
        # extracting frames
         ret, frame = self.video.read()
         #frame=cv2.resize(frame,(1280,720))                    
