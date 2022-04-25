@@ -131,6 +131,43 @@ Trello est un outil de gestion de projet en ligne. Inspiré par la méthode Kanb
 
 ## Analyse des fonctionnalités majeures
 
+### Classe Lidar
+Pour commencer, je vais vous expliquer ce qu'est un lidar. D'abord, un lidar c'est un appareil qui a un laser et un capteur optique monté sur un moteur, et quand il tourne, il détecte les obstacles grâce au temps que prends le laser à être détécter par le capteur optique. comme expliqué sur l'image ci-dessous.
+
+![Lidar fonctionnement](img/Lidar_fonctionnement.jpg)
+
+La communication avec le lidar est du SPI (Serial Peripheral Interface) qui pour résumer est un protocol de communication Master/Slave Master étant le raspberry pi et le Slave étant le lidar.
+![SPI_Example](img/SPI_single_slave.png)
+
+ Le raspberry pi lui envois une trame de données avec un registre, qui est compris par le lidar, et fait une action précise. la trame doit respecter le clock(horloge) qu'envois le raspberry pi, car sinon des bits vont se perdre et le message est incomplet.
+![SPI_Clock](img/SPI_timing_diagram.png)
+
+Et pour le projet j'ai placé le lidar sur le haut du robot, car si je le mettais en dessous j'allais toujours détécter les pattes ce qui nous enlèverais beaucoup trop de vision. Le lidar tourne en continue car, ainsi les informations prennent moins de temps à être prises.
+
+Ensuite, pour la programmation de cette classe, à l'initialisation du script "app.py" je lance le moteur du lidar, puis, de manière asynchrone j'envois les informations reçues du lidar dans une liste, qui s'actualise donc souvent.Pour l'acquisition des données il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois de sa postion actuelle jusqu'à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu'à enregistrer le tour complet d'après, c'est pour ça que je fait 2 tours. Puis dès qu'une classe en a besoin, elle appelle la fonction "Get_Data()" qui lui envois une liste de toutes les valeurs.
+
+### Classe Plot
+
+Cette classe sert à créer les "Plots", c'est ce que j'appel la vue radar. Elle m'est utile pour créer une image avec les points que la classe lidar détecte et je l'actualise afin d'avoir un retour un minimum fluide. A l'initialisation, la classe déssine le background de l'image, ce qui veut les le fond blanc, les lignes pour les distances ainsi que mettre les chiffres pour que l'utilisateur sache de qu'elle distance il s'agit.
+![Plot Init](img/Plot_Init.png)
+
+Ensuite, j'actualise seulement les points afin d'essayer de ne pas prendre trop de temps inutilement en redéssinant des éléments futiles, et/ou permanent.
+
+![Plot CreatePlot](img/Plot_CreatePlot.png)
+
+### Classe Gyroscope
+
+Pour le gyroscope, j'utilise un module MPU-6050 qui dessus à un gyroscope ainsi qu'un acceleromètre. Ce composant est improprement nommé gyroscope, car ce n'est pas un "vrai" gyroscope avec les anneaux, mais c'est un MEMS (MicroElectroMechanical Systems). Le fonctionnement de ce MEMS est qu'avec des mécanismes micrométriques réalisés sur silicium, elles sont mis en mouvement grâce aux forces générées par des transducteurs électromécaniques (dispositif servant de convertir un signal physique en un autre), et ce dernier fait l'interface entre la mécanique et l'électrique, et un circuit récupère ce signal et le transforme en signal numérique.
+
+L'utilisation de ce module est assez simple, il communique en I2C, c'est un protocol de communication qui sert beaucoup, si nous avons beaucoup de modules, car nous pouvons chaîner les modules. Ce protocole utilise des adresses afin de s'adresser aux modules, par example le gyroscope est l'adresse 0x68, puis nous lui envoyons en data le registre qui dit au module ce qu'il doit faire (un peu comme le SPI). Puis, le module nous renvois une réponse, par exemple avec le gyroscope il nous renvois les angles. 
+![I2C_Exemple](img/Protocol_I2C.png)
+
+Afin d'utiliser correctement ce module, j'ai utilisé la librairie fait par le fabriquant. Ce qui gère pour nous la communication entre le gyroscope et le raspberry pi. Ce qui rends les fonctions plus courtes et simples.
+
+![Gyroscope_Class](img/Gyroscope_Class.png)
+
+### Classe Patte
+
 ## Plan de test et tests
 
 ### Périmètres des tests
