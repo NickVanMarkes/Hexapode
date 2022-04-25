@@ -168,6 +168,9 @@ Afin d'utiliser correctement ce module, j'ai utilisé la librairie fait par le f
 
 ### Classe Patte
 
+Explication des servomoteurs,
+Explication de la classe dès qu'elle sera fonctionnelle
+
 ## Plan de test et tests
 
 ### Périmètres des tests

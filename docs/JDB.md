@@ -51,3 +51,7 @@ Aujourd'hui, j'ai commencé ma journée en faisant des tests sur le module gyros
 ### 18.04.2022
 
 Aujourd'hui, j'ai avancé la documentation technique avec ce que j'avais déjà, ainsi qu'expliquer les différents protocols de communication que j'utilise.
+
+### 25.04.2022
+
+Aujourd'hui, j'ai continué à essayer de tester les servos, surtout voir quelle force minimal j'ai besoin pour quelles lèvent la patte. Et ensuite, dès que j'ai trouvé cette information ( car ça m'as pris un bon bout de temps de faire sur chaque patte), j'ai pris une feuille, mon programme de test des servo où je peux mettre leurs angles, et faire les animations étape par étape. Mais malheureusement, vu que je n'ai pas encore recu le reste de mes pattes, je ne peux pas finir correctement les animations, je suis donc bloqué sur cette étape, et heureusement que ce problème est arrivé en fin de journée sinon j'aurais vite perdu une journée de travail.  
