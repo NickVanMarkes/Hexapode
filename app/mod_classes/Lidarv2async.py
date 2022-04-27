@@ -7,10 +7,7 @@ from adafruit_rplidar import RPLidar
 
 #Constants
 PORT_NAME = '/dev/ttyUSB0'
-# used to scale data to fit on the screen
 max_distance = 0
-Begin=0
-End=0
 scans=[]
 class Lidarasync(object):
 
@@ -19,41 +16,29 @@ class Lidarasync(object):
               param-type  : None
               return-type : Lidar 
         """ 
-        # Setup the RPLidar
+        
         self.lidar=None
+        self.shorterScan=1000
         self.scans=[]
-        self.lidar = RPLidar(None, PORT_NAME,timeout=3.0)
-
-    def __del__ (self) -> None:
-        """  brief       : Destructeur de l'objet RPLidar
-              param-type  : None
-              return-type : None 
-        """ 
-        self.lidar.stop()
-        self.lidar.stop_motor()
-        self.lidar.disconnect()
-        self.lidar=None
-        print('Stoping.')
+        # Setup the RPLidar
+        try:
+            self.lidar = RPLidar(None,PORT_NAME,timeout=3.0)
+            self.lidar.start_motor()
+        except:
+            print("No lidar found")
+            return
 
 
-    async def process_data(self):
-        """  brief       : Function to process the data
+    async def Get_Data(self):
+        """  brief       : Function to get the data
               param-type  : None
               return-type : List(list(int,int,int))
         """ 
-        End=time.time()
-        print("Time to process data: ")
-        print(End-Begin)
-        return await self.scans
+        result= await self.scans[1]
+        return result
     
-    # async def Get_Data(self):
-    #     """  brief       : Function to get the data
-    #           param-type  : None
-    #           return-type : List(list(int,int,int))
-    #     """
-    #     return await self.process_data()
 
-    def DoScan(self):
+    async def DoScan(self):
         """  brief       : Function to scan with the lidar
               param-type  : None
               return-type : List(list(int,int,int))
@@ -62,18 +47,21 @@ class Lidarasync(object):
         scans.clear()
 
         try:
-            global Begin
-            Begin=time.time()
             for scan in self.lidar.iter_scans():
                 scans.append(scan)
-
+                #Get shorter distance
+                if((scan[1][2])<self.shorterScan):
+                    self.shorterScan=scan[1][2]
+                #Stop when we have 2 scans
                 if len(scans) >= 2:             
-                  self.process_data(scan_data)
-                  break
-            self.lidar.stop()
-            self.lidar.stop_motor()
-            self.lidar.disconnect()
-            print('Stoping.')
+                    #self.Get_Data(scan_data)
+                    self.lidar.stop()
+                    self.lidar.stop_motor()
+                    self.lidar.disconnect()
+                    print('Stoping.')
+                    return await scans[1]
+                    break
+            
 
         except KeyboardInterrupt:
             self.lidar.stop()
