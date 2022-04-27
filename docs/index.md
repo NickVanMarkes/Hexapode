@@ -169,6 +169,17 @@ Afin d'utiliser correctement ce module, j'ai utilisé la librairie fait par le f
 ### Classe Patte
 
 Explication des servomoteurs,
+
+Pour commencer, afin de bien comprendre de ce qu'on parle, je vais vous expliquer ce qu'est un servomoteur.
+Un servomoteur est un moteur à courant continu de petite taille, avec un réducteur à la sortie, afin de diminuer la vitesse, tout en augmentant le couple. Puis, dans les servo standard il y a un potentiomètre afin de contrôlé la position, mais dans les parallax 900-00008 il n'y a pas car ce sont des servomoteurs, à rotation continu.
+
+![Servo_Intern](img/Servo_Intern.jpg)
+
+De ce fait, avec les servomoteurs standard on n'as qu'a mettre un angle, puis il y reste, alors que les notres, il faut le dire dans quel sense tourner, la force à avoir, et quand l'arrêter.
+La communication avec le servomoteur est assez simple, il faut lui envoyer une impulsion entre 1.3 [ms] et 1.890 [ms], 1.500 [ms] étant le milieu, en dessous ça fait tourner dans un sens, au dessus dans un autre sens.
+
+![Pulse_Servo](img/Pulse_Servo_Scheme.svg){align="center"}
+
 Explication de la classe dès qu'elle sera fonctionnelle
 
 ## Plan de test et tests
