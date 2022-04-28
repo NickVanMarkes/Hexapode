@@ -16,7 +16,7 @@ plugins:
       #
       #cover: false
       #back_cover: true
-      cover_title: Travail de semestre
+      cover_title: Travail de diplôme
       cover_subtitle: Documentation Interface Flask
       cover_logo: "./images/logo.png"
       #custom_template_path: TEMPLATES PAT
