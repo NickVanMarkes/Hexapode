@@ -1,6 +1,7 @@
 import sys
 import time
 import asyncio
+import threading
 
 
 sys.path.append("../")
@@ -11,28 +12,16 @@ lidar=Lidarasync()
 lidar.scans=[]
 #lidar.DoScan()
 
-async def say_after(delay, what):
-    await asyncio.sleep(delay)
-    print(what)
+#thread = threading.Thread(target=lidar.DoScan)
+#thread.start()
 
 async def main():
-    task1 = asyncio.create_task(
-        say_after(1, 'hello'))
+    array=[]
+    array.append(lidar.DoScan())
+    print("".join(await asyncio.gather(*array)))
 
-    task2 = asyncio.create_task(
-        say_after(2, 'world'))
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
 
-    task3 = asyncio.create_task(lidar.DoScan())
 
-    print(f"started at {time.strftime('%X')}")
-
-    # Wait until both tasks are completed (should take
-    # around 2 seconds.)
-    await task1
-    await task2
-    await task3
-
-    print(f"finished at {time.strftime('%X')}")
-    print(task3)
-
-asyncio.run(main())
+#result = asyncio.gather(lidar.DoScan())

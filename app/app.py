@@ -8,7 +8,6 @@
 # FLASK
 from flask import Flask, render_template,Response, request
 from turbo_flask import Turbo
-import os
 import time
 import random
 
@@ -16,7 +15,6 @@ import threading
 import cv2
 import numpy as np
 import io
-import base64
 from threading import Timer
 
 # Matplotlib

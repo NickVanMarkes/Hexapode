@@ -1,19 +1,29 @@
 import sys
 from syncer import sync
-import asyncio
+import time
+import threading
 from concurrent.futures import ThreadPoolExecutor
+from functools import partial
 
 sys.path.append("../")
 
 from Lidarv2async import Lidarasync
 
 lidar=Lidarasync()
+lidar2=Lidarasync()
 
-#Scan réussi
-lidar.DoScan()
-scans=[]
-
-
+print("Est-ce la même instance? ",lidar is lidar2)
+result=[]
+#print("Sans thread")
+##Scan réussi
+#lidar.DoScan()
+#
+#result=lidar.Get_Data()
+#print(len(result))
+#
+#print(lidar.shorterScan)
+#
+#time.sleep(5)
 
 # def synchronize_async_helper(to_await):
 #     async_response = []
@@ -28,13 +38,29 @@ scans=[]
 #     return async_response[0]
 
 # result = synchronize_async_helper(lidar.Get_Data())
-result = asyncio.gather(lidar.Get_Data())
+print("==========================================================")
+print("Avec thread")
+lidar.scans=[]
+#thread=threading.Thread(target=lidar.DoScan)
+#thread.start()
+#thread.join()
+thread=threading.Timer(1,lidar.DoScan)
+#thread = threading.Thread(target=lidar.DoScan)
+thread.start()
+#thread.run()
+while len(result)<16:
+    
+    if(result!=lidar.Get_Data()):
+        #print(lidar.Get_Data())
+        result=lidar.Get_Data().copy()
+    print("Éléments dans les scans: ",len(result))
+    time.sleep(0.3)
 
-print(result)
+for scan in result:
+    print(scan, "\n")
 
-print(lidar.shorterScan)
 
 
-if scans is None:
+#thread.cancel()
+if result is []:
     print("No data")
-

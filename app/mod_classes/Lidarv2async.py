@@ -10,6 +10,16 @@ PORT_NAME = '/dev/ttyUSB0'
 max_distance = 0
 scans=[]
 class Lidarasync(object):
+    _instances = {}
+    def __new__(cls):
+        """  brief       : Je rends la classe en tant que singleton
+              param-type  : None
+              return-type : instance 
+        """ 
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Lidarasync, cls).__new__(cls)
+        return cls._instances[cls]
+
 
     def __init__ (self):
         """  brief       : Constructeur de la classe RPLidar
@@ -29,42 +39,43 @@ class Lidarasync(object):
             return
 
 
-    async def Get_Data(self):
+    def Get_Data(self):
         """  brief       : Function to get the data
               param-type  : None
               return-type : List(list(int,int,int))
         """ 
-        result= await self.scans[1]
-        return result
+        if len(self.scans)>0:
+            return self.scans
+        else:
+            return []
     
 
-    async def DoScan(self):
+    def DoScan(self):
         """  brief       : Function to scan with the lidar
               param-type  : None
               return-type : List(list(int,int,int))
         """
-        scan_data = [0]*400
-        scans.clear()
+        self.scans.clear()
+        self.shorterScan=1000
 
         try:
             for scan in self.lidar.iter_scans():
-                scans.append(scan)
+                self.scans.append(scan)
                 #Get shorter distance
-                if((scan[1][2])<self.shorterScan):
-                    self.shorterScan=scan[1][2]
+                for meas in scan:
+                    if meas[2] < self.shorterScan:
+                        self.shorterScan = meas[2]
                 #Stop when we have 2 scans
-                if len(scans) >= 2:             
-                    #self.Get_Data(scan_data)
-                    self.lidar.stop()
-                    self.lidar.stop_motor()
-                    self.lidar.disconnect()
-                    print('Stoping.')
-                    return await scans[1]
+                if len(self.scans) >= 2:             
                     break
-            
+            self.lidar.stop()
+            self.lidar.stop_motor()
+            self.lidar.disconnect()
+            print('Stoping.')
 
         except KeyboardInterrupt:
             self.lidar.stop()
             self.lidar.stop_motor()
             self.lidar.disconnect()
             print('Stoping.')
+            return None
