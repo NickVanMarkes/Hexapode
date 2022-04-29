@@ -1,66 +1,59 @@
 import sys
-from syncer import sync
 import time
-import threading
-from concurrent.futures import ThreadPoolExecutor
-from functools import partial
+
 
 sys.path.append("../")
 
 from Lidarv2async import Lidarasync
+from RepeatTimer import RepeatTimer
 
+#Test du singleton
 lidar=Lidarasync()
 lidar2=Lidarasync()
 
 print("Est-ce la même instance? ",lidar is lidar2)
 result=[]
-#print("Sans thread")
-##Scan réussi
-#lidar.DoScan()
-#
-#result=lidar.Get_Data()
-#print(len(result))
-#
-#print(lidar.shorterScan)
-#
-#time.sleep(5)
 
-# def synchronize_async_helper(to_await):
-#     async_response = []
+print("==========================================================")
+print("Sans thread")
+print("==========================================================")
+#Scan réussi
+lidar.DoScan()
 
-#     async def run_and_capture_result():
-#         r = await to_await
-#         async_response.append(r)
+result=lidar.Get_Data()
+print(len(result))
 
-#     loop = asyncio.get_event_loop()
-#     coroutine = run_and_capture_result()
-#     loop.run_until_complete(coroutine)
-#     return async_response[0]
+print(lidar.ShorterScan)
 
-# result = synchronize_async_helper(lidar.Get_Data())
 print("==========================================================")
 print("Avec thread")
-lidar.scans=[]
-#thread=threading.Thread(target=lidar.DoScan)
-#thread.start()
-#thread.join()
-thread=threading.Timer(1,lidar.DoScan)
-#thread = threading.Thread(target=lidar.DoScan)
+print("==========================================================")
+
+#Répétition du scan toutes les secondes
+thread=RepeatTimer(0.05,lidar.DoScan)
+#lancement du thread
 thread.start()
-#thread.run()
-while len(result)<16:
-    
+resultwithoutdoubles=[] 
+while len(resultwithoutdoubles)<10:
+     
+     #Ajout des valeurs dans notre liste
     if(result!=lidar.Get_Data()):
-        #print(lidar.Get_Data())
-        result=lidar.Get_Data().copy()
-    print("Éléments dans les scans: ",len(result))
-    time.sleep(0.3)
-
-for scan in result:
-    print(scan, "\n")
-
+        result+=lidar.Get_Data().copy()
+    #Retire les doublons
+    for scans in result:
+        if scans not in resultwithoutdoubles:
+            resultwithoutdoubles.append(scans)
+    time.sleep(0.05) #Attendre 0.05 secondes
 
 
-#thread.cancel()
+
+thread.cancel()
+
+
+
+#for scan in resultwithoutdoubles:
+#    print(scan, "\n")
+
+
 if result is []:
     print("No data")

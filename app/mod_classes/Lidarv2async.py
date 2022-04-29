@@ -3,7 +3,7 @@ import asyncio
 from math import cos, sin, pi, floor
 from socket import timeout
 import time
-from adafruit_rplidar import RPLidar
+from adafruit_rplidar import RPLidar, RPLidarException
 
 #Constants
 PORT_NAME = '/dev/ttyUSB0'
@@ -30,14 +30,17 @@ class Lidarasync(object):
         self.lidar=None
         self.shorterScan=1000
         self.scans=[]
+        self.increment=0
         # Setup the RPLidar
         try:
             self.lidar = RPLidar(None,PORT_NAME,timeout=3.0)
-            self.lidar.start_motor()
         except:
             print("No lidar found")
             return
 
+    @property
+    def ShorterScan(self):
+        return self.shorterScan
 
     def Get_Data(self):
         """  brief       : Function to get the data
@@ -53,11 +56,12 @@ class Lidarasync(object):
     def DoScan(self):
         """  brief       : Function to scan with the lidar
               param-type  : None
-              return-type : List(list(int,int,int))
+              return-type : None
         """
-        self.scans.clear()
+        
         self.shorterScan=1000
-
+        self.scans=[]
+        self.lidar.connect()
         try:
             for scan in self.lidar.iter_scans():
                 self.scans.append(scan)
@@ -69,7 +73,7 @@ class Lidarasync(object):
                 if len(self.scans) >= 2:             
                     break
             self.lidar.stop()
-            self.lidar.stop_motor()
+            #self.lidar.stop_motor()
             self.lidar.disconnect()
             print('Stoping.')
 
@@ -78,4 +82,15 @@ class Lidarasync(object):
             self.lidar.stop_motor()
             self.lidar.disconnect()
             print('Stoping.')
-            return None
+        except RPLidarException as ex:
+            print(ex)
+            self.lidar.stop()
+            self.lidar.stop_motor()
+            self.lidar.connect()
+            print('Stoping.')
+
+    def IncrementTest(self):
+        """  brief       : Function to increment the test
+        """
+        self.increment+=1
+        print("Increment: ",self.increment)
