@@ -28,9 +28,8 @@ class Lidarasync(object):
         """ 
         
         self.lidar=None
-        self.shorterScan=1000
+        self.shorterScan=2000
         self.scans=[]
-        self.increment=0
         # Setup the RPLidar
         try:
             self.lidar = RPLidar(None,PORT_NAME,timeout=3.0)
@@ -59,7 +58,7 @@ class Lidarasync(object):
               return-type : None
         """
         
-        self.shorterScan=1000
+        self.shorterScan=2000
         self.scans=[]
         self.lidar.connect()
         try:
