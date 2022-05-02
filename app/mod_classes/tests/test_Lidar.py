@@ -4,7 +4,7 @@ import time
 
 sys.path.append("../")
 
-from Lidarv2async import Lidarasync
+from app.mod_classes.LidarAsync import Lidarasync
 from RepeatTimer import RepeatTimer
 
 #Test du singleton
@@ -48,12 +48,6 @@ while len(resultwithoutdoubles)<10:
 
 
 thread.cancel()
-
-
-
-#for scan in resultwithoutdoubles:
-#    print(scan, "\n")
-
 
 if result is []:
     print("No data")

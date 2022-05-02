@@ -6,7 +6,7 @@ import threading
 
 sys.path.append("../")
 
-from Lidarv2async import Lidarasync
+from app.mod_classes.LidarAsync import Lidarasync
 
 lidar=Lidarasync()
 lidar.scans=[]

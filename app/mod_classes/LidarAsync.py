@@ -22,7 +22,7 @@ class Lidarasync(object):
 
 
     def __init__ (self):
-        """  brief       : Constructeur de la classe RPLidar
+        """  brief       : Constructeur de la classe RPLidar.
               param-type  : None
               return-type : Lidar 
         """ 
@@ -43,7 +43,7 @@ class Lidarasync(object):
         return self.shorterScan
 
     def Get_Data(self):
-        """  brief       : Function to get the data
+        """  brief       : Function to get the data.
               param-type  : None
               return-type : List(list(int,int,int))
         """ 
@@ -54,7 +54,7 @@ class Lidarasync(object):
     
 
     def DoScan(self):
-        """  brief       : Function to scan with the lidar
+        """  brief       : Function to scan with the lidar.
               param-type  : None
               return-type : None
         """
@@ -72,25 +72,27 @@ class Lidarasync(object):
                 #Stop when we have 2 scans
                 if len(self.scans) >= 2:             
                     break
-            self.lidar.stop()
-            #self.lidar.stop_motor()
-            self.lidar.disconnect()
-            print('Stoping.')
-
-        except KeyboardInterrupt:
-            self.lidar.stop()
-            self.lidar.stop_motor()
-            self.lidar.disconnect()
-            print('Stoping.')
+            self.StopLidar(withmotor=False)
+            print('Stoping, scan completed.')
         except RPLidarException as ex:
             print(ex)
-            self.lidar.stop()
-            self.lidar.stop_motor()
-            self.lidar.connect()
-            print('Stoping.')
+            self.StopLidar()
+            print('Stoping RPLidarException.')
 
-    def IncrementTest(self):
-        """  brief       : Function to increment the test
+    def StartLidar(self):
+        """  brief       : Function to lauch the motor of the lidar.
+             param-type : None
+             return-type: None
         """
-        self.increment+=1
-        print("Increment: ",self.increment)
+        self.lidar.start_motor()
+    
+    def StopLidar(self,withmotor=True):
+        """  brief       : Function to stop the lidar and disconnect it.
+             param-type : bool (True if you want to stop the motor)
+             return-type: None
+        """
+        if withmotor:
+            self.lidar.stop_motor()
+        self.lidar.stop()
+        self.lidar.disconnect()
+        

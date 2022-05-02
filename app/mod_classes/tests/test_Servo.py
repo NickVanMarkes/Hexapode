@@ -100,77 +100,77 @@ while True:
     angle=int(input("Entrez l'angle de la pointe : "))
     if(angle>0):
         pavg.throttle=-1
-        #pavd.throttle=1
+        pavd.throttle=1
         pmg.throttle=-1
-        #pmd.throttle=1
+        pmd.throttle=1
         parg.throttle=-1
-        #pard.throttle=1
+        pard.throttle=1
     elif(angle<0):
         pavg.throttle=1
-        #pavd.throttle=-1
+        pavd.throttle=-1
         pmg.throttle=1
-        #pmd.throttle=-1
+        pmd.throttle=-1
         parg.throttle=1
-        #pard.throttle=-1
+        pard.throttle=-1
     else:
         pavg.throttle=0
-        #pavd.throttle=0
+        pavd.throttle=0
         pmg.throttle=0
-        #pmd.throttle=0
+        pmd.throttle=0
         parg.throttle=0
-        #pard.throttle=0
+        pard.throttle=0
     time.sleep(0.003*abs(angle))
     pavg.throttle=0
-    #pavd.throttle=0
+    pavd.throttle=0
     pmg.throttle=0
-    #pmd.throttle=0
+    pmd.throttle=0
     parg.throttle=0
-    #pard.throttle=0
+    pard.throttle=0
     
     angle5=int(input("Entrez l'angle du Tibia : "))
-    if(angle5>0):
+    if(angle5<0): #Monte
         tavg.throttle=-1
-        #tavd.throttle=1
+        tavd.throttle=1
         tmg.throttle=-1
-        #tmd.throttle=1
+        tmd.throttle=1
         targ.throttle=-1
-        #tard.throttle=1
-    elif(angle5<0):
+        tard.throttle=1
+    elif(angle5>0): #descends
         tavg.throttle=1
-        #tavd.throttle=-1
+        tavd.throttle=-1
         tmg.throttle=1
-        #tmd.throttle=-1
+        tmd.throttle=-1
         targ.throttle=1
-        #tard.throttle=-1
+        tard.throttle=-1
     else:
         tavg.throttle=0
-        #tavd.throttle=0
+        tavd.throttle=0
         tmg.throttle=0
-        #tmd.throttle=0
+        tmd.throttle=0
         targ.throttle=0
-        #tard.throttle=0
+        tard.throttle=0
     time.sleep(0.003*abs(angle5))
     if(angle5>0):
         tavg.throttle=-0.2
-        #tavd.throttle=0.2
+        tavd.throttle=0.2
         tmg.throttle=-0.2
-        #tmd.throttle=0.2
+        tmd.throttle=0.2
         targ.throttle=-0.2
-        #tard.throttle=0.2
+        tard.throttle=0.2
     elif(angle5<0):
         tavg.throttle=0.2
-        #tavd.throttle=-0.2
+        tavd.throttle=-0.2
         tmg.throttle=0.2
-        #tmd.throttle=-0.2
+        tmd.throttle=-0.2
         targ.throttle=0.2
-        #tard.throttle=-0.2
+        tard.throttle=-0.2
     else:
         tavg.throttle=0
-        #tavd.throttle=0
+        tavd.throttle=0
         tmg.throttle=0
-        #tmd.throttle=0
+        tmd.throttle=0
         targ.throttle=0
-        #tard.throttle=0
+        tard.throttle=0
     
 
 

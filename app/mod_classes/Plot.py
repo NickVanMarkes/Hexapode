@@ -12,7 +12,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 BeginLidar=time.time()
 # Lidar pour les données
-from Lidarv2async import Lidarasync as Lidar
+from app.mod_classes.LidarAsync import Lidarasync as Lidar
 
 
 # Autres librairies

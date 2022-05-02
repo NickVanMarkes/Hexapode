@@ -23,7 +23,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 # Mes Classes
 from mod_classes.Camera import VideoCamera
-from mod_classes.Lidar import Lidar
+from app.mod_classes.Lidarv1 import Lidar
 
 app = Flask(__name__)
 turbo = Turbo(app)
