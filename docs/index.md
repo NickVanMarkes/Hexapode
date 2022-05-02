@@ -146,6 +146,8 @@ Et pour le projet j'ai placé le lidar sur le haut du robot, car si je le mettai
 
 Ensuite, pour la programmation de cette classe, à l'initialisation du script "app.py" je lance le moteur du lidar, puis, de manière asynchrone j'envois les informations reçues du lidar dans une liste, qui s'actualise donc souvent.Pour l'acquisition des données il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois de sa postion actuelle jusqu'à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu'à enregistrer le tour complet d'après, c'est pour ça que je fait 2 tours. Puis dès qu'une classe en a besoin, elle appelle la fonction "Get_Data()" qui lui envois une liste de toutes les valeurs.
 
+
+
 ### Classe Plot
 
 Cette classe sert à créer les "Plots", c'est ce que j'appel la vue radar. Elle m'est utile pour créer une image avec les points que la classe lidar détecte et je l'actualise afin d'avoir un retour un minimum fluide. A l'initialisation, la classe déssine le background de l'image, ce qui veut les le fond blanc, les lignes pour les distances ainsi que mettre les chiffres pour que l'utilisateur sache de qu'elle distance il s'agit.
