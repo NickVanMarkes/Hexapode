@@ -34,7 +34,7 @@ Ce robot de type hexapode aura comme fonctionalitées de :
 
 ### Planning prévisionnel
 
-![Planning Prévisionnel](img/Planning_Pr%C3%A9visionnel.png)
+![Planning Prévisionnel](img/Planning_Pr%C3%A9visionnel.png){Height="1000"}
 
 ### Planning effectif
 
@@ -137,16 +137,185 @@ Pour commencer, je vais vous expliquer ce qu'est un lidar. D'abord, un lidar c'e
 ![Lidar fonctionnement](img/Lidar_fonctionnement.jpg)
 
 La communication avec le lidar est du SPI (Serial Peripheral Interface) qui pour résumer est un protocol de communication Master/Slave Master étant le raspberry pi et le Slave étant le lidar.
-![SPI_Example](img/SPI_single_slave.png)
+![SPI_Example](img/SPI_single_slave.png){width="700"}
 
  Le raspberry pi lui envois une trame de données avec un registre, qui est compris par le lidar, et fait une action précise. la trame doit respecter le clock(horloge) qu'envois le raspberry pi, car sinon des bits vont se perdre et le message est incomplet.
-![SPI_Clock](img/SPI_timing_diagram.png)
+![SPI_Clock](img/SPI_timing_diagram.png){width="700"}
 
 Et pour le projet j'ai placé le lidar sur le haut du robot, car si je le mettais en dessous j'allais toujours détécter les pattes ce qui nous enlèverais beaucoup trop de vision. Le lidar tourne en continue car, ainsi les informations prennent moins de temps à être prises.
 
-Ensuite, pour la programmation de cette classe, à l'initialisation du script "app.py" je lance le moteur du lidar, puis, de manière asynchrone j'envois les informations reçues du lidar dans une liste, qui s'actualise donc souvent.Pour l'acquisition des données il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois de sa postion actuelle jusqu'à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu'à enregistrer le tour complet d'après, c'est pour ça que je fait 2 tours. Puis dès qu'une classe en a besoin, elle appelle la fonction "Get_Data()" qui lui envois une liste de toutes les valeurs.
+Ensuite, pour la programmation de cette classe, à l'initialisation du script "app.py" je lance le moteur du lidar, puis, de manière asynchrone, j'envoie les informations reçues du lidar dans une liste, ce qui les actualise régulièrement. Pour l'acquisition des données, il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois depuis sa position actuelle jusqu'à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu'à enregistrer le tour complet d'après, c'est pour ça que je fais 2 tours. Puis dès qu'une classe en a besoin, elle appelle la fonction "Get_Data()" qui lui envois une liste des dernières valeurs recueillies.
+
+![Class Diagram](img/Lidar_Diagram.png){width="200"}
+
+Comme vous pouvez le voir ci-dessus, cette classe est faite d'une propriété (ShorterScan), et de 4 fonctions. Je vais détailler ci-dessous ce que font ces éléments.
+
+#### ShorterScan : Float
+
+ShorterScan est une propriété qui sert à ce qu'il y aie toujours la distance la plus proche entre le robot et un obstacle de disponible. Elle se met à jour dans la fonction "DoScan".
+
+#### \__init__()
+
+```python
+def __init__ (self):
+        """  brief       : Constructeur de la classe RPLidar.
+              param-type  : None
+              return-type : Lidar 
+        """ 
+        
+        self.lidar=None
+        self.shorterScan=2000
+        self.scans=[]
+        # Setup the RPLidar
+        try:
+            self.lidar = RPLidar(None,PORT_NAME,timeout=3.0)
+        except:
+            print("No lidar found")
+            return
+```
+Ceci est le constructeur de ma classe Lidar. Il initialise les valeurs, puis instantie un lidar.
+
+#### \__new__()
+
+```python
+def __new__(cls):
+        """  brief       : Je rends la classe en tant que singleton
+              param-type  : None
+              return-type : instance 
+        """ 
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Lidarasync, cls).__new__(cls)
+        return cls._instances[cls]
+```
+
+Cette fonction est utile, pour rendre les classes en singleton, afin de ne pas avoir d'autres instances du lidar dans le programme.
+
+#### Get_Data() : List
+
+```python
+def Get_Data(self):
+        """  brief       : Function to get the data.
+              param-type  : None
+              return-type : List(list(int,int,int))
+        """ 
+        if len(self.scans)>0:
+            return self.scans
+        else:
+            return []
+```
+
+Dans cette fonction, je vérifie que la liste avec les données ne soit pas vide et s'il n'est pas vide je renvoie les valeurs, sinon un tableau vide.
+#### DoScan()
+
+```python
+def DoScan(self):
+        """  brief       : Function to scan with the lidar.
+              param-type  : None
+              return-type : None
+        """
+        
+        self.shorterScan=2000
+        self.scans=[]
+        self.lidar.connect()
+        try:
+            for scan in self.lidar.iter_scans():
+                self.scans.append(scan)
+                #Get shorter distance
+                for meas in scan:
+                    if meas[2] < self.shorterScan:
+                        self.shorterScan = meas[2]
+                #Stop when we have 2 scans
+                if len(self.scans) >= 2:             
+                    break
+            self.StopLidar(withmotor=False)
+            print('Stoping, scan completed.')
+        except RPLidarException as ex:
+            print(ex)
+            self.StopLidar()
+            print('Stoping RPLidarException.')
+```
+
+Au début de la fonction, j'initialise les valeurs et reconnecte le lidar. Ensuite, je lance un scan grâce à la fonction du module RPLidar "iter_scans", et j'entre les valeurs dans une liste vide, qui se remplis petit à petit. Puis dans ces valeurs là, je les trie et j'actualise la plus petite distance. Et finalement, quand il y a deux scans, j'arrête l'acquisition des données.
+
+#### StartLidar()
+
+```python
+def StartLidar(self):
+        """  brief       : Function to lauch the motor of the lidar.
+             param-type : None
+             return-type: None
+        """
+        self.lidar.start_motor()
+```
+Cette fonction me sert à lancer le moteur au début du programme principal.
+
+#### StopLidar(Bool)
+
+```python
+def StopLidar(self,withmotor=True):
+        """  brief       : Function to stop the lidar and disconnect it.
+             param-type : bool (True if you want to stop the motor)
+             return-type: None
+        """
+        if withmotor:
+            self.lidar.stop_motor()
+        self.lidar.stop()
+        self.lidar.disconnect()
+        
+```
+
+Cette fonction me sert à arrêter le lidar, dès que les données sont récoltées, et avec le paramètre je peux aussi arrêter le moteur, afin de faire un arrêt complet du lidar.
 
 
+### Classe VideoCamera
+
+Pour cette classe, j'utilise la librairie OpenCV. Cette classe me permet de récupérer les données de la caméra.
+
+![VideoCamera Diagram](img/VideoCamera_Diagram.png)
+
+#### \__init__()
+
+```python
+def __init__(self):
+        """  brief       : Initialisation de la caméra et du flux vidéo
+             param-type  : None
+             return-type : None 
+        """ 
+       # capturing video
+        self.video = cv2.VideoCapture(cv2.CAP_V4L2)
+```
+
+Ceci est le constructeur de la classe VideoCamera, il instancie la caméra grâce à openCV.
+
+#### \__del__()
+
+```python
+def __del__(self):
+        """  brief       : Arrêt de la saisie de la caméra
+             param-type  : None
+             return-type : None 
+        """ 
+        # releasing camera
+        self.video.release()
+```
+Cette fonction sert à libérer la caméra.
+
+#### get_frame() : bytes
+
+```python
+ def get_frame(self):
+        """  brief       : capture du flux vidéo de la caméra et retourne le flux vidéo
+             param-type  : None
+             return-type : bytes 
+        """ 
+       # extracting frames
+        ret, frame = self.video.read()
+        #frame=cv2.resize(frame,(1280,720))                    
+        # encode OpenCV raw frame to jpg and displaying it
+        ret, jpeg = cv2.imencode('.jpg', frame)
+        return jpeg.tobytes()
+```
+Cette fonction capture le flux vidéo de caméra, la convertie en bytes et retourne celui-ci.
 
 ### Classe Plot
 
