@@ -1,14 +1,14 @@
-import os
-import asyncio
-from math import cos, sin, pi, floor
-from socket import timeout
-import time
+### Author      : Nicolas Oliveira
+### Project     : The Big Bug
+### File        : app/mod_classes/LidarAsync.py
+### Date        : 03/05/2022
+### Description : Classe qui contrôle le lidar, préparée pour faire du multithreading.
+
 from adafruit_rplidar import RPLidar, RPLidarException
 
 #Constants
 PORT_NAME = '/dev/ttyUSB0'
-max_distance = 0
-scans=[]
+
 class Lidarasync(object):
     _instances = {}
     def __new__(cls):

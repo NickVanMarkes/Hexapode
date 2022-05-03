@@ -1,5 +1,8 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
+### Author      : Nicolas Oliveira
+### Project     : The Big Bug
+### File        : app/mod_classes/Animations_Hexapode.py
+### Date        : 03/05/2022
+### Description : Classe qui contient les animations du hexapode.
 
 import time
 
@@ -13,7 +16,7 @@ class Animations(object):
     def __init__(self):
         self.i2c = busio.I2C(SCL, SDA)
 
-        # Create a simple PCA9685 class instance.
+        # Création des instances des différents modules PCA9685
         self.pcaG = PCA9685(self.i2c, address=65)
         self.pcaD = PCA9685(self.i2c, address=66)
 
@@ -22,7 +25,7 @@ class Animations(object):
         self.pcaG.frequency = 50
         self.pcaD.frequency = 50
 
-        # Create all servo objects, specifying pin number, min and max values.
+        # Instantiation des servomoteurs
 
         #Patte Avant Gauche
         #Hanche
@@ -69,7 +72,7 @@ class Animations(object):
         self.tard = servo.ContinuousServo(self.pcaD.channels[14], min_pulse=1300, max_pulse=MAXPULSE)
         #Hanche
         self.hard = servo.ContinuousServo(self.pcaD.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
-        ## We sleep in the loops to give the servo time to move into position.
+
         #Hanches à 0
         self.havg.throttle=0
         self.havd.throttle=0
@@ -174,11 +177,82 @@ class Animations(object):
         self.pmd.throttle=0
         self.pard.throttle=0
         time.sleep(2)
-        i=1
-        while i<0.1:
-            self.tavg.throttle=i
-            self.tmg.throttle=i
-            self.targ.throttle=i
-            i=i-0.05
+        self.tavg.throttle=1
+        self.tmg.throttle=1
+        self.targ.throttle=1
+        time.sleep(3) #40 degrés vers le haut
+        self.tavg.throttle=0.1
+        self.tmg.throttle=0.1
+        self.targ.throttle=0.1
+
+    def Init2(self):
+        #Etape 1 baisser les tibias et légère force sur les pointes
+        #Tibias Gauche
+
+        self.tavg.throttle=0.7
+        self.tmg.throttle=0.7
+        self.targ.throttle=0.7
+        #Tibias Droite
+        self.tavd.throttle=-1
+        self.tmd.throttle=-1
+        self.tard.throttle=-1
+
+        self.pavg.throttle=-0.1
+        self.pmg.throttle=-0.1
+        self.parg.throttle=-0.1
+        self.pavd.throttle=0.1
+        self.pmd.throttle=0.1
+        self.pard.throttle=0.1
+
+        time.sleep(1.5) #50 degrés vers le bas
+        #Maintiens
+        self.tavg.throttle=0.1
+        self.tmg.throttle=0.1
+        self.targ.throttle=0.1
+        self.tavd.throttle=-0.1
+        self.tmd.throttle=-0.1
+        self.tard.throttle=-0.1
+        time.sleep(1)
+
+        # #Etape 3 baisser les tibias Droite et mettre une légère force sur les pointes
+        
+        # time.sleep(0.003*50) #50 degrés vers le bas
+
+        # self.tavd.throttle=-0.4
+        # self.tmd.throttle=-0.4
+        # self.tard.throttle=-0.4
+
+        # self.tavg.throttle=0.3
+        # self.tmg.throttle=0.3
+        # self.targ.throttle=0.3
+
+    def Init3(self):
+        #Etape 1 baisser les tibias et légère force sur les pointes
+        #Tibias Gauche
+
+        self.tavg.throttle=1
+        self.tmg.throttle=1
+        self.targ.throttle=1
+        #Tibias Droite
+        self.tavd.throttle=0
+        self.tmd.throttle=0
+        self.tard.throttle=0
+
+        self.pavg.throttle=-0.5
+        self.pmg.throttle=-0.5
+        self.parg.throttle=-0.5
+        self.pavd.throttle=0
+        self.pmd.throttle=0
+        self.pard.throttle=0
+
+        time.sleep(0.003*120) #50 degrés vers le bas
+        #Maintiens
+        self.tavg.throttle=0.1
+        self.tmg.throttle=0.1
+        self.targ.throttle=0.1
+        self.tavd.throttle=-0
+        self.tmd.throttle=-0
+        self.tard.throttle=-0
+        time.sleep(1)
     #self.pcaD.deinit()
     #self.pcaG.deinit()
