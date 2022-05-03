@@ -97,6 +97,8 @@ class Animations(object):
 
 
     def Init(self):
+
+        #Etape 1 lever les pattes
         #Pointes
         self.pavg.throttle=1
         self.pavd.throttle=-1
@@ -104,7 +106,7 @@ class Animations(object):
         self.pmd.throttle=-1
         self.parg.throttle=1
         self.pard.throttle=-1
-        time.sleep(0.003*20) #50 degrés vers le haut
+        time.sleep(0.003*50) #50 degrés vers le haut
         self.pavg.throttle=0
         self.pavd.throttle=0
         self.pmg.throttle=0
@@ -112,34 +114,71 @@ class Animations(object):
         self.parg.throttle=0
         self.pard.throttle=0
 
+        #Etape 2 baisser les tibias Gauche et mettre une légère force sur les pointes
         #Tibias
         #Gauche
         self.tavg.throttle=1
         self.tmg.throttle=1
         self.targ.throttle=1
+
+        #Pointes
+        self.pavg.throttle=-0.05
+        self.pmg.throttle=-0.05
+        self.parg.throttle=-0.05
+
         time.sleep(0.003*50) #50 degrés vers le bas
         #Maintiens
         self.tavg.throttle=0.2
         self.tmg.throttle=0.2
         self.targ.throttle=0.2
         time.sleep(1)
-        #Droite
+
+        #Etape 3 baisser les tibias Droite et mettre une légère force sur les pointes
+        #Tibia Droite
         self.tavd.throttle=-1
         self.tmd.throttle=-1
         self.tard.throttle=-1
+        #Pointes Droite
+        self.pavd.throttle=0.05
+        self.pmd.throttle=0.05
+        self.pard.throttle=0.05
+        #Pointes Gauche
+        self.pavg.throttle=0
+        self.pmg.throttle=0
+        self.parg.throttle=0
         time.sleep(0.003*50) #50 degrés vers le bas
 
-        self.tavd.throttle=-0.2
-        self.tmd.throttle=-0.2
-        self.tard.throttle=-0.2
+        self.tavd.throttle=-0.4
+        self.tmd.throttle=-0.4
+        self.tard.throttle=-0.4
 
-        self.tavg.throttle=0.15
-        self.tmg.throttle=0.15
-        self.targ.throttle=0.15
+        self.tavg.throttle=0.3
+        self.tmg.throttle=0.3
+        self.targ.throttle=0.3
+        time.sleep(1)
+        #Etape 4 baisser les pointes Gauche et les tibias Gauche
+        #Pointes Gauche
+        self.pavg.throttle=-1
+        self.pmg.throttle=-1
+        self.parg.throttle=-1
+        #Tibia Gauche
+        self.tavg.throttle=0.8
+        self.tmg.throttle=0.8
+        self.targ.throttle=0.8
 
+        self.tavd.throttle=-0.05
+        self.tmd.throttle=-0.05
+        self.tard.throttle=-0.05
 
-
-
-
+        self.pavd.throttle=0
+        self.pmd.throttle=0
+        self.pard.throttle=0
+        time.sleep(2)
+        i=1
+        while i<0.1:
+            self.tavg.throttle=i
+            self.tmg.throttle=i
+            self.targ.throttle=i
+            i=i-0.05
     #self.pcaD.deinit()
     #self.pcaG.deinit()
