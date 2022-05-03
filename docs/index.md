@@ -156,113 +156,29 @@ ShorterScan est une propriété qui sert à ce qu'il y aie toujours la distance 
 
 #### \__init__()
 
-```python
-def __init__ (self):
-        """  brief       : Constructeur de la classe RPLidar.
-              param-type  : None
-              return-type : Lidar 
-        """ 
-        
-        self.lidar=None
-        self.shorterScan=2000
-        self.scans=[]
-        # Setup the RPLidar
-        try:
-            self.lidar = RPLidar(None,PORT_NAME,timeout=3.0)
-        except:
-            print("No lidar found")
-            return
-```
+
 Ceci est le constructeur de ma classe Lidar. Il initialise les valeurs, puis instantie un lidar.
 
 #### \__new__()
 
-```python
-def __new__(cls):
-        """  brief       : Je rends la classe en tant que singleton
-              param-type  : None
-              return-type : instance 
-        """ 
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Lidarasync, cls).__new__(cls)
-        return cls._instances[cls]
-```
+
 
 Cette fonction est utile, pour rendre les classes en singleton, afin de ne pas avoir d'autres instances du lidar dans le programme.
 
 #### Get_Data() : List
 
-```python
-def Get_Data(self):
-        """  brief       : Function to get the data.
-              param-type  : None
-              return-type : List(list(int,int,int))
-        """ 
-        if len(self.scans)>0:
-            return self.scans
-        else:
-            return []
-```
-
 Dans cette fonction, je vérifie que la liste avec les données ne soit pas vide et s'il n'est pas vide je renvoie les valeurs, sinon un tableau vide.
-#### DoScan()
 
-```python
-def DoScan(self):
-        """  brief       : Function to scan with the lidar.
-              param-type  : None
-              return-type : None
-        """
-        
-        self.shorterScan=2000
-        self.scans=[]
-        self.lidar.connect()
-        try:
-            for scan in self.lidar.iter_scans():
-                self.scans.append(scan)
-                #Get shorter distance
-                for meas in scan:
-                    if meas[2] < self.shorterScan:
-                        self.shorterScan = meas[2]
-                #Stop when we have 2 scans
-                if len(self.scans) >= 2:             
-                    break
-            self.StopLidar(withmotor=False)
-            print('Stoping, scan completed.')
-        except RPLidarException as ex:
-            print(ex)
-            self.StopLidar()
-            print('Stoping RPLidarException.')
-```
+#### DoScan()
 
 Au début de la fonction, j'initialise les valeurs et reconnecte le lidar. Ensuite, je lance un scan grâce à la fonction du module RPLidar "iter_scans", et j'entre les valeurs dans une liste vide, qui se remplis petit à petit. Puis dans ces valeurs là, je les trie et j'actualise la plus petite distance. Et finalement, quand il y a deux scans, j'arrête l'acquisition des données.
 
 #### StartLidar()
 
-```python
-def StartLidar(self):
-        """  brief       : Function to lauch the motor of the lidar.
-             param-type : None
-             return-type: None
-        """
-        self.lidar.start_motor()
-```
 Cette fonction me sert à lancer le moteur au début du programme principal.
 
 #### StopLidar(Bool)
 
-```python
-def StopLidar(self,withmotor=True):
-        """  brief       : Function to stop the lidar and disconnect it.
-             param-type : bool (True if you want to stop the motor)
-             return-type: None
-        """
-        if withmotor:
-            self.lidar.stop_motor()
-        self.lidar.stop()
-        self.lidar.disconnect()
-        
-```
 
 Cette fonction me sert à arrêter le lidar, dès que les données sont récoltées, et avec le paramètre je peux aussi arrêter le moteur, afin de faire un arrêt complet du lidar.
 
@@ -275,46 +191,14 @@ Pour cette classe, j'utilise la librairie OpenCV. Cette classe me permet de réc
 
 #### \__init__()
 
-```python
-def __init__(self):
-        """  brief       : Initialisation de la caméra et du flux vidéo
-             param-type  : None
-             return-type : None 
-        """ 
-       # capturing video
-        self.video = cv2.VideoCapture(cv2.CAP_V4L2)
-```
-
 Ceci est le constructeur de la classe VideoCamera, il instancie la caméra grâce à openCV.
 
 #### \__del__()
 
-```python
-def __del__(self):
-        """  brief       : Arrêt de la saisie de la caméra
-             param-type  : None
-             return-type : None 
-        """ 
-        # releasing camera
-        self.video.release()
-```
 Cette fonction sert à libérer la caméra.
 
 #### get_frame() : bytes
 
-```python
- def get_frame(self):
-        """  brief       : capture du flux vidéo de la caméra et retourne le flux vidéo
-             param-type  : None
-             return-type : bytes 
-        """ 
-       # extracting frames
-        ret, frame = self.video.read()
-        #frame=cv2.resize(frame,(1280,720))                    
-        # encode OpenCV raw frame to jpg and displaying it
-        ret, jpeg = cv2.imencode('.jpg', frame)
-        return jpeg.tobytes()
-```
 Cette fonction capture le flux vidéo de caméra, la convertie en bytes et retourne celui-ci.
 
 ### Classe Plot
