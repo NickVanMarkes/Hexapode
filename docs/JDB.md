@@ -76,3 +76,9 @@ Ce matin, j'ai continué à travaillé sur la classe Lidar, et j'ai testé en fa
 ### 30.04.2022
 
 Aujourd'hui, j'ai passé ma journée à essayer de faire les animations avec solidworks sauf qu'il y a un problème et je n'arrive pas à le faire bien fonctionner, il y a un composant dans les pièces du servo moteur sont fixés, et afin de faire des animations correctes, il faut que je puisse les libérées, mais l'option n'apparaît pas, j'ai cherché sur Internet, mais je ne trouve pas de solution. La solution que j'ai trouvée un peu plus tard, c'est de prendre un autre fichier 3D des servos, et rassembler le robot. Ensuite, il y avait un problème, car quand je fais bouger le Tibia dans l'animation, la pointe ne suit pas comme en vrai. 
+
+## Mai
+
+### 02.05.2022
+
+Ce matin, j'ai continué à essayer de faire l'animation sur solidworks. J'ai vu qu'en mettant une contrainte en plus je pouvais faire bouger la pointe comme je le voulais, mais après dans la partie de l'animation, ça me faisait plein de problèmes, la contrainte faisait en sorte que dans l'animation plus rien ne bouge, chose que je ne comprend pas vraiment pourquoi, j'ai donc essayé d'activer ou désactiver grâce à l'animation, mais ça ne marchait pas. Ensuite, j'ai essayé de constuire le tout sur unity mais ce n'était pas possible, car je n'ai pas une connaissance assez grande de unity pour changer le point 0 d'une pièce. J'ai décidé alors d'arrêter de vouloir faire des animations préparées et de les faire en code directement. Durant l'après-midi, j'ai continué les deux premières heures à essayer de faire lever le robot en code, sauf que les pattes du robot glissent trop, et je n'arrive pas à les faire lever correctement. Puis, le reste de la journée j'ai avancé la documentation technique.
