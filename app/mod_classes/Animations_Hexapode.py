@@ -53,11 +53,11 @@ class Animations(object):
 
         #Patte Avant Droite
         #Pointe
-        self.pavd = servo.ContinuousServo(self.pcaD.channels[0], min_pulse=1300, max_pulse=MAXPULSE)
+        self.pavd = servo.ContinuousServo(self.pcaD.channels[15], min_pulse=1300, max_pulse=MAXPULSE)
         #Tibia
-        self.tavd = servo.ContinuousServo(self.pcaD.channels[1], min_pulse=1300, max_pulse=MAXPULSE)
+        self.tavd = servo.ContinuousServo(self.pcaD.channels[14], min_pulse=1300, max_pulse=MAXPULSE)
         #Hanche
-        self.havd = servo.ContinuousServo(self.pcaD.channels[2], min_pulse=1300, max_pulse=MAXPULSE)
+        self.havd = servo.ContinuousServo(self.pcaD.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
         #Patte Milieu Droite
         #Pointe
         self.pmd = servo.ContinuousServo(self.pcaD.channels[4], min_pulse=1300, max_pulse=MAXPULSE)
@@ -67,11 +67,11 @@ class Animations(object):
         self.hmd = servo.ContinuousServo(self.pcaD.channels[6], min_pulse=1300, max_pulse=MAXPULSE)
         #Patte Arriere Droite
         #Pointe
-        self.pard = servo.ContinuousServo(self.pcaD.channels[15], min_pulse=1300, max_pulse=MAXPULSE)
+        self.pard = servo.ContinuousServo(self.pcaD.channels[0], min_pulse=1300, max_pulse=MAXPULSE)
         #Tibia
-        self.tard = servo.ContinuousServo(self.pcaD.channels[14], min_pulse=1300, max_pulse=MAXPULSE)
+        self.tard = servo.ContinuousServo(self.pcaD.channels[1], min_pulse=1300, max_pulse=MAXPULSE)
         #Hanche
-        self.hard = servo.ContinuousServo(self.pcaD.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
+        self.hard = servo.ContinuousServo(self.pcaD.channels[2], min_pulse=1300, max_pulse=MAXPULSE)
 
         #Hanches à 0
         self.havg.throttle=0
@@ -254,5 +254,39 @@ class Animations(object):
         self.tmd.throttle=-0
         self.tard.throttle=-0
         time.sleep(1)
+
+    def Init4(self):
+        #Etape 1 baisser les tibias et légère force sur les pointes
+        #Tibias Gauche
+
+        self.tavg.throttle=0.7
+        #Tibias Droite
+        self.tavd.throttle=-1
+        
+        #Pointes
+        self.pavg.throttle=-0.1
+        self.pavd.throttle=0.1
+
+        time.sleep(5) #50 degrés vers le bas
+
+        
+
+        
+        #Maintiens
+        self.tavg.throttle=0.1
+        self.tavd.throttle=-0.1
+
+        #Pointes
+        self.parg.throttle=-0.1
+        self.pard.throttle=0.1
+
+        #Tibias Arrière
+        self.targ.throttle=0.7
+        self.tard.throttle=-1
+        time.sleep(5)
+
+        self.targ.throttle=0.1
+        self.tard.throttle=-0.1
+        
     #self.pcaD.deinit()
     #self.pcaG.deinit()
