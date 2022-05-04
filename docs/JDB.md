@@ -86,3 +86,7 @@ Ce matin, j'ai continué à essayer de faire l'animation sur solidworks. J'ai vu
 ### 03.05.2022
 
 Aujourd'hui, j'ai passé la journée à essayer de faire monter le robot, depuis une position initiale. J'ai du faire vraiment petit à petit, c'est assez lent pour faire les animations comme ça, mais il faut le faire. Durant l'après-midi, j'avais une version presque réussie de ce mouvement, sauf que vers la fin de l'animation, les servos faisaient des spasmes. J'ai décidé alors, de prendre une autre alimentation, et de tester. Je suis assez surpris, car les servos du coté gauche sont très nerveux maintenant, et ceux du coté droit plus lents j'ai l'impression.
+
+### 04.05.2022
+
+Aujourd'hui, j'ai commencé la journée par tester le technique de M. Bonvin pour lever le robot. Forcer sur les deux pattes avant, ensuite sur les deux pattes arrière, et dès que c'est levé, ajouter les pattes du milieu pour la stabilité. À ma surprise, il a de la peine à se lever. Je pense donc continué à utiliser la technique des 6 pattes en même temps. Et en parlant avec mes camarades, ils m'ont rappeler qu'il fallait faire le poster, pour que demain M. Bonvin puisse les examinés comme ça on peut les changer jusqu'à lundi. Faire le poster, m'as pris toute la journées, et demain, j'essayerais de faire l'abstract comme ça tout ce dont j'ai à rendre sera fait, et je pourrais me concentré sur le robot.
