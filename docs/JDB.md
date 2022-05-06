@@ -81,12 +81,34 @@ Aujourd'hui, j'ai passé ma journée à essayer de faire les animations avec sol
 
 ### 02.05.2022
 
-Ce matin, j'ai continué à essayer de faire l'animation sur solidworks. J'ai vu qu'en mettant une contrainte en plus je pouvais faire bouger la pointe comme je le voulais, mais après dans la partie de l'animation, ça me faisait plein de problèmes, la contrainte faisait en sorte que dans l'animation plus rien ne bouge, chose que je ne comprend pas vraiment pourquoi, j'ai donc essayé d'activer ou désactiver grâce à l'animation, mais ça ne marchait pas. Ensuite, j'ai essayé de constuire le tout sur unity mais ce n'était pas possible, car je n'ai pas une connaissance assez grande de unity pour changer le point 0 d'une pièce. J'ai décidé alors d'arrêter de vouloir faire des animations préparées et de les faire en code directement. Durant l'après-midi, j'ai continué les deux premières heures à essayer de faire lever le robot en code, sauf que les pattes du robot glissent trop, et je n'arrive pas à les faire lever correctement. Puis, le reste de la journée j'ai avancé la documentation technique.
+Ce matin, j'ai continué à essayer de faire l'animation sur solidworks. J'ai vu qu'en mettant une contrainte en plus je pouvais faire bouger la pointe comme je le voulais, mais après dans la partie de l'animation, ça me faisait plein de problèmes, la contrainte faisait en sorte que dans l'animation plus rien ne bouge, chose que je ne comprends pas vraiment pourquoi, j'ai donc essayé d'activer ou désactiver grâce à l'animation, mais ça ne marchait pas. Ensuite, j'ai essayé de construire le tout sur Unity, mais ce n'était pas possible, car je n'ai pas une connaissance assez grande de Unity pour changer le point 0 d'une pièce. J'ai décidé alors d'arrêter de vouloir faire des animations préparées et de les faire en code directement. Durant l'après-midi, j'ai continué les deux premières heures à essayer de faire lever le robot en code, sauf que les pattes du robot glissent trop, et je n'arrive pas à les faire lever correctement. Puis, le reste de la journée, j'ai avancé la documentation technique.
 
 ### 03.05.2022
 
-Aujourd'hui, j'ai passé la journée à essayer de faire monter le robot, depuis une position initiale. J'ai du faire vraiment petit à petit, c'est assez lent pour faire les animations comme ça, mais il faut le faire. Durant l'après-midi, j'avais une version presque réussie de ce mouvement, sauf que vers la fin de l'animation, les servos faisaient des spasmes. J'ai décidé alors, de prendre une autre alimentation, et de tester. Je suis assez surpris, car les servos du coté gauche sont très nerveux maintenant, et ceux du coté droit plus lents j'ai l'impression.
+Aujourd'hui, j'ai passé la journée à essayer de faire monter le robot, depuis une position initiale. J'ai dû faire vraiment petit à petit, c'est assez lent pour faire les animations comme ça, mais il faut le faire. Durant l'après-midi, j'avais une version presque réussie de ce mouvement, sauf que vers la fin de l'animation, les servos faisaient des spasmes. J'ai décidé alors, de prendre une autre alimentation, et de tester. Je suis assez surpris, car les servos du côté gauche sont très nerveux maintenant, et ceux du côté droit plus lent j'ai l'impression.
 
 ### 04.05.2022
 
-Aujourd'hui, j'ai commencé la journée par tester le technique de M. Bonvin pour lever le robot. Forcer sur les deux pattes avant, ensuite sur les deux pattes arrière, et dès que c'est levé, ajouter les pattes du milieu pour la stabilité. À ma surprise, il a de la peine à se lever. Je pense donc continué à utiliser la technique des 6 pattes en même temps. Et en parlant avec mes camarades, ils m'ont rappeler qu'il fallait faire le poster, pour que demain M. Bonvin puisse les examinés comme ça on peut les changer jusqu'à lundi. Faire le poster, m'as pris toute la journées, et demain, j'essayerais de faire l'abstract comme ça tout ce dont j'ai à rendre sera fait, et je pourrais me concentré sur le robot.
+Aujourd'hui, j'ai commencé la journée par tester la technique de M. Bonvin pour lever le robot. Forcer sur les deux pattes avant, ensuite sur les deux pattes arrière, et dès que c'est levé, ajouter les pattes du milieu pour la stabilité. À ma surprise, il a de la peine à se lever. Je pense donc continuer à utiliser la technique des 6 pattes en même temps. Et en parlant avec mes camarades, ils m'ont rappelé qu'il fallait faire le poster, pour que demain M. Bonvin puisse les examiner, comme ça on peut les changer jusqu'à lundi. Faire le poster, m'a pris toute la journée, et demain, j'essayerai de faire l'abstract, comme ça tout ce dont j'ai à rendre sera fait, et je pourrai me concentrer sur le robot.
+
+### 05.05.2022
+
+Aujourd'hui, au début de la matinée, j'ai continué à travailler sur l'animation d'initialisation du robot. Puis, après la grande pause, M. Bonvin, est venu, pour qu'on lui montre nos posters, et de ce fait, je lui ai montré le mien, et étonnement, il a été assez gentil, et il m'a juste dit que je devais changer quelques détails et rajouter le dessin du lidar sur le poster, ce que j'ai fait jusqu'au début de l'après-midi. Ensuite, j'ai recommencé à travailler sur le robot, et je me suis dit qu'il faudrait utiliser le gyroscope afin de savoir quand est-ce que le robot est droit. En testant, j'ai eu un très joli résultat :
+
+![Robot Debout](img/JDB/Robot_leve_Face.jpg)
+
+![Robot Debout](img/JDB/Robot_Leve_iso.jpg)
+
+Et ce résultat sans le gyroscope. J'ai implémenté le gyroscope après ce résultat-là.
+
+### 06.05.2022
+
+Ce matin, j'ai continué à travailler sur l'implémentation du gyroscope sur le mouvement d'initialisation, sauf que le gyroscope me rend des valeurs, on dirait de l'aléatoire. Je peux passer de -3° à 20°. Puis, j'ai fait quand même quelques essais, et ils étaient assez concluants, le robot était droit. Mais plus j'essayais, moins ça marchais. Je pense que lundi, il faut que j'implémente une façon pour ne pas forcer sur tous les servomoteurs en même temps, et les faire forcer 2 par 2 ou patte par patte, cela très rapidement, ainsi, je consommerais moins. Même si les servos veulent consommer plus, ils auront de la marge. Cette après-midi, j'ai continué à travailler sur les mouvements, et j'ai essayé de faire avancer déjà une patte, mais le robot ne se lève pas assez haut. Je dois donc le faire monter assez pour que la patte puisse bouger aisément. Puis, comme j'ai dit ce matin, plus je force sur les servos en un temps court, plus j'ai l'impression qu'ils ont de la peine à forcer. Ce weekend, je vais essayer d'avancer un maximum la documentation, car lundi nous devons rendre le poster et la documentation ainsi que le résumé / abstract. J'ai déjà fait le poster. Je me suis inspiré du blueprint de iron man. Mon poster ressemble à un dessin technique avec toutes les pièces en 3D que j'ai réalisé, avec aussi les logos des librairies / composants les plus importants.
+
+V1 du poster :
+
+![PosterV1](img/JDB/Poster2_1.png)
+
+Il y a le robot en 2D avec les pattes tendues, mais quand M. Bonvin à vu, il m'as conseillé de plutôt mettre un vue en 3D en position. Voici donc la V2 :
+
+![PosterV2](img/JDB/PosterV2_1.png)
