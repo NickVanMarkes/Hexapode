@@ -8,4 +8,5 @@ from Animations_Hexapode import Animations
 
 anim= Animations()
 
-anim.Init4()
+anim.Init2()
+#anim.Avance()

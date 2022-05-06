@@ -13,11 +13,13 @@ class Gyroscope(object):
              return-type : None 
         """ 
         self.sensor=mpu6050(0x68)
+        self.sensor.set_gyro_range(self.sensor.GYRO_RANGE_2000DEG)
+        self.sensor.set_filter_range(self.sensor.FILTER_BW_5)
 
     def get_angle(self) -> dict[str, float]:
         """  brief       : Permet de récupérer les angles du robot
              param-type  : None
-             return-type : int 
+             return-type : dict[str,float] 
         """ 
          
         return self.sensor.get_gyro_data()
@@ -25,6 +27,6 @@ class Gyroscope(object):
     def get_acceleration (self) -> dict[str, float]:
         """  brief       : Permet de récupérer les accélérations du robot
               param-type  : type
-              return-type : type 
+              return-type : dict[str,float]
         """
         return self.sensor.get_accel_data()

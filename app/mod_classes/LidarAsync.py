@@ -20,7 +20,6 @@ class Lidarasync(object):
             cls._instances[cls] = super(Lidarasync, cls).__new__(cls)
         return cls._instances[cls]
 
-
     def __init__ (self):
         """  brief       : Constructeur de la classe RPLidar.
               param-type  : None

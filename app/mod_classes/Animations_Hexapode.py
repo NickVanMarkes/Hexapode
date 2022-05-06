@@ -4,6 +4,7 @@
 ### Date        : 03/05/2022
 ### Description : Classe qui contient les animations du hexapode.
 
+import sys
 import time
 
 from board import SCL, SDA
@@ -11,10 +12,16 @@ import busio
 from adafruit_motor import servo
 from adafruit_pca9685 import PCA9685
 
+sys.path.append("../")
+
+from Gyroscope import Gyroscope
+
 class Animations(object):
 
     def __init__(self):
         self.i2c = busio.I2C(SCL, SDA)
+
+        self.gyro=Gyroscope()
 
         # Création des instances des différents modules PCA9685
         self.pcaG = PCA9685(self.i2c, address=65)
@@ -186,12 +193,16 @@ class Animations(object):
         self.targ.throttle=0.1
 
     def Init2(self):
+
+        angles=self.gyro.get_angle()
+
+        print(angles["x"])
         #Etape 1 baisser les tibias et légère force sur les pointes
         #Tibias Gauche
 
-        self.tavg.throttle=0.7
-        self.tmg.throttle=0.7
-        self.targ.throttle=0.7
+        self.tavg.throttle=0.4
+        self.tmg.throttle=0.4
+        self.targ.throttle=0.4
         #Tibias Droite
         self.tavd.throttle=-1
         self.tmd.throttle=-1
@@ -205,6 +216,20 @@ class Animations(object):
         self.pard.throttle=0.1
 
         time.sleep(1.5) #50 degrés vers le bas
+
+        self.targ.throttle=1
+        self.tavg.throttle=1
+        self.tmg.throttle=1
+        self.tavd.throttle=-0.1
+        self.tmd.throttle=-0.1
+        self.tard.throttle=-0.1
+
+        self.pavg.throttle=-1
+        self.pmg.throttle=-1
+        self.parg.throttle=-1
+
+        while angles != self.gyro.get_angle():
+            print("Angles de départ: ", angles, "\nAngles de maintenant : ",self.gyro.get_angle())
         #Maintiens
         self.tavg.throttle=0.1
         self.tmg.throttle=0.1
@@ -215,7 +240,7 @@ class Animations(object):
         time.sleep(1)
 
         # #Etape 3 baisser les tibias Droite et mettre une légère force sur les pointes
-        
+
         # time.sleep(0.003*50) #50 degrés vers le bas
 
         # self.tavd.throttle=-0.4
@@ -226,67 +251,69 @@ class Animations(object):
         # self.tmg.throttle=0.3
         # self.targ.throttle=0.3
 
-    def Init3(self):
-        #Etape 1 baisser les tibias et légère force sur les pointes
-        #Tibias Gauche
+    def Avance(self):
+        angles=self.gyro.get_angle()
+        #Maintiens
+        self.tavg.throttle=0.1
+        self.tmg.throttle=0.2
+        self.targ.throttle=0.2
+        self.tavd.throttle=-0.1
+        self.tmd.throttle=-0.1
+        self.tard.throttle=-0.1
+
+        #Lever la patte avant gauche
+
+        self.tavg.throttle=-1
+        self.pavg.throttle=1
+        time.sleep(0.003*50) #50 degrés vers le haut
+        self.tavg.throttle=0
+        self.pavg.throttle=0
+
+        self.havg.throttle=-1
+        time.sleep(0.003*20) #20 degrés vers l'avant
+        self.havg.throttle=0
+        self.pavg.throttle=-1
+        time.sleep(0.003*180) #50 degrés vers le bas
+        self.pavg.throttle=-0.1
 
         self.tavg.throttle=1
-        self.tmg.throttle=1
-        self.targ.throttle=1
-        #Tibias Droite
-        self.tavd.throttle=0
-        self.tmd.throttle=0
-        self.tard.throttle=0
-
-        self.pavg.throttle=-0.5
-        self.pmg.throttle=-0.5
-        self.parg.throttle=-0.5
-        self.pavd.throttle=0
-        self.pmd.throttle=0
-        self.pard.throttle=0
-
-        time.sleep(0.003*120) #50 degrés vers le bas
-        #Maintiens
+        while angles["x"] < self.gyro.get_angle()["x"] and angles["y"] < self.gyro.get_angle()["y"]:
+            print("Angle de départ: ", angles["x"], "\nAngles de maintenant : ",self.gyro.get_angle())
         self.tavg.throttle=0.1
-        self.tmg.throttle=0.1
-        self.targ.throttle=0.1
-        self.tavd.throttle=-0
-        self.tmd.throttle=-0
-        self.tard.throttle=-0
-        time.sleep(1)
 
-    def Init4(self):
-        #Etape 1 baisser les tibias et légère force sur les pointes
-        #Tibias Gauche
 
-        self.tavg.throttle=0.7
-        #Tibias Droite
-        self.tavd.throttle=-1
-        
-        #Pointes
-        self.pavg.throttle=-0.1
-        self.pavd.throttle=0.1
+    # def Init4(self):
+    #     #Etape 1 baisser les tibias et légère force sur les pointes
+    #     #Tibias Gauche
 
-        time.sleep(5) #50 degrés vers le bas
+    #     self.tavg.throttle=0.7
+    #     #Tibias Droite
+    #     self.tavd.throttle=-1
 
-        
+    #     #Pointes
+    #     self.pavg.throttle=-0.1
+    #     self.pavd.throttle=0.1
 
-        
-        #Maintiens
-        self.tavg.throttle=0.1
-        self.tavd.throttle=-0.1
+    #     time.sleep(5) #50 degrés vers le bas
 
-        #Pointes
-        self.parg.throttle=-0.1
-        self.pard.throttle=0.1
 
-        #Tibias Arrière
-        self.targ.throttle=0.7
-        self.tard.throttle=-1
-        time.sleep(5)
 
-        self.targ.throttle=0.1
-        self.tard.throttle=-0.1
-        
+
+    #     #Maintiens
+    #     self.tavg.throttle=0.1
+    #     self.tavd.throttle=-0.1
+
+    #     #Pointes
+    #     self.parg.throttle=-0.1
+    #     self.pard.throttle=0.1
+
+    #     #Tibias Arrière
+    #     self.targ.throttle=0.7
+    #     self.tard.throttle=-1
+    #     time.sleep(5)
+
+    #     self.targ.throttle=0.1
+    #     self.tard.throttle=-0.1
+
     #self.pcaD.deinit()
     #self.pcaG.deinit()

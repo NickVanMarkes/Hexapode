@@ -1,3 +1,8 @@
+import sys
+
+
+sys.path.append("../")
+
 from Gyroscope import Gyroscope
 
 test = Gyroscope()
