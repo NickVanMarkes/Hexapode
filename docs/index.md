@@ -280,9 +280,10 @@ Afin d'avoir une meilleure compréhension dans mes mouvements, j'ai fait une cla
 
 Voici le diagramme de classe :
 
-![TODO]()
+![ServoMoteur_Diagram](img/Diagram_ServoMoteur.png){width=300}
 
-#### \__init__(Channel: string, Position: int)
+
+#### \__init__(string, int)
 
 Ceci est le constructeur de la classe qui initialise le servomoteur, sur le bon module PCA et à la bonne Pin.
 
@@ -290,7 +291,7 @@ Channel = "Gauche"/"Droite"
 
 Position = 0 à 15
 
-#### set_angle_rel(Angle: int, Force: int)
+#### SetAngleRel(int, int)
 
 Cette fonction permet de définir l'angle du servomoteur avec une force donnée.
 La force est entrée en pourcent.
@@ -299,11 +300,11 @@ Angle = -180 à 180
 
 Force = 1 à 100
 
-#### stay_with_force(direction: string)
+#### StayWithForce(string)
 
 Cette fonction permet de garder le servomoteur avec une légère force, grâce au paramètre nous pouvons décider dans quel sens.
 
-#### Without_Force()
+#### WithoutForce()
 
 Cette fonction mets le servomoteur sans force.
 
@@ -313,9 +314,10 @@ Cette classe me sert à faire les mouvements des parties des pattes plus simplem
 
 Voici le diagramme de la classe :
 
-![TODO]()
+![ServoMoteur_Diagram](img/Diagram_Patte.png){width=300}
 
-#### \__init__ (Cote: string, Position: string)
+
+#### \__init__ (string, string)
 
 Ceci est le constructeur de cette classe. J'initialise les servomoteurs, de la patte selon le branchement hardware.
 
@@ -357,23 +359,23 @@ Pour l'arrière droite:
  - Le tibia: Pin 1
  - La Hanche: Pin 2
 
-#### Lever_Pointe (Angle: int, Force: int)
+#### Lever_Pointe (int, int)
 
 Cette classe permet de lever la pointe de la patte à un angle préçis et à la force donnée.
 
-#### Lever_Tibia (Angle:int Force: int)
+#### Lever_Tibia (int, int)
 
 Cette classe permet de lever le tibia de la patte à un angle préçis et à la force donnée.
 
-#### Baisser_Pointe (Angle:int, Force: int)
+#### Baisser_Pointe (int, int)
 
 Cette classe permet de Baisser la pointe de la patte à un angle préçis et à la force donnée.
 
-#### Baiser_Tibia (Angle:int, Force: int)
+#### Baiser_Tibia (int, int)
 
 Cette classe permet de baisser le tibia de la patte à un angle préçis et à la force donnée.
 
-#### Tourner (Angle: int, Force: int)
+#### Tourner (int, int)
 
 Cette classe permet de tourner la patte à un angle préçis et à la force donnée.
 

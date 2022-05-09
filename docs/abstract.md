@@ -1,34 +1,37 @@
 # Résumé
 
-The Big Bug est un robot hexapode, ce qui veut dire, un robot ayant six pattes pouvant se déplacer dans toutes les directions. Ce robot sera contrôlé par l'utilisateur grâce à un smartphone, qui pourra décider des mouvements, animations ou de le mettre dans différents modes.
-Les modes qui sont prévus, sont : 
+The Big Bug est un robot hexapode (six pattes) pouvant se déplacer dans toutes les directions. Le robot est contrôlé par l'utilisateur via un smartphone, qui peut décider des actions, des animations ou le mettre dans différents modes.
+Les modes fournis sont :
 
-- Le mode controllé par l'utilisateur
-- Le mode Autonome
-- Le mode L'ombre d'une personne
+- Le mode contrôle utilisateur
+- Le mode autonome
+- Le mode suiveur
+## Utilisateur
+Le mode contrôle utilisateur est un mode dans lequel un utilisateur peut contrôler le robot via un site Web à l'aide d'un smartphone ou d'un ordinateur. Sur ce site, il dispose d'un retour caméra, de 4 boutons pour déplacer le robot vers l'avant/l'arrière ou vers la gauche/droite, d'une vue radar des obstacles que le lidar parvient à détecter, et d'une bannière avec les informations les plus importantes, comme l'inclinaison du robot, pourcentage de batterie et obstacle le plus proche.
 
-Le mode controllé par l'utilisateur est le mode où l'utilisateur grâce à un smartphone ou un ordinateur, il peut contrôlé le robot grâce à un site web. Sur ce site web, il a un retour caméra, 4 boutons afin de déplacer le robot vers l'avant/arrière ou de gauche/droite, une vue radar des obstacles que le lidar réussis à détecter, et une bannière avec les informations les plus importante tels que l'inclinaison du robot, le pourcentage de batterie, et l'obstacle le plus proche.
+## Autonome
+Le mode autonome est l'endroit où nous ne contrôlons pas le robot. Il marche et une fois qu'il y a un obstacle, il décide de quel côté est le plus avantageux. Il boucle tout en faisant des animations aléatoires.
 
-Le mode autonome est un mode où nous ne controllons pas le robot, il marchera, dès qu'il y aura un obstacle, il décidera quel est le coté le plus avantageux où aller. Et ainsi, il tournera en boucle, tout en faisant quelques animations aléatoirement.
-
-Le mode "L'ombre d'une personne" est un mode où grâce à un code QR, affiché vers le robot, et à la détéction de la distance grâce aux lidar, le robot suivra une personne en tout point, si la personne avance, le robot avance, si elle recule, il recule, ect.
-
-L'amélioration possible, serait de faire une application pour que des personnes puissent faire des chemins prédéfinis au robot.
-
+## Suiveur
+Le mode suiveur est un mode où grâce à un code QR affiché à la caméra, et à la détection de la distance grâce au lidar, le robot suit la personne à tout moment, si la personne avance, le robot avancera, s'il recule, il recule, etc.
 
 # Abstract
 
-The Big Bug is a hexapod robot, which means, a robot with six legs that can move in all directions. This robot will be controlled by the user through a smartphone, which can decide movements, animations or put it in different modes.
-The modes that are planned are :
+The Big Bug is a hexapod robot (six legs) that can move in all directions. This robot is controlled by the user with his smartphone, which can decide actions, animations or put it in different modes.
+The provided modes are :
 
 - The user-controlled mode
 - Autonomous mode
-- The shadow of a person mode
+- The follower mode
 
-The user-controlled mode is the mode where the user can control the robot through a website on their  smartphone or computer. On this website, there is a camera feed, 4 buttons to move the robot forward/backward or left/right, a radar view of the obstacles that the lidar manages to detect, and a banner with the most important information such as the inclination of the robot, the percentage of battery charge left, and the nearest obstacle
+## User-control
 
-The autonomous mode is a mode where we do not control the robot, it will walk, until there is an obstacle. It will then decide which is the best direction to go while walking in a circle and doing some random animations. 
+The user-controlled mode is a mode where a user can control the robot with the website using a smartphone or a computer. On this website, there is a camera feedback, 4 buttons to move the robot forward/backward or left/right, a radar view of the obstacles that the lidar manages to detect, and a banner with the most important informations, such as the robot's inclination, the percentage of battery charge left and nearest obstacle.
 
-The "Shadow of a person" mode is a mode where with a QR code, shown to the robot, it will follow a person in any point thanks to the LiDAR range finder. If the person goes forward, the robot goes forward, if they goes backward, it goes backward, etc.
+## Autonomous
 
-A possible improvement would be to make an application so that people can plan and upload predefined paths to the robot.
+The autonomous mode is a mode where we do not control the robot, it walks, until there is an obstacle. It decides which way is better. While deciding, it walks in a circle and doing some random animations. 
+
+## Follower
+
+The follower mode is a mode where with a QR code, shown to the camera, it will follow a person at any time and using the LiDAR, the range needed to catch up to the person. If the person goes forward, the robot goes forward, if they goes backward, it goes backward, etc.
