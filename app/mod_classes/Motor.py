@@ -31,7 +31,7 @@ class ServoMoteur(object):
             self.servo=servo.ContinuousServo(self.pcaD.channels[Position], min_pulse=self.MINPULSE, max_pulse=self.MAXPULSE)
     
     
-    def set_angle_rel(self,Angle,Force) -> None:
+    def SetAngleRel(self,Angle,Force) -> None:
         """  brief       : Permet de définir l'angle du servomoteur, la force est en pourcentage, et le temps en seconde
                 param-type  : Angle (int)
                               Force (int)
@@ -45,7 +45,7 @@ class ServoMoteur(object):
         self.servo.throttle = Force/100
         time.sleep(timeforanangle*abs(Angle))
     
-    def stay_with_force(self,direction="+") -> None:
+    def StayWithForce(self,direction="+") -> None:
         """  brief       : Permet de garder le servomoteur avec un peu de force vers le sol
                 param-type  : direction (str)
                 return-type : None
@@ -54,7 +54,7 @@ class ServoMoteur(object):
             self.servo.throttle=0.1
         elif direction=="-":
             self.servo.throttle=-0.1
-    def Without_Force(self) -> None:
+    def WithoutForce(self) -> None:
         """  brief       : Permet de garder le servomoteur sans force
                 param-type  : None
                 return-type : None
