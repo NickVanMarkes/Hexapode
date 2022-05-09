@@ -172,7 +172,7 @@ L'UART (Universal Asynchronous Receiver-Transmitter) qui pour résumer est un pr
 
 L'I2C (Inter-Integrated Circuit), c'est un protocol de communication qui sert beaucoup, si nous avons beaucoup de modules, car nous pouvons chaîner les modules. Ce protocole utilise des adresses afin de s'adresser aux modules, par example le gyroscope est l'adresse 0x68, puis nous lui envoyons en data le registre qui dit au module ce qu'il doit faire. Puis, le module nous renvois une réponse, par exemple avec le gyroscope il nous renvois les angles. 
 
-![I2C_Exemple](img/Protocol_I2C.png)
+![I2C_Exemple](img/Protocol_I2C.png){width="700"}
 
 #### PWM
 
@@ -189,7 +189,7 @@ Et pour le projet j'ai placé le lidar sur le haut du robot, car si je le mettai
 
 Ensuite, pour la programmation de cette classe, à l'initialisation du script "app.py" je lance le moteur du lidar, puis, de manière asynchrone, j'envoie les informations reçues du lidar dans une liste, ce qui les actualise régulièrement. Pour l'acquisition des données, il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois depuis sa position actuelle jusqu'à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu'à enregistrer le tour complet d'après, c'est pour ça que je fais 2 tours. Puis dès qu'une classe en a besoin, elle appelle la fonction "Get_Data()" qui lui envois une liste des dernières valeurs recueillies.
 
-![Class Diagram](img/Lidar_Diagram.png){width="200"}
+![Class Diagram](img/Lidar_Diagram.png){width="300"}
 
 Comme vous pouvez le voir ci-dessus, cette classe est faite d'une propriété (ShorterScan), et de 4 fonctions. Je vais détailler ci-dessous ce que font ces éléments.
 
@@ -230,7 +230,7 @@ Cette fonction me sert à arrêter le lidar, dès que les données sont récolt�
 
 Pour cette classe, j'utilise la librairie OpenCV. Cette classe me permet de récupérer les données de la caméra.
 
-![VideoCamera Diagram](img/VideoCamera_Diagram.png)
+![VideoCamera Diagram](img/VideoCamera_Diagram.png){width="300"}
 
 #### \__init__()
 
@@ -244,7 +244,7 @@ Cette fonction sert à libérer la caméra.
 
 Cette fonction capture le flux vidéo de caméra, la convertie en bytes et retourne celui-ci.
 
-### Classe Plot
+### Classe Radar
 
 Cette classe sert à créer la vue radar. Elle m'est utile pour créer une image avec les points que la classe lidar détecte et je l'actualise afin d'avoir un retour un minimum fluide. À l'initialisation, la classe dessine l'arrière-plan de l'image, ce qui veut les le fond blanc, les lignes pour les distances ainsi que mettre les chiffres pour que l'utilisateur sache de qu'elle distance il s'agit.
 
@@ -254,6 +254,16 @@ Voici un exemple de la vue que l'utilisateur voit :
 
 ![Vue Plot](img/plot.png)
 
+![Class_Radar](img/Diagram_Radar.png){width="300"}
+
+#### \__init()
+
+Cette fonction est le constructeur de cette classe. Elle me permet d'instancier matplotlib, puis initialiser les valeurs qui ne changent pas.
+
+#### CreatePlot(): Figure
+
+Cette classe me permet de remettre à jour la vue radar. Puis, j'envois la nouvelle figure à la classe principale qui l'affiche sur le site web.
+
 ### Classe Gyroscope
 
 Pour le gyroscope, j'utilise un module MPU-6050 qui dessus à un gyroscope ainsi qu'un acceleromètre. Ce composant est improprement nommé gyroscope, car ce n'est pas un "vrai" gyroscope avec les anneaux, mais c'est un MEMS (MicroElectroMechanical Systems). Le fonctionnement de ce MEMS est qu'avec des mécanismes micrométriques réalisés sur silicium, elles sont mis en mouvement grâce aux forces générées par des transducteurs électromécaniques (dispositif servant de convertir un signal physique en un autre), et ce dernier fait l'interface entre la mécanique et l'électrique, et un circuit récupère ce signal et le transforme en signal numérique.
@@ -261,6 +271,20 @@ Pour le gyroscope, j'utilise un module MPU-6050 qui dessus à un gyroscope ainsi
 Ce module comminunique en I2C. Son adresse est 0x68, dépendemment du registre, il nous rends les angles, ou l'acceleration.
 
 Afin d'utiliser correctement ce module, j'ai utilisé la librairie fait par le fabriquant. Ce qui gère pour nous la communication entre le gyroscope et le raspberry pi. Ce qui rends les fonctions plus courtes et simples.
+
+![Diagram Gyroscope](img/Diagram_Gyroscope.png){width="300"}
+
+#### \__init__()
+
+Cette fonction est le constructeur de la classe. Elle me permet instancier le capteur, ainsi qu'initialiser certaines valeurs.
+
+#### get_angle(): dict[str, float]
+
+Cette classe permet récupérer l'inclinaison du robot grâce au gyroscope.
+
+#### get_acceleration(): dict[str, float]
+
+Cette classe permet de récupérer les valeurs de l'acceleromètre.
 
 ### Classe ServoMoteur
 
