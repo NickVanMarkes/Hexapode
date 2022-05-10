@@ -95,9 +95,9 @@ Aujourd'hui, j'ai commencé la journée par tester la technique de M. Bonvin pou
 
 Aujourd'hui, au début de la matinée, j'ai continué à travailler sur l'animation d'initialisation du robot. Puis, après la grande pause, M. Bonvin, est venu, pour qu'on lui montre nos posters, et de ce fait, je lui ai montré le mien, et étonnement, il a été assez gentil, et il m'a juste dit que je devais changer quelques détails et rajouter le dessin du lidar sur le poster, ce que j'ai fait jusqu'au début de l'après-midi. Ensuite, j'ai recommencé à travailler sur le robot, et je me suis dit qu'il faudrait utiliser le gyroscope afin de savoir quand est-ce que le robot est droit. En testant, j'ai eu un très joli résultat :
 
-![Robot Debout](img/JDB/Robot_leve_Face.jpg)
+![Robot Debout](img/JDB/Robot_leve_Face.jpg){width="700"}
 
-![Robot Debout](img/JDB/Robot_Leve_iso.jpg)
+![Robot Debout](img/JDB/Robot_Leve_iso.jpg){width="700"}
 
 Et ce résultat sans le gyroscope. J'ai implémenté le gyroscope après ce résultat-là.
 
@@ -107,8 +107,18 @@ Ce matin, j'ai continué à travailler sur l'implémentation du gyroscope sur le
 
 V1 du poster :
 
-![PosterV1](img/JDB/Poster2_1.png)
+![PosterV1](img/JDB/Poster2_1.png){width="700"}
 
 Il y a le robot en 2D avec les pattes tendues, mais quand M. Bonvin à vu, il m'as conseillé de plutôt mettre un vue en 3D en position. Voici donc la V2 :
 
-![PosterV2](img/JDB/PosterV2_1.png)
+![PosterV2](img/JDB/PosterV2_1.png){width="700"}
+
+
+### 09.05.2022
+
+Aujourd'hui, j'ai envoyé mon poster ainsi que mon abstract à M. Bonvin. Il m'a demandé de l'appeler, puis on a fait un débrifing par téléphone. Il m'a dit que le poster était pas mal, sauf que je ne présente rien d'informatique, je ne montre que des pièces mécanique. Il m'as alors conseillé de faire un schéma qui explique ce qui communique ensemble, et de l'ajouter sur le poster. Ensuite, pour l'abstract, il m'a dit que mon français n'était vraiment pas bon, ce que je conçois, car j'ai écrit comme je pense. Il m'a ordonné de ne rien faire d'autre que ces deux choses toute la journée, ce que j'ai fait. 
+Voici donc la version finale de mon poster:
+
+![PosterV3](img/JDB/PosterV3_1.png){width="700"}
+
+### 10.05.2022
