@@ -22,6 +22,8 @@ class ServoMoteur(object):
         # Création des instances des différents modules PCA9685
         self.pcaG = PCA9685(i2c, address=65)
         self.pcaD = PCA9685(i2c, address=66)
+        self.pcaG.frequency = 50
+        self.pcaD.frequency = 50
 
         self.MAXPULSE=1890
         self.MINPULSE=1300
@@ -32,18 +34,14 @@ class ServoMoteur(object):
     
     
     def SetAngleRel(self,Angle,Force) -> None:
-        """  brief       : Permet de définir l'angle du servomoteur, la force est en pourcentage, et le temps en seconde
+        """  brief       : Permet de définir l'angle du servomoteur, la force est en pourcentage
                 param-type  : Angle (int)
                               Force (int)
                 return-type : None
         """
-        #Calcul du temps pour un angle avec une force donnée
-        newtourmin=50/Force
-        secondstour=60/newtourmin
-        timeforanangle=secondstour/360
 
         self.servo.throttle = Force/100
-        time.sleep(timeforanangle*abs(Angle))
+        time.sleep(0.003*abs(Angle))
     
     def StayWithForce(self,direction="+") -> None:
         """  brief       : Permet de garder le servomoteur avec un peu de force vers le sol

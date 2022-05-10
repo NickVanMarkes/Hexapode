@@ -4,7 +4,7 @@
 ### Date        : 06/05/2022
 ### Description : Classe qui contrôle les pattes de l'hexapode.
 
-from mod_classes.Motor import ServoMoteur
+from Motor import ServoMoteur
 
 class Patte(object):
 
@@ -40,6 +40,7 @@ class Patte(object):
                 self.Pointe=ServoMoteur(Cote,0)
                 self.Tibia=ServoMoteur(Cote,1)
                 self.Hanche=ServoMoteur(Cote,2)
+        self.servos=[self.Pointe,self.Tibia,self.Hanche]
 
     def Lever_Pointe (self,Angle, Force) -> None:
         """  brief       : Lève la pointe de la patte
@@ -47,7 +48,11 @@ class Patte(object):
                            Force (int) Pourcentage
              return-type : None 
         """ 
-        self.Pointe.set_angle_rel(Angle,Force)
+        self.Pointe.SetAngleRel(Angle,Force)
+        if Force<0:
+            self.Pointe.StayWithForce("-")
+        else:
+            self.Pointe.StayWithForce("+")
 
     def Lever_Tibia (self,Angle, Force) -> None:
         """  brief       :  Lève le tibia de la patte
@@ -55,11 +60,11 @@ class Patte(object):
                             Force (int) Pourcentage
              return-type :  None
         """
-        self.Tibia.set_angle_rel(Angle,Force)
+        self.Tibia.SetAngleRel(Angle,Force)
         if Force<0:
-            self.Tibia.stay_with_force("-")
+            self.Tibia.StayWithForce("-")
         else:
-            self.Tibia.stay_with_force("+")
+            self.Tibia.StayWithForce("+")
 
     def Baisser_Pointe (self,Angle,Force) -> None:
         """  brief       : Baisse la pointe de la patte
@@ -67,7 +72,11 @@ class Patte(object):
                             Force (int) Pourcentage
              return-type : None
         """
-        #Faire animation pour baisser la pointe
+        self.Pointe.SetAngleRel(Angle,Force)
+        if Force<0:
+            self.Pointe.StayWithForce("-")
+        else:
+            self.Pointe.StayWithForce("+")
 
     def Baisser_Tibia (self,Angle, Force) -> None:
         """  brief       : Baisse le tibia de la patte
@@ -75,7 +84,11 @@ class Patte(object):
                                 Force (int) Pourcentage
                 return-type : None
         """
-        #Faire animation pour baisser le tibia
+        self.Tibia.SetAngleRel(Angle,Force)
+        if Force<0:
+            self.Tibia.StayWithForce("-")
+        else:
+            self.Tibia.StayWithForce("+")
 
     def Tourner (self,Angle, Force) -> None:
         """  brief       : Tourne la patte
@@ -83,5 +96,17 @@ class Patte(object):
                             Force (int) Pourcentage
              return-type : None
         """
-        #Faire animation pour tourner la patte
+        self.Hanche.SetAngleRel(Angle,Force)
+        if Force<0:
+            self.Hanche.StayWithForce("-")
+        else:
+            self.Hanche.StayWithForce("+")
+    def WithoutForce(self) -> None:
+        """  brief       : Désactive les moteurs
+             param-type  : None
+             return-type : None
+        """
+        self.Pointe.WithoutForce()
+        self.Tibia.WithoutForce()
+        self.Hanche.WithoutForce()
 

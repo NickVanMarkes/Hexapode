@@ -22,11 +22,11 @@ class Gyroscope(object):
              return-type : dict[str,float] 
         """ 
          
-        return self.sensor.get_gyro_data()
+        return self.sensor.get_accel_data()
     
     def get_acceleration (self) -> dict[str, float]:
         """  brief       : Permet de récupérer les accélérations du robot
               param-type  : type
               return-type : dict[str,float]
         """
-        return self.sensor.get_accel_data()
+        return self.sensor.get_gyro_data()

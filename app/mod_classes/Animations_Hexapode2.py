@@ -15,94 +15,27 @@ from adafruit_pca9685 import PCA9685
 sys.path.append("../")
 
 from Gyroscope import Gyroscope
+from Patte import Patte
 
 class Animations(object):
 
     def __init__(self):
-        self.i2c = busio.I2C(SCL, SDA)
 
         self.gyro=Gyroscope()
 
-        # Création des instances des différents modules PCA9685
-        self.pcaG = PCA9685(self.i2c, address=65)
-        self.pcaD = PCA9685(self.i2c, address=66)
 
-        MAXPULSE=1890
-
-        self.pcaG.frequency = 50
-        self.pcaD.frequency = 50
-
-        # Instantiation des servomoteurs
-
-        #Patte Avant Gauche
-        #Hanche
-        self.havg = servo.ContinuousServo(self.pcaG.channels[0], min_pulse=1300, max_pulse=MAXPULSE)
-        #Tibia
-        self.tavg = servo.ContinuousServo(self.pcaG.channels[1], min_pulse=1300, max_pulse=MAXPULSE)
-        #Pointe
-        self.pavg = servo.ContinuousServo(self.pcaG.channels[2], min_pulse=1300, max_pulse=MAXPULSE)
-
-        #Patte Milieu Gauche
-        #Pointe
-        self.pmg = servo.ContinuousServo(self.pcaG.channels[4], min_pulse=1300, max_pulse=MAXPULSE)
-        #Tibia
-        self.tmg = servo.ContinuousServo(self.pcaG.channels[5], min_pulse=1300, max_pulse=MAXPULSE)
-        #Hanche
-        self.hmg = servo.ContinuousServo(self.pcaG.channels[6], min_pulse=1300, max_pulse=MAXPULSE)
-
-        #Patte Arriere Gauche
-        #Hanche
-        self.harg = servo.ContinuousServo(self.pcaG.channels[12], min_pulse=1300, max_pulse=MAXPULSE)
-        #Tibia
-        self.targ = servo.ContinuousServo(self.pcaG.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
-        #Pointe
-        self.parg = servo.ContinuousServo(self.pcaG.channels[15], min_pulse=1300, max_pulse=MAXPULSE)
-
-        #Patte Avant Droite
-        #Pointe
-        self.pavd = servo.ContinuousServo(self.pcaD.channels[15], min_pulse=1300, max_pulse=MAXPULSE)
-        #Tibia
-        self.tavd = servo.ContinuousServo(self.pcaD.channels[14], min_pulse=1300, max_pulse=MAXPULSE)
-        #Hanche
-        self.havd = servo.ContinuousServo(self.pcaD.channels[13], min_pulse=1300, max_pulse=MAXPULSE)
-        #Patte Milieu Droite
-        #Pointe
-        self.pmd = servo.ContinuousServo(self.pcaD.channels[4], min_pulse=1300, max_pulse=MAXPULSE)
-        #Tibia
-        self.tmd = servo.ContinuousServo(self.pcaD.channels[5], min_pulse=1300, max_pulse=MAXPULSE)
-        #Hanche
-        self.hmd = servo.ContinuousServo(self.pcaD.channels[6], min_pulse=1300, max_pulse=MAXPULSE)
-        #Patte Arriere Droite
-        #Pointe
-        self.pard = servo.ContinuousServo(self.pcaD.channels[0], min_pulse=1300, max_pulse=MAXPULSE)
-        #Tibia
-        self.tard = servo.ContinuousServo(self.pcaD.channels[1], min_pulse=1300, max_pulse=MAXPULSE)
-        #Hanche
-        self.hard = servo.ContinuousServo(self.pcaD.channels[2], min_pulse=1300, max_pulse=MAXPULSE)
-
-        #Hanches à 0
-        self.havg.throttle=0
-        self.havd.throttle=0
-        self.hmd.throttle=0
-        self.hmg.throttle=0
-        self.harg.throttle=0
-        self.hard.throttle=0
-
-        #Pointes à 0
-        self.pavg.throttle=0
-        self.pavd.throttle=0
-        self.pmg.throttle=0
-        self.pmd.throttle=0
-        self.parg.throttle=0
-        self.pard.throttle=0
-
-        #Tibias à 0
-        self.tavg.throttle=0
-        self.tavd.throttle=0
-        self.tmg.throttle=0
-        self.tmd.throttle=0
-        self.targ.throttle=0
-        self.tard.throttle=0
+        # Instantiation des Pattes
+        self.patteAvG=Patte("Gauche", "Avant")
+        self.patteAvD=Patte("Droite", "Avant")
+        self.patteMG=Patte("Gauche", "Milieu")
+        self.patteMD=Patte("Droite", "Milieu")
+        self.patteArG=Patte("Gauche", "Arriere")
+        self.patteArD=Patte("Droite", "Arriere")
+        self.pattes=[self.patteAvG, self.patteAvD, self.patteMG, self.patteMD, self.patteArG, self.patteArD]
+        
+        for item in self.pattes:
+            item.WithoutForce()
+        
 
 
 
@@ -196,48 +129,84 @@ class Animations(object):
 
         angles=self.gyro.get_angle()
 
-        print(angles["y"])
+        print(angles["x"])
         #Etape 1 baisser les tibias et légère force sur les pointes
         #Tibias Gauche
 
-        self.tavg.throttle=0.4
-        self.tmg.throttle=0.4
-        self.targ.throttle=0.4
+        self.patteAvG.Baisser_Tibia(1,40)
+        self.patteMG.Baisser_Tibia(1,40)        
+        self.patteArG.Baisser_Tibia(1,40)
+        
         #Tibias Droite
-        self.tavd.throttle=-1
-        self.tmd.throttle=-1
-        self.tard.throttle=-1
+        # self.tavd.throttle=-1
+        # self.tmd.throttle=-1
+        # self.tard.throttle=-1
 
-        self.pavg.throttle=-0.1
-        self.pmg.throttle=-0.1
-        self.parg.throttle=-0.1
-        self.pavd.throttle=0.1
-        self.pmd.throttle=0.1
-        self.pard.throttle=0.1
+        self.patteAvD.Baisser_Tibia(1,-100)
+        self.patteAvD.Tibia.throttle=0
+        self.patteMD.Baisser_Tibia(1,-100)
+        self.patteMD.Tibia.throttle=0
+        self.patteArD.Baisser_Tibia(1,-100)
+        self.patteArD.Tibia.throttle=0
+            
+
+        # self.pavg.throttle=-0.1
+        # self.pmg.throttle=-0.1
+        # self.parg.throttle=-0.1
+        # self.pavd.throttle=0.1
+        # self.pmd.throttle=0.1
+        # self.pard.throttle=0.1
+
+        self.patteAvD.Baisser_Pointe(15,10)
+        self.patteMD.Baisser_Pointe(15,10)
+        self.patteArD.Baisser_Pointe(15,10)
+        self.patteAvG.Baisser_Pointe(15,-10)
+        self.patteMG.Baisser_Pointe(15,-10)
+        self.patteArG.Baisser_Pointe(15,-10)
 
         time.sleep(1.5) #50 degrés vers le bas
 
-        self.targ.throttle=1
-        self.tavg.throttle=1
-        self.tmg.throttle=1
-        self.tavd.throttle=-0.1
-        self.tmd.throttle=-0.1
-        self.tard.throttle=-0.1
+        # self.targ.throttle=1
+        # self.tavg.throttle=1
+        # self.tmg.throttle=1
 
-        self.pavg.throttle=-1
-        self.pmg.throttle=-1
-        self.parg.throttle=-1
+        self.patteArG.Baisser_Tibia(15,100)
+        self.patteMG.Baisser_Tibia(15,100)
+        self.patteAvG.Baisser_Tibia(15,100)
+
+        # self.tavd.throttle=-0.1
+        # self.tmd.throttle=-0.1
+        # self.tard.throttle=-0.1
+
+        self.patteAvD.Baisser_Tibia(15,-10)
+        self.patteMD.Baisser_Tibia(15,-10)
+        self.patteArD.Baisser_Tibia(15,-10)
+
+        # self.pavg.throttle=-1
+        # self.pmg.throttle=-1
+        # self.parg.throttle=-1
+
+        self.patteAvG.Baisser_Pointe(15,-100)
+        self.patteMG.Baisser_Pointe(15,-100)
+        self.patteArG.Baisser_Pointe(15,-100)
 
         while angles != self.gyro.get_angle():
             print("Angles de départ: ", angles, "\nAngles de maintenant : ",self.gyro.get_angle())
-            
         #Maintiens
-        self.tavg.throttle=0.1
-        self.tmg.throttle=0.1
-        self.targ.throttle=0.1
-        self.tavd.throttle=-0.1
-        self.tmd.throttle=-0.1
-        self.tard.throttle=-0.1
+        # self.tavg.throttle=0.1
+        # self.tmg.throttle=0.1
+        # self.targ.throttle=0.1
+        # self.tavd.throttle=-0.1
+        # self.tmd.throttle=-0.1
+        # self.tard.throttle=-0.1
+
+        self.patteAvG.Tibia.StayWithForce("+")
+        self.patteMG.Tibia.StayWithForce("+")
+        self.patteArG.Tibia.StayWithForce("+")
+        self.patteAvD.Tibia.StayWithForce("-")
+        self.patteMD.Tibia.StayWithForce("-")
+        self.patteArD.Tibia.StayWithForce("-")
+
         time.sleep(1)
 
         # #Etape 3 baisser les tibias Droite et mettre une légère force sur les pointes
