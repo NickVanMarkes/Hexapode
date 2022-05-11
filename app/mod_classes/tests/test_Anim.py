@@ -10,5 +10,6 @@ anim= Animations()
 anim2= Animations2()
 
 anim.Init2()
+anim.Maintiens()
 #anim.Avance()
 #anim2.Init2()

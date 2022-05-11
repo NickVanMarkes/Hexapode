@@ -11,6 +11,7 @@ from board import SCL, SDA
 import busio
 from adafruit_motor import servo
 from adafruit_pca9685 import PCA9685
+from simple_pid import PID
 
 sys.path.append("../")
 
@@ -19,6 +20,7 @@ from Gyroscope import Gyroscope
 class Animations(object):
 
     def __init__(self):
+
         self.i2c = busio.I2C(SCL, SDA)
 
         self.gyro=Gyroscope()
@@ -103,6 +105,8 @@ class Animations(object):
         self.tmd.throttle=0
         self.targ.throttle=0
         self.tard.throttle=0
+
+        self.initAngles=self.gyro.get_angle()
 
 
 
@@ -193,10 +197,7 @@ class Animations(object):
         self.targ.throttle=0.1
 
     def Init2(self):
-
-        angles=self.gyro.get_angle()
-
-        print(angles["y"])
+        print(self.initAngles["y"])
         #Etape 1 baisser les tibias et légère force sur les pointes
         #Tibias Gauche
 
@@ -227,9 +228,6 @@ class Animations(object):
         self.pavg.throttle=-1
         self.pmg.throttle=-1
         self.parg.throttle=-1
-
-        while angles != self.gyro.get_angle():
-            print("Angles de départ: ", angles, "\nAngles de maintenant : ",self.gyro.get_angle())
             
         #Maintiens
         self.tavg.throttle=0.1
@@ -238,7 +236,7 @@ class Animations(object):
         self.tavd.throttle=-0.1
         self.tmd.throttle=-0.1
         self.tard.throttle=-0.1
-        time.sleep(1)
+        time.sleep(3)
 
         # #Etape 3 baisser les tibias Droite et mettre une légère force sur les pointes
 
@@ -315,6 +313,103 @@ class Animations(object):
 
     #     self.targ.throttle=0.1
     #     self.tard.throttle=-0.1
+    def Maintiens(self):
+        pidy=PID(0.1,0.1,0.1,setpoint=self.initAngles["y"])
+        pidx=PID(0.1,0.1,0.1,setpoint=self.initAngles["x"])
+        pidy.sample_time=1
+        pidx.sample_time=1
+        memooutputy=0
+        memooutputx=0
+        isnotplatx=True
+        isnotplaty=True
+
+        while isnotplatx and isnotplaty:
+            angles=self.gyro.get_angle()
+
+            #Axe Y
+            outputy=pidy(angles["y"])
+            puissancey=0.1
+            if outputy>1:
+                puissancey=-1
+            elif outputy<-1:
+                puissancey=1
+            if outputy!=memooutputy:
+                print("Output Y : ",outputy)
+                memooutputy=outputy
+            # if outputy<0:
+            #     self.targ.throttle=puissancey
+            #     self.tmg.throttle=puissancey
+            #     self.tavg.throttle=puissancey
+            #     self.tard.throttle=(puissancey/2)*-1
+            #     self.tmd.throttle=(puissancey/2)*-1
+            #     self.tavd.throttle=(puissancey/2)*-1
+            # elif outputy==0:
+            #     self.targ.throttle=0.1
+            #     self.tmg.throttle=0.1
+            #     self.tavg.throttle=0.1
+            #     self.tard.throttle=-0.1
+            #     self.tmd.throttle=-0.1
+            #     self.tavd.throttle=-0.1
+            # elif outputy>0:
+            #     self.tard.throttle=puissancey
+            #     self.tmd.throttle=puissancey
+            #     self.tavd.throttle=puissancey
+            #     self.targ.throttle=(puissancey/2)*-1
+            #     self.tmg.throttle=(puissancey/2)*-1
+            #     self.tavg.throttle=(puissancey/2)*-1
+
+            if outputy<0:
+                self.targ.throttle=1
+                self.tmg.throttle=1
+                self.tavg.throttle=1
+                self.tard.throttle=-0.05
+                self.tmd.throttle=-0.05
+                self.tavd.throttle=-0.05
+                isnotplaty=True
+            elif outputy<0.05 and outputy>-0.05:
+                self.targ.throttle=0.1
+                self.tmg.throttle=0.1
+                self.tavg.throttle=0.1
+                self.tard.throttle=-0.1
+                self.tmd.throttle=-0.1
+                self.tavd.throttle=-0.1
+                isnotplaty=False
+            elif outputy>0:
+                self.tard.throttle=-1
+                self.tmd.throttle=-1
+                self.tavd.throttle=-1
+                self.targ.throttle=0.05
+                self.tmg.throttle=0.05
+                self.tavg.throttle=0.05
+                isnotplaty=True
+
+            # #Axe X
+
+            outputx=pidx(angles["x"])
+            if outputx!=memooutputx:
+                print("Output X : ",outputx)
+                memooutputx=outputx
+
+            if outputx<0:
+                self.targ.throttle=1
+                self.tard.throttle=-1
+                self.tavg.throttle=0.05
+                self.tavd.throttle=-0.05
+                isnotplatx=True
+            elif outputx<0.1 and outputx>-0.1:
+                self.targ.throttle=0.1
+                self.tmg.throttle=0.1
+                self.tavg.throttle=0.1
+                self.tard.throttle=-0.1
+                self.tmd.throttle=-0.1
+                self.tavd.throttle=-0.1
+                isnotplatx=False
+            elif outputx>0:
+                self.tavg.throttle=-1
+                self.tavd.throttle=1
+                self.targ.throttle=0.05
+                self.tard.throttle=-0.05
+                isnotplatx=True
 
     #self.pcaD.deinit()
     #self.pcaG.deinit()
