@@ -111,6 +111,10 @@ Matplotlib est une bibliothèque Python qui permet de tracer des graphiques. Ell
 
 NumPy est une bibliothèque pour langage de programmation Python, destinée à manipuler des matrices ou tableaux multidimensionnels ainsi que des fonctions mathématiques opérant sur ces tableaux.
 
+### Simple PID
+
+Simple PID est une librairie destinée à aider afin de faire facilement et rapidement des PID.
+
 ### Raspberry Pi 
 ![Logo](img/RaspberryPiLogo.png){width="100", align="right"}
 Le Raspberry Pi est un nano-ordinateur monocarte à processeur ARM de la taille d'une carte de crédit conçu par des professeurs du département informatique de l'université de Cambridge dans le cadre de la fondation Raspberry Pi.
