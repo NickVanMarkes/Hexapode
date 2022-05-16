@@ -34,7 +34,8 @@ class VideoCamera(object):
         """ 
        # extracting frames
         ret, frame = self.video.read()
+        rotated=cv2.rotate(frame,cv2.ROTATE_180)
         #frame=cv2.resize(frame,(1280,720))                    
         # encode OpenCV raw frame to jpg and displaying it
-        ret, jpeg = cv2.imencode('.jpg', frame)
+        ret, jpeg = cv2.imencode('.jpg', rotated)
         return jpeg.tobytes()

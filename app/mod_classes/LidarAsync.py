@@ -28,6 +28,7 @@ class Lidarasync(object):
         
         self.lidar=None
         self.shorterScan=2000
+        self.memoscan=self.shorterScan
         self.scans=[]
         # Setup the RPLidar
         try:
@@ -56,22 +57,22 @@ class Lidarasync(object):
               param-type  : None
               return-type : None
         """
-        
-        self.shorterScan=2000
         self.scans=[]
         self.lidar.connect()
         try:
             for scan in self.lidar.iter_scans():
                 self.scans.append(scan)
                 #Get shorter distance
+                self.shorterScan=1200
                 for meas in scan:
                     if meas[2] < self.shorterScan:
                         self.shorterScan = meas[2]
+                            
                 #Stop when we have 2 scans
                 if len(self.scans) >= 2:             
                     break
             self.StopLidar(withmotor=False)
-            print('Stoping, scan completed.')
+            #print('Stoping, scan completed.')
         except RPLidarException as ex:
             print(ex)
             self.StopLidar()
@@ -93,4 +94,3 @@ class Lidarasync(object):
             self.lidar.stop_motor()
         self.lidar.stop()
         self.lidar.disconnect()
-        

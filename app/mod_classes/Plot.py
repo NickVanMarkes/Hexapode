@@ -10,14 +10,11 @@ import time
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
-BeginLidar=time.time()
-# Lidar pour les données
-from app.mod_classes.LidarAsync import Lidarasync as Lidar
-
 
 # Autres librairies
 import numpy as np
 import io
+import cv2
 
 
 #Constantes
@@ -29,8 +26,6 @@ class Radar(object):
     #Constructeur
     #Brief: Initialise le plot avec la forme et les lignes. Instantie le lidar
     def __init__(self):
-        # Get Lidar
-        self.lidar=Lidar()
        #INIT matplotlib
         plt.ion()
         self.fig = plt.figure(figsize=(3,3))
@@ -44,20 +39,16 @@ class Radar(object):
 
     #Brief: Lance une lecture des points avec le lidar, et mets les points sur le plot.
     #Return: le plot avec les points dedans
-    def CreatePlot(self):
-        self.lidar.DoScan()
-        scans=self.lidar.process_data()
+    def CreatePlot(self,scans):
 
         for scan in scans:
             
             #Insertion des points
             offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
             self.line.set_offsets(offsets)
-            #intens = np.array([meas[0] for meas in scan])
-            #self.line.set_array(intens)
 
-
-        buf= io.BytesIO()
-        FigureCanvas(self.fig).print_png(buf)
-        self.fig.savefig("plot.png")
-        return self.fig
+        self.fig.savefig("static/img/plot.jpg")
+        radar = cv2.imread("static/img/plot.jpg")
+        radar = cv2.imencode('.jpg', radar)[1]
+        return radar.tobytes()
+        
