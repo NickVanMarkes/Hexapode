@@ -12,6 +12,6 @@ test = Gyroscope()
         # print(angle["x"])
 while True:
     
-    accel=test.get_acceleration()
-    if accel["y"]!=test.get_acceleration()["y"]:
-        print(accel["y"])
+    gyro=test.get_angle()
+    if gyro["z"]!=test.get_angle()["z"]:
+        print(gyro["z"])

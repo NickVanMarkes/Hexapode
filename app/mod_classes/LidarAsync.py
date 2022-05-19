@@ -28,7 +28,6 @@ class Lidarasync(object):
         
         self.lidar=None
         self.shorterScan=2000
-        self.memoscan=self.shorterScan
         self.scans=[]
         # Setup the RPLidar
         try:
@@ -44,7 +43,7 @@ class Lidarasync(object):
     def Get_Data(self):
         """  brief       : Function to get the data.
               param-type  : None
-              return-type : List(list(int,int,int))
+              return-type : List(list(float,float,float))
         """ 
         if len(self.scans)>0:
             return self.scans

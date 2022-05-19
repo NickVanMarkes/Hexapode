@@ -6,16 +6,13 @@
 
 
 # FLASK
-import math
 from flask import Flask, render_template,Response, request
 from turbo_flask import Turbo
 import time
 import random
 
+import math
 import threading
-import numpy as np
-import io
-from threading import Timer
 
 # Mes Classes
 from mod_classes.Camera import VideoCamera
@@ -27,112 +24,88 @@ from mod_classes.Gyroscope import Gyroscope
 app = Flask(__name__)
 turbo = Turbo(app)
 
-DMAX = 2000
-IMIN = 0
-IMAX = 50
-# Plot
-fig=None
-line=None
-scans=None
-
-_incr=0
-memo_incr=0
-_angleX=0
-_angleY=0
-_angleZ=0
-_vitesse=0
-_batterie=0
-_batterieServo=0
-_obstacleDist=0
-wait4seconds=0
 mode=""
 
-
-# Fonction permettant de générer les images de la caméra.
-def generate_frames(camera):
-    while True:
-        frame=camera.get_frame()
-        yield(b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-
-
-
-
+#Header
 @app.after_request
 def add_header(r):
+    """      brief       : Fonction executée après chaque requête.
+             param-type  : request
+             return-type : request
+    """ 
+
     r.headers["Cache-Control"]="no-cache, no-store, must-revalidate"
     r.headers["Pragma"]="no-cache"
     r.headers["Expires"]="0"
     r.headers["Cache-Control"]='public, max-age=0'
     return r
 
-
-
-# Fonction permettant d'actualiser les valeurs
+#Rafraichissement Flask
 @app.context_processor
 def inject_load():
-    global _incr
-    global memo_incr
-    global wait4seconds
-    global _obstacleDist
+    """      brief       : Fonction permettant d'actualiser les valeurs sur la bannière
+             param-type  : None
+             return-type : dict[string, Any]
+    """ 
     global mode
 
     if lidar.ShorterScan!= None:
         _obstacleDist=lidar.ShorterScan
 
     angles=gyroscope.get_angle()
-    accel=gyroscope.get_acceleration()
+    
 
     _angleX=round(angles["x"],2)
     _angleY=round(angles["y"],2)
     _angleZ=round(angles["z"],2)
-    vx=0
-    vy=0
-    vz=0
+    
+    #Vitesse
+    #accel=gyroscope.get_acceleration()
+    # vx=0
+    # vy=0
+    # vz=0
 
-    vx+=accel["x"]*1
-    vy+=accel["y"]*1
-    vz+=accel["z"]*1
-    _vitesse=math.sqrt(vx**2+vy**2+vz**2)
-    # print(_vitesse)
+    # vx+=accel["x"]*1
+    # vy+=accel["y"]*1
+    # vz+=accel["z"]*1
+    # _vitesse=math.sqrt(vx**2+vy**2+vz**2)
 
     _batterie=random.randrange(0,100)
     _batterieServo=random.randrange(0,100)
-    wait4seconds+=1
-    if wait4seconds==4:
-        _incr+=1
-        wait4seconds=0
-        if _incr > 0:
-            memo_incr=_incr-1
 
 
-    return {'angleX': _angleX, 'angleZ': _angleZ, 'angleY': _angleY, "vitesse":_vitesse,
-    "batterie":_batterie,"batterieServo":_batterieServo,"obstacleDist": _obstacleDist,"mode":mode}
+    return {'angleX': _angleX, 'angleZ': _angleZ, 'angleY': _angleY, "batterie":_batterie,
+    "batterieServo":_batterieServo,"obstacleDist": _obstacleDist,"mode":mode}
 
 
-# Fonction permettant de lancer le rafraîchissement de la page
+
 @app.before_first_request
 def before_first_request():
+    """      brief       : Fonction permettant de lancer le rafraîchissement de la page sur un thread.
+             param-type  : None
+             return-type : None
+    """ 
     threading.Thread(target=update_load).start()
 
-# Fonction permettant de rafraîchir le site.
+
 def update_load():
+    """      brief       : Fonction permettant de rafraîchir le site.
+             param-type  : None
+             return-type : None
+    """ 
     with app.app_context():
         while True:
             time.sleep(1.0)
             turbo.push(turbo.replace(render_template('index_update.html'), 'load'))
 
-
-@app.route('/post/<int:id>')
-def show_post(id):
-    # Shows the post with given id.
-    return f'This post has the id {id}'
-
-
-# Route principale
+#Home
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """      brief       : Route principale du site web.
+             param-type  : None
+             return-type : string
+    """ 
+
     global mode
     print(mode)
     if request.method=="POST":
@@ -151,11 +124,29 @@ def index():
             #mode=suiveur
     return render_template('index.html')
 
-# Route qui affiche le retour de la caméra
+
+
+
+#Camera
+def generate_frames(camera):
+    """      brief       : Fonction permettant de générer les images de la caméra.
+             param-type  : VideoCamera
+             return-type : bytes
+    """ 
+    while True:
+        frame=camera.get_frame()
+        yield(b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
 @app.route('/video')
 def video():
+    """      brief       : Route qui affiche le retour de la caméra.
+             param-type  : None
+             return-type : Response
+    """ 
     return Response(generate_frames(VideoCamera()),mimetype='multipart/x-mixed-replace; boundary=frame')
 
+#Mouvements
 def mouvement():
     if request.method == 'POST':
         if request.form['submit_button'] == 'Avance':
@@ -179,10 +170,12 @@ def mouvement():
         else:
             pass # unknown
 
-
-
-
+#Radar
 def radar():
+    """      brief       : Fonction récupère les données du lidar, et enlève les doublons.
+             param-type  : None
+             return-type : list(list(float,float,float))
+    """ 
     global lidar
     resultwithoutdoubles=[]
     result=lidar.Get_Data()
@@ -199,16 +192,23 @@ def radar():
     return resultwithoutdoubles
 
 def generate_radar(radarparam):
+    """      brief       : Fonction permettant de générer la vue radar.
+             param-type  : Radar
+             return-type : bytes
+    """ 
     while True:
         radar()
         frame=radarparam.CreatePlot(radar())
         yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
 @app.route('/plot')
 def plot():
+    """      brief       : Route qui affiche la vue radar.
+             param-type  : None
+             return-type : Response
+    """ 
     return Response(generate_radar(radar_view),mimetype='multipart/x-mixed-replace; boundary=frame')
-
-    #return '<img src="data:image/png;base64,{}">'.format(plot_url)
 
 if __name__ == '__main__':
     radar_view=Radar()

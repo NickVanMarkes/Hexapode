@@ -20,6 +20,10 @@ from Gyroscope import Gyroscope
 class Animations(object):
 
     def __init__(self):
+        """  brief       : Initialisation des servomoteurs et du gyroscope.
+             param-type  : None
+             return-type : None 
+        """
 
         self.i2c = busio.I2C(SCL, SDA)
 
@@ -196,6 +200,10 @@ class Animations(object):
         self.targ.throttle=0.1
 
     def Init2(self):
+        """  brief       : Animation faisant lever le robot, depuis l'état initial.
+             param-type  : None
+             return-type : None 
+        """
         print(self.initAngles["y"])
         #Etape 1 baisser les tibias et légère force sur les pointes
         #Tibias Gauche
@@ -215,7 +223,7 @@ class Animations(object):
         self.pmd.throttle=0.1
         self.pard.throttle=0.1
 
-        time.sleep(2) #50 degrés vers le bas
+        time.sleep(2)
 
         self.targ.throttle=1
         self.tavg.throttle=1
@@ -230,76 +238,163 @@ class Animations(object):
         time.sleep(3)
             
         #Maintiens
-        self.tavg.throttle=0.1
-        self.tmg.throttle=0.1
-        self.targ.throttle=0.1
-        self.tavd.throttle=-0.1
-        self.tmd.throttle=-0.1
-        self.tard.throttle=-0.1
+        self.tavg.throttle=0.2
+        self.tmg.throttle=0.2
+        self.targ.throttle=0.2
+        self.tavd.throttle=-0.2
+        self.tmd.throttle=-0.2
+        self.tard.throttle=-0.2
 
     def Avance(self):
+        """  brief       : Animation permettant au robot d'avancer.
+             param-type  : None
+             return-type : None 
+        """
+
         print("AVANCE")
         print("===========================================================")
-        #PATTES AVANT GAUCHE, MILIEU DROIT, PATTE ARRIERE GAUCHE
+        #PATTE AVANT GAUCHE
         print("Lever les pattes")
         self.tavg.throttle=-1
-        self.tmd.throttle=1
-        self.targ.throttle=-1
-        #self.pavg.throttle=1
         time.sleep(0.003*50) #50 degrés vers le haut
         self.tavg.throttle=0
-        self.tmd.throttle=0
-        self.targ.throttle=0
-        #self.pavg.throttle=0
 
         print("Tourner les hanches")
         self.havg.throttle=-1
-        self.hmd.throttle=1
-        self.harg.throttle=-1
-        time.sleep(0.003*30) #30 degrés vers l'avant
+        time.sleep(0.003*40) #30 degrés vers l'avant
         self.havg.throttle=0
-        self.hmd.throttle=0
-        self.harg.throttle=0
-        #self.pavg.throttle=-0.2
-        time.sleep(0.003*180) #50 degrés vers le bas
+        time.sleep(0.003*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
         self.pavg.throttle=-0.1
-        self.pmd.throttle=0.1
-        self.parg.throttle=-0.1
 
         print("baisser les pattes")
         self.tavg.throttle=1
-        self.tmd.throttle=-1
+        time.sleep(2)
+        self.tavg.throttle=0.2
+
+
+        # Patte Milieu Gauche
+        print("Lever les pattes")
+        self.tmg.throttle=-1
+        time.sleep(0.003*50) #50 degrés vers le haut
+        self.tmg.throttle=0
+
+        print("Tourner les hanches")
+        self.hmg.throttle=-1
+        time.sleep(0.003*40) #30 degrés vers l'avant
+        self.hmg.throttle=0
+
+        time.sleep(0.003*180) #180 degrés vers le bas
+        print("Mettre un peu de force sur les pointes")
+        self.pmg.throttle=-0.1
+
+        print("baisser les pattes")
+        self.tmg.throttle=1
+        time.sleep(2)
+        self.tmg.throttle=0.2
+
+        # Patte Arrière Gauche
+        print("Lever les pattes")
+        self.targ.throttle=-1
+        time.sleep(0.003*50) #50 degrés vers le haut
+        self.targ.throttle=0
+
+        print("Tourner les hanches")
+        self.harg.throttle=-1
+        time.sleep(0.003*40) #30 degrés vers l'avant
+        self.harg.throttle=0
+
+        time.sleep(0.003*180) #180 degrés vers le bas
+        print("Mettre un peu de force sur les pointes")
+        self.parg.throttle=-0.1
+
+        print("baisser les pattes")
         self.targ.throttle=1
         time.sleep(2)
-        self.tavg.throttle=0.1
-        self.tmd.throttle=-0.1
-        self.targ.throttle=0.1
+        self.targ.throttle=0.2
 
-        # #PATTE MILIEU GAUCHE
-        # #Lever la patte milieu gauche
-        # self.tmg.throttle=-1
-        # time.sleep(0.003*50) #50 degrés vers le haut
-        # self.tmg.throttle=0
+        # Patte Avant Droit
+        print("Lever les pattes")
+        self.tavd.throttle=1
+        time.sleep(0.003*50) #50 degrés vers le haut
+        self.tavd.throttle=0
 
-        # #rotation de la hanche
-        # self.hmg.throttle=-1
-        # time.sleep(0.003*30) #30 degrés vers l'avant
-        # self.hmg.throttle=0
+        print("Tourner les hanches")
+        self.havd.throttle=1
+        time.sleep(0.003*40) #30 degrés vers l'avant
+        self.havd.throttle=0
 
-        # #self.pmg.throttle=-0.2
-        # time.sleep(0.003*180) #50 degrés vers le bas
-        # self.pmg.throttle=-0.1
+        time.sleep(0.003*180) #180 degrés vers le bas
+        print("Mettre un peu de force sur les pointes")
+        self.pavd.throttle=0.1
 
-        # self.tmg.throttle=1
-        # time.sleep(2)
-        # self.tmg.throttle=0.1
+        print("baisser les pattes")
+        self.tavd.throttle=-1
+        time.sleep(2)
+        self.tavd.throttle=-0.2
 
-        
+        # Patte Milieu Droit
+        print("Lever les pattes")
+        self.tmd.throttle=1
+        time.sleep(0.003*50) #50 degrés vers le haut
+        self.tmd.throttle=0
+
+        print("Tourner les hanches")
+        self.hmd.throttle=1
+        time.sleep(0.003*40) #30 degrés vers l'avant
+        self.hmd.throttle=0
+
+        time.sleep(0.003*180) #180 degrés vers le bas
+        print("Mettre un peu de force sur les pointes")
+        self.pmd.throttle=0.1
+
+        print("baisser les pattes")
+        self.tmd.throttle=-1
+        time.sleep(2)
+        self.tmd.throttle=-0.2
+
+        # Patte Arrière Droit
+        print("Lever les pattes")
+        self.tard.throttle=1
+        time.sleep(0.003*50) #50 degrés vers le haut
+        self.tard.throttle=0
+
+        print("Tourner les hanches")
+        self.hard.throttle=1
+        time.sleep(0.003*40) #30 degrés vers l'avant
+        self.hard.throttle=0
+
+        time.sleep(0.003*180) #180 degrés vers le bas
+        print("Mettre un peu de force sur les pointes")
+        self.pard.throttle=0.1
+
+        print("baisser les pattes")
+        self.tard.throttle=-1
+        time.sleep(2)
+        self.tard.throttle=-0.2
+
+        self.havd.throttle=-1
+        self.hmd.throttle=-1
+        self.hard.throttle=-1
+        self.havg.throttle=1
+        self.hmg.throttle=1
+        self.harg.throttle=1
+        time.sleep(0.003*90) #90 degrés vers l'arrière
+        self.havd.throttle=-0
+        self.hmd.throttle=-0
+        self.hard.throttle=-0
+        self.havg.throttle=0
+        self.hmg.throttle=0
+        self.harg.throttle=0
+
 
         self.Maintiens()
 
     def Maintiens(self):
+        """  brief       : Fonction qui permet au robot de rester droit grâce aux PID et au gyroscope.
+             param-type  : None
+             return-type : None 
+        """
         print("MAINTIENS")
         print("===========================================================")
         pidy=PID(0.1,0.1,0.1,setpoint=self.initAngles["y"])
@@ -331,12 +426,12 @@ class Animations(object):
                 self.tavd.throttle=-0.05
                 isnotplaty=True
             elif outputy<0.05 and outputy>-0.05:
-                self.targ.throttle=0.1
-                self.tmg.throttle=0.1
-                self.tavg.throttle=0.1
-                self.tard.throttle=-0.1
-                self.tmd.throttle=-0.1
-                self.tavd.throttle=-0.1
+                self.targ.throttle=0.2
+                self.tmg.throttle=0.2
+                self.tavg.throttle=0.2
+                self.tard.throttle=-0.2
+                self.tmd.throttle=-0.2
+                self.tavd.throttle=-0.2
                 isnotplaty=False
             elif outputy>0:
                 self.tard.throttle=-1
@@ -375,12 +470,12 @@ class Animations(object):
                 self.tavd.throttle=-1
                 isnotplatx=True
             elif difference<self.MARGEDIFFERENCE and difference>-self.MARGEDIFFERENCE:
-                self.targ.throttle=0.1
-                self.tmg.throttle=0.1
-                self.tavg.throttle=0.1
-                self.tard.throttle=-0.1
-                self.tmd.throttle=-0.1
-                self.tavd.throttle=-0.1
+                self.targ.throttle=0.2
+                self.tmg.throttle=0.2
+                self.tavg.throttle=0.2
+                self.tard.throttle=-0.2
+                self.tmd.throttle=-0.2
+                self.tavd.throttle=-0.2
                 isnotplatx=False
             elif difference>self.MARGEDIFFERENCE:
                 self.tavg.throttle=-0.1
