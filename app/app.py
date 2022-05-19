@@ -134,7 +134,7 @@ def generate_frames(camera):
              return-type : bytes
     """ 
     while True:
-        frame=camera.get_frame()
+        frame=camera.get_frame(lidar.Get_Data())
         yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 

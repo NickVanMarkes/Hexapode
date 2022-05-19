@@ -47,7 +47,8 @@ class Radar(object):
             #Insertion des points
             offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
             self.line.set_offsets(offsets)
-            print(offsets)
+            intens = np.array([int(100*meas[2]/2000) for meas in scan])
+            self.line.set_array(intens)
 
         self.fig.savefig("static/img/plot.jpg")
         radar = cv2.imread("static/img/plot.jpg")
