@@ -149,3 +149,7 @@ Ce matin, M. Bonvin était déjà là, nous avons un peu parler et il m'a dit de
 Aujourd'hui, j'ai commencé la journée à regarder comment faire le quadrillage sur le retour caméra avec opencv. Puis, j'ai vu que je ne pouvais pas changer l'opacité du quadrillage, de ce fait, il y aura toujours un quadrillage vert, et quand un objet détecté par le lidar, ça changera la couleur. Ensuite, je me suis dit, pour que l'utilisateur comprenne, il faut que sur la vue radar, ce soit pareil. J'ai réussi à créer le quadrillage, et j'ai testé de où à où le lidar détecte, comme ça le lidar ne prend pas toute la page mais une ligne. Ensuite, je me suis dit qu'il faut que je rends le site responsive, ce que j'ai fait tout le reste de la journée.
 
 ### 19.05.2022
+
+Aujourd'hui, j'ai passé ma journée à faire en sorte que le quadrillage change de couleur selon les valeurs du lidar. Ce que j'ai fait, c'est que je déssine des carrés (vert de base), Puis en faisant un calcul en prennant en compte la largeur de l'image, les degrés et plein d'autres paramètres. Il y avait plein de problèmes, ce n'était pas centré, des fois c'était à l'envers, d'autres il manquait plein de carrés. Puis, en affinant de plus en plus le calcul, j'ai réussis à avoir un résultat, mais pas comme je le voulais. Basiquement, je ne peux pas remettre à zéro les valeurs, car sinon ça clignote de partout. voici à quoi ressemble la ligne des carrés:
+
+![Ligne Carrés](img/JDB/Ligne_Carre.png)
