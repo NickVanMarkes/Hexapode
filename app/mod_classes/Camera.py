@@ -84,6 +84,7 @@ class VideoCamera(object):
             "37":57,
             "38":58
         }
+    _memozone={}
 
     
     
@@ -114,12 +115,11 @@ class VideoCamera(object):
         rotated=cv2.rotate(frame,cv2.ROTATE_180)
 
         # #Draw grid on the frame
-        # cv2.line(rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
-        # cv2.line(rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
-        # cv2.line(rotated, (int(self.IMAGE_WIDTH/2), self.IMAGE_HEIGHT), (int(self.IMAGE_WIDTH/2), 0), (255, 0, 0), 1)
+        cv2.line(rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
+        cv2.line(rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
         
-        # for i in range(0,self.IMAGE_WIDTH,self.GRID_WIDTH):
-        #     cv2.line(rotated, (i, int(self.IMAGE_HEIGHT-349)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
+        for i in range(0,self.IMAGE_WIDTH,self.GRID_WIDTH):
+            cv2.line(rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
 
 
         self.scans = scans
@@ -135,21 +135,29 @@ class VideoCamera(object):
         # represents the bottom right corner of rectangle
         self.end_point = (11, 123)
         
-        # Line thickness of 2 px
+        # Line thickness of 1 px
         self.thickness = 1
         if self.scans!=[]:
             for scan in self.scans:
                 for meas in scan:
                     if meas[1]>=self.MIN_ANGLE_VUE or meas[1]<=self.MAX_ANGLE_VUE and  meas[2]<self.MAX_DISTANCE:
                         self.zone[self.translator[str(int(meas[1]))]]=meas[2]
+            for key in self.zone:
+                self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
+                self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
+                self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
+                self.__color = (0, 0+ self.__increment, 255 - self.__increment)
+                rotated = cv2.rectangle(rotated, self.start_point, self.end_point, self.__color, self.thickness)
+        else:
+            for key in self.zone:
+                self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
+                self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
+                self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
+                self.__color = (0, 0+ self.__increment, 255 - self.__increment)
+                rotated = cv2.rectangle(rotated, self.start_point, self.end_point, self.__color, self.thickness)
 
-        for key in self.zone:
-            #print(self.zone)
-            self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
-            self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
-            self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
-            self.__color = (0, 0+ self.__increment, 255 - self.__increment)
-            rotated = cv2.rectangle(rotated, self.start_point, self.end_point, self.__color, self.thickness)
+
+               
         # encode OpenCV raw frame to jpg and displaying it
         ret, jpeg = cv2.imencode('.jpg', rotated)
         return jpeg.tobytes()

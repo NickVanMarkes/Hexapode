@@ -14,10 +14,11 @@ import cv2
 
 
 #Constantes
-DMAX = 2000
-IMIN = 0
-IMAX = 50
+
 class Radar(object):
+    DMAX = 2000
+    IMIN = 0
+    IMAX = 50
     def __init__(self):
         """  brief       : Constructeur de la classe Radar, créer la base de l'image.
              param-type  : None
@@ -31,9 +32,9 @@ class Radar(object):
         ax = plt.subplot(111, projection='polar')
         ax.set_theta_zero_location('N')
         ax.set_theta_direction(-1)
-        self.line = ax.scatter([0, 0], [0, 0], s=5, c=[IMIN, IMAX],
+        self.line = ax.scatter([0, 0], [0, 0], s=5, c=[self.IMIN, self.IMAX],
                                cmap=plt.cm.jet, lw=0)
-        ax.set_rmax(DMAX)
+        ax.set_rmax(self.DMAX)
         ax.grid(True)
 
     def CreatePlot(self,scans):
@@ -47,7 +48,7 @@ class Radar(object):
             #Insertion des points
             offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
             self.line.set_offsets(offsets)
-            intens = np.array([int(100*meas[2]/2000) for meas in scan])
+            intens = np.array([int(100*meas[2]/self.DMAX) for meas in scan])
             self.line.set_array(intens)
 
         self.fig.savefig("static/img/plot.jpg")

@@ -12,6 +12,10 @@ import busio
 import time
 
 class ServoMoteur(object):
+
+    FREQUENCY = 50
+    MINPULSE=1300
+    MAXPULSE=1890
     def __init__(self,Channel="Gauche",Position=0) -> None:
         """  brief       : Initialisation du module servomoteur
                 param-type  : Channel (str)
@@ -22,11 +26,9 @@ class ServoMoteur(object):
         # Création des instances des différents modules PCA9685
         self.pcaG = PCA9685(i2c, address=65)
         self.pcaD = PCA9685(i2c, address=66)
-        self.pcaG.frequency = 50
-        self.pcaD.frequency = 50
-
-        self.MAXPULSE=1890
-        self.MINPULSE=1300
+        self.pcaG.frequency = self.FREQUENCY
+        self.pcaD.frequency = self.FREQUENCY
+        
         if Channel=="Gauche":
             self.servo=servo.ContinuousServo(self.pcaG.channels[Position], min_pulse=self.MINPULSE, max_pulse=self.MAXPULSE)
         elif Channel=="Droite":

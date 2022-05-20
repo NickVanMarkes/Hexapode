@@ -25,6 +25,8 @@ app = Flask(__name__)
 turbo = Turbo(app)
 
 mode=""
+NBSCANS=2
+resultwithoutdoubles=[]
 
 #Header
 @app.after_request
@@ -133,8 +135,9 @@ def generate_frames(camera):
              param-type  : VideoCamera
              return-type : bytes
     """ 
+    global resultwithoutdoubles
     while True:
-        frame=camera.get_frame(lidar.Get_Data())
+        frame=camera.get_frame(resultwithoutdoubles)
         yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
@@ -177,9 +180,10 @@ def radar():
              return-type : list(list(float,float,float))
     """ 
     global lidar
+    global resultwithoutdoubles
     resultwithoutdoubles=[]
     result=lidar.Get_Data()
-    while len(resultwithoutdoubles)<2:
+    while len(resultwithoutdoubles)<NBSCANS:
 
      #Ajout des valeurs dans notre liste
         if(result!=lidar.Get_Data()):
