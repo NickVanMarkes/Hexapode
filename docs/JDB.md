@@ -153,3 +153,8 @@ Aujourd'hui, j'ai commencé la journée à regarder comment faire le quadrillage
 Aujourd'hui, j'ai passé ma journée à faire en sorte que le quadrillage change de couleur selon les valeurs du lidar. Ce que j'ai fait, c'est que je déssine des carrés (vert de base), Puis en faisant un calcul en prennant en compte la largeur de l'image, les degrés et plein d'autres paramètres. Il y avait plein de problèmes, ce n'était pas centré, des fois c'était à l'envers, d'autres il manquait plein de carrés. Puis, en affinant de plus en plus le calcul, j'ai réussis à avoir un résultat, mais pas comme je le voulais. Basiquement, je ne peux pas remettre à zéro les valeurs, car sinon ça clignote de partout. voici à quoi ressemble la ligne des carrés:
 
 ![Ligne Carrés](img/JDB/Ligne_Carre.png)
+
+
+### 20.05.2022
+
+Aujourd'hui, j'ai continué à travailler sur la ligne de carré, sauf que je n'arrivais pas à empêcher le clignotement. J'ai donc essayer toutes la journée plusieurs façon de faire, sauf que pas grand chose ne marchait. J'ai parlé un petit moment avec M. Bonvin, il m'a vite expliqué comment faire et la logique à avoir. J'ai essayé, mais ça ne marchais pas. J'ai donc demandé de l'aide à mes camarades, puis ils m'ont conseillé de faire juste un else dans ma condition qui pourrait réglé mon souci. Résultat, ça marche.
