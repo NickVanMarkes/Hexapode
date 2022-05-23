@@ -1,18 +1,22 @@
 site_name: Hexapode
 repo_url: https://github.com/NickVanMarkes/Hexapode
 repo_name: NickVanMarkes/Hexapode
-nav: 
+nav:
   - Introduction : abstract.md
-  - Cahier des charges : CDC.md
+  - Cahier des charges: CDC.md
   - Documentation technique:
-    - Introduction.md
-    - Planning : Plannification.md
-    - Gestion du projet : Gestion.md
-    - Structure du projet : Structure.md
-  - Composants : Composants.md
-  - Librairies : Librairies.md
-  - Tests: Tests.md
-  - Conclusion: Conclusion.md
+      - Introduction.md
+      - Planning: Plannification.md
+      - Gestion du projet: Gestion.md
+      - Structure : Structure.md
+      # - Analyse fonctionnelle: technique/functionnal-analysis.md
+      # - Analyse organique: technique/organic-analysis.md
+      - Composants : Composants.md
+      - Protocoles : Protocoles.md
+      - Librairies : Librairies.md
+      - Fonctionalitées : Fonctionalite.md
+      - Tests: Tests.md
+      - Conclusion: Conclusion.md
 theme:
   name: material
   language: fr
@@ -21,6 +25,8 @@ theme:
     accent: black
   icon:
     repo: fontawesome/brands/github
+  features:
+    - navigation.indexes
 plugins:
   - with-pdf:
       author: Nicolas Oliveira
@@ -65,3 +71,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.saneheaders
+  - admonition
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6

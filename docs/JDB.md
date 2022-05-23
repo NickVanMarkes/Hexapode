@@ -158,3 +158,7 @@ Aujourd'hui, j'ai passé ma journée à faire en sorte que le quadrillage change
 ### 20.05.2022
 
 Aujourd'hui, j'ai continué à travailler sur la ligne de carré, sauf que je n'arrivais pas à empêcher le clignotement. J'ai donc essayer toutes la journée plusieurs façon de faire, sauf que pas grand chose ne marchait. J'ai parlé un petit moment avec M. Bonvin, il m'a vite expliqué comment faire et la logique à avoir. J'ai essayé, mais ça ne marchais pas. J'ai donc demandé de l'aide à mes camarades, puis ils m'ont conseillé de faire juste un else dans ma condition qui pourrait réglé mon souci. Résultat, ça marche.
+
+### 23.05.2022
+
+Aujourd'hui, j'avais commencé à travailler sur les autres points que m'avais dit M. Bonvin la dernière fois. Puis, assez tôt il nous a envoyé un mail pour faire un meet sur ce qu'on avait fait en terme de code comme dans la documentation. on a passé 20-30 min entrain de discuté sur ce qui n'allait pas, et il m'a dit que maintenant je devais travailler encore plus, car je doit au moins avoir une interface fonctionnelle et professionelle, ainsi qu'une documentation professionelle. De ce fait, j'ai ensuite travaillé tout le reste de la journée sur la propreté du code, ainsi que de faire une refonte de la documentation technique afin que ça parraisse mieux.

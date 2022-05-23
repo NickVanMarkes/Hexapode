@@ -1,6 +1,6 @@
 ## Structure du projet
 
-Du fait que le projet est réalisé grâce à la librairie <a href="./Libraires">Flask
+Du fait que le projet est réalisé grâce à la librairie <a href="../Librairies">Flask</a>
 
 Voici la structure pour ce projet:
 
