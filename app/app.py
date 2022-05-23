@@ -20,11 +20,12 @@ from mod_classes.LidarAsync import Lidarasync
 from mod_classes.RepeatTimer import RepeatTimer
 from mod_classes.Plot import Radar
 from mod_classes.Gyroscope import Gyroscope
+from mod_classes.Animations_Hexapode import Animations
 
 app = Flask(__name__)
 turbo = Turbo(app)
 
-mode=""
+mode="controle"
 NBSCANS=2
 resultwithoutdoubles=[]
 
@@ -111,19 +112,19 @@ def index():
     global mode
     print(mode)
     if request.method=="POST":
-        if request.form['select-mode']=="1":
+        if request.form['select-mode']=="controle":
             print('controle ',0)
             mode="controle"
-            #mode=Controle
-            #mouvement()
-        elif request.form['select-mode']=="2":
+            mouvement()
+        elif request.form['select-mode']=="auto":
             print('auto ', 1)
             mode="auto"
-            #mode=autonome
-        elif request.form['select-mode']=="3":
+        elif request.form['select-mode']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
-            #mode=suiveur
+    thread=threading.Thread(target=anim.Init2)
+    thread.start()
+    thread.join(anim.Maintiens)
     return render_template('index.html')
 
 
@@ -153,7 +154,7 @@ def video():
 def mouvement():
     if request.method == 'POST':
         if request.form['submit_button'] == 'Avance':
-            #sense.set_pixels(Fleche)
+            threading.Thread(target=anim.Avance).start()
             pass
         elif request.form['submit_button'] == 'Recule':
             #sense.set_pixels(clean_LED)
@@ -220,4 +221,5 @@ if __name__ == '__main__':
     lidar.StartLidar()
     gyroscope=Gyroscope()
     threadLidar=RepeatTimer(0.05,lidar.DoScan).start()
+    anim=Animations(gyroscope)
     app.run(debug=False, host='0.0.0.0')

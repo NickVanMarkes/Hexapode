@@ -13,21 +13,21 @@ from adafruit_motor import servo
 from adafruit_pca9685 import PCA9685
 from simple_pid import PID
 
-sys.path.append("../")
-
-from Gyroscope import Gyroscope
-
 class Animations(object):
 
-    def __init__(self):
+    WAITTIME = 0.003
+    SENSHORAIREPLEINEFORCE = -1
+    SENSANTIHORAIREPLEINEFORCE = 1
+    WITHOUTFORCE=0
+    def __init__(self, gyroscope):
         """  brief       : Initialisation des servomoteurs et du gyroscope.
-             param-type  : None
+             param-type  : Gyroscope
              return-type : None 
         """
 
         self.i2c = busio.I2C(SCL, SDA)
 
-        self.gyro=Gyroscope()
+        self.gyro=gyroscope
 
         # Création des instances des différents modules PCA9685
         self.pcaG = PCA9685(self.i2c, address=65)
@@ -43,73 +43,73 @@ class Animations(object):
 
         #Patte Avant Gauche
         #Hanche
-        self.havg = servo.ContinuousServo(self.pcaG.channels[0], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.HancheAvantGauche = servo.ContinuousServo(self.pcaG.channels[0], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Tibia
-        self.tavg = servo.ContinuousServo(self.pcaG.channels[1], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.TibiaAvantGauche = servo.ContinuousServo(self.pcaG.channels[1], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Pointe
-        self.pavg = servo.ContinuousServo(self.pcaG.channels[2], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.PointeAvantGauche = servo.ContinuousServo(self.pcaG.channels[2], min_pulse=1300, max_pulse=self.MAXPULSE)
 
         #Patte Milieu Gauche
         #Pointe
-        self.pmg = servo.ContinuousServo(self.pcaG.channels[4], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.PointeMilieuGauche = servo.ContinuousServo(self.pcaG.channels[4], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Tibia
-        self.tmg = servo.ContinuousServo(self.pcaG.channels[5], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.TibiaMilieuGauche = servo.ContinuousServo(self.pcaG.channels[5], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Hanche
-        self.hmg = servo.ContinuousServo(self.pcaG.channels[6], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.HancheMilieuGauche = servo.ContinuousServo(self.pcaG.channels[6], min_pulse=1300, max_pulse=self.MAXPULSE)
 
         #Patte Arriere Gauche
         #Hanche
-        self.harg = servo.ContinuousServo(self.pcaG.channels[12], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.HancheArriereGauche = servo.ContinuousServo(self.pcaG.channels[12], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Tibia
-        self.targ = servo.ContinuousServo(self.pcaG.channels[13], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.TibiaArriereGauche = servo.ContinuousServo(self.pcaG.channels[13], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Pointe
-        self.parg = servo.ContinuousServo(self.pcaG.channels[15], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.PointeArriereGauche = servo.ContinuousServo(self.pcaG.channels[15], min_pulse=1300, max_pulse=self.MAXPULSE)
 
         #Patte Avant Droite
         #Pointe
-        self.pavd = servo.ContinuousServo(self.pcaD.channels[15], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.PointeAvantDroit = servo.ContinuousServo(self.pcaD.channels[15], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Tibia
-        self.tavd = servo.ContinuousServo(self.pcaD.channels[14], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.TibiaAvantDroit = servo.ContinuousServo(self.pcaD.channels[14], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Hanche
-        self.havd = servo.ContinuousServo(self.pcaD.channels[13], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.HancheAvantDroit = servo.ContinuousServo(self.pcaD.channels[13], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Patte Milieu Droite
         #Pointe
-        self.pmd = servo.ContinuousServo(self.pcaD.channels[4], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.PointeMilieuDroit = servo.ContinuousServo(self.pcaD.channels[4], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Tibia
-        self.tmd = servo.ContinuousServo(self.pcaD.channels[5], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.TibiaMilieuDroit = servo.ContinuousServo(self.pcaD.channels[5], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Hanche
-        self.hmd = servo.ContinuousServo(self.pcaD.channels[6], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.HancheMilieuDroit = servo.ContinuousServo(self.pcaD.channels[6], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Patte Arriere Droite
         #Pointe
-        self.pard = servo.ContinuousServo(self.pcaD.channels[0], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.PointeArriereDroit = servo.ContinuousServo(self.pcaD.channels[0], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Tibia
-        self.tard = servo.ContinuousServo(self.pcaD.channels[1], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.TibiaArriereDroit = servo.ContinuousServo(self.pcaD.channels[1], min_pulse=1300, max_pulse=self.MAXPULSE)
         #Hanche
-        self.hard = servo.ContinuousServo(self.pcaD.channels[2], min_pulse=1300, max_pulse=self.MAXPULSE)
+        self.HancheArriereDroit = servo.ContinuousServo(self.pcaD.channels[2], min_pulse=1300, max_pulse=self.MAXPULSE)
 
         #Hanches à 0
-        self.havg.throttle=0
-        self.havd.throttle=0
-        self.hmd.throttle=0
-        self.hmg.throttle=0
-        self.harg.throttle=0
-        self.hard.throttle=0
+        self.HancheAvantGauche.throttle=self.WITHOUTFORCE
+        self.HancheAvantDroit.throttle=self.WITHOUTFORCE
+        self.HancheMilieuDroit.throttle=self.WITHOUTFORCE
+        self.HancheMilieuGauche.throttle=self.WITHOUTFORCE
+        self.HancheArriereGauche.throttle=self.WITHOUTFORCE
+        self.HancheArriereDroit.throttle=self.WITHOUTFORCE
 
         #Pointes à 0
-        self.pavg.throttle=0
-        self.pavd.throttle=0
-        self.pmg.throttle=0
-        self.pmd.throttle=0
-        self.parg.throttle=0
-        self.pard.throttle=0
+        self.PointeAvantGauche.throttle=self.WITHOUTFORCE
+        self.PointeAvantDroit.throttle=self.WITHOUTFORCE
+        self.PointeMilieuGauche.throttle=self.WITHOUTFORCE
+        self.PointeMilieuDroit.throttle=self.WITHOUTFORCE
+        self.PointeArriereGauche.throttle=self.WITHOUTFORCE
+        self.PointeArriereDroit.throttle=self.WITHOUTFORCE
 
         #Tibias à 0
-        self.tavg.throttle=0
-        self.tavd.throttle=0
-        self.tmg.throttle=0
-        self.tmd.throttle=0
-        self.targ.throttle=0
-        self.tard.throttle=0
+        self.TibiaAvantGauche.throttle=self.WITHOUTFORCE
+        self.TibiaAvantDroit.throttle=self.WITHOUTFORCE
+        self.TibiaMilieuGauche.throttle=self.WITHOUTFORCE
+        self.TibiaMilieuDroit.throttle=self.WITHOUTFORCE
+        self.TibiaArriereGauche.throttle=self.WITHOUTFORCE
+        self.TibiaArriereDroit.throttle=self.WITHOUTFORCE
 
         self.initAngles=self.gyro.get_angle()
 
@@ -117,87 +117,87 @@ class Animations(object):
 
         #Etape 1 lever les pattes
         #Pointes
-        self.pavg.throttle=1
-        self.pavd.throttle=-1
-        self.pmg.throttle=1
-        self.pmd.throttle=-1
-        self.parg.throttle=1
-        self.pard.throttle=-1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.pavg.throttle=0
-        self.pavd.throttle=0
-        self.pmg.throttle=0
-        self.pmd.throttle=0
-        self.parg.throttle=0
-        self.pard.throttle=0
+        self.PointeAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.PointeAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.PointeMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.PointeMilieuDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.PointeArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.PointeArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.PointeAvantGauche.throttle=self.WITHOUTFORCE
+        self.PointeAvantDroit.throttle=self.WITHOUTFORCE
+        self.PointeMilieuGauche.throttle=self.WITHOUTFORCE
+        self.PointeMilieuDroit.throttle=self.WITHOUTFORCE
+        self.PointeArriereGauche.throttle=self.WITHOUTFORCE
+        self.PointeArriereDroit.throttle=self.WITHOUTFORCE
 
         #Etape 2 baisser les tibias Gauche et mettre une légère force sur les pointes
         #Tibias
         #Gauche
-        self.tavg.throttle=1
-        self.tmg.throttle=1
-        self.targ.throttle=1
+        self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
 
         #Pointes
-        self.pavg.throttle=-0.05
-        self.pmg.throttle=-0.05
-        self.parg.throttle=-0.05
+        self.PointeAvantGauche.throttle=-0.05
+        self.PointeMilieuGauche.throttle=-0.05
+        self.PointeArriereGauche.throttle=-0.05
 
-        time.sleep(0.003*50) #50 degrés vers le bas
+        time.sleep(self.WAITTIME*50) #50 degrés vers le bas
         #Maintiens
-        self.tavg.throttle=0.2
-        self.tmg.throttle=0.2
-        self.targ.throttle=0.2
+        self.TibiaAvantGauche.throttle=0.2
+        self.TibiaMilieuGauche.throttle=0.2
+        self.TibiaArriereGauche.throttle=0.2
         time.sleep(1)
 
         #Etape 3 baisser les tibias Droite et mettre une légère force sur les pointes
         #Tibia Droite
-        self.tavd.throttle=-1
-        self.tmd.throttle=-1
-        self.tard.throttle=-1
+        self.TibiaAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.TibiaMilieuDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
         #Pointes Droite
-        self.pavd.throttle=0.05
-        self.pmd.throttle=0.05
-        self.pard.throttle=0.05
+        self.PointeAvantDroit.throttle=0.05
+        self.PointeMilieuDroit.throttle=0.05
+        self.PointeArriereDroit.throttle=0.05
         #Pointes Gauche
-        self.pavg.throttle=0
-        self.pmg.throttle=0
-        self.parg.throttle=0
-        time.sleep(0.003*50) #50 degrés vers le bas
+        self.PointeAvantGauche.throttle=self.WITHOUTFORCE
+        self.PointeMilieuGauche.throttle=self.WITHOUTFORCE
+        self.PointeArriereGauche.throttle=self.WITHOUTFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le bas
 
-        self.tavd.throttle=-0.4
-        self.tmd.throttle=-0.4
-        self.tard.throttle=-0.4
+        self.TibiaAvantDroit.throttle=-0.4
+        self.TibiaMilieuDroit.throttle=-0.4
+        self.TibiaArriereDroit.throttle=-0.4
 
-        self.tavg.throttle=0.3
-        self.tmg.throttle=0.3
-        self.targ.throttle=0.3
+        self.TibiaAvantGauche.throttle=0.3
+        self.TibiaMilieuGauche.throttle=0.3
+        self.TibiaArriereGauche.throttle=0.3
         time.sleep(1)
         #Etape 4 baisser les pointes Gauche et les tibias Gauche
         #Pointes Gauche
-        self.pavg.throttle=-1
-        self.pmg.throttle=-1
-        self.parg.throttle=-1
+        self.PointeAvantGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        self.PointeMilieuGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        self.PointeArriereGauche.throttle=self.SENSHORAIREPLEINEFORCE
         #Tibia Gauche
-        self.tavg.throttle=0.8
-        self.tmg.throttle=0.8
-        self.targ.throttle=0.8
+        self.TibiaAvantGauche.throttle=0.8
+        self.TibiaMilieuGauche.throttle=0.8
+        self.TibiaArriereGauche.throttle=0.8
 
-        self.tavd.throttle=-0.05
-        self.tmd.throttle=-0.05
-        self.tard.throttle=-0.05
+        self.TibiaAvantDroit.throttle=-0.05
+        self.TibiaMilieuDroit.throttle=-0.05
+        self.TibiaArriereDroit.throttle=-0.05
 
-        self.pavd.throttle=0
-        self.pmd.throttle=0
-        self.pard.throttle=0
+        self.PointeAvantDroit.throttle=self.WITHOUTFORCE
+        self.PointeMilieuDroit.throttle=self.WITHOUTFORCE
+        self.PointeArriereDroit.throttle=self.WITHOUTFORCE
         time.sleep(2)
-        self.tavg.throttle=1
-        self.tmg.throttle=1
-        self.targ.throttle=1
+        self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
         time.sleep(3) #40 degrés vers le haut
-        self.tavg.throttle=0.1
-        self.tmg.throttle=0.1
-        self.targ.throttle=0.1
+        self.TibiaAvantGauche.throttle=0.1
+        self.TibiaMilieuGauche.throttle=0.1
+        self.TibiaArriereGauche.throttle=0.1
 
     def Init2(self):
         """  brief       : Animation faisant lever le robot, depuis l'état initial.
@@ -208,42 +208,42 @@ class Animations(object):
         #Etape 1 baisser les tibias et légère force sur les pointes
         #Tibias Gauche
 
-        self.tavg.throttle=0.4
-        self.tmg.throttle=0.4
-        self.targ.throttle=0.4
+        self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
         #Tibias Droite
-        self.tavd.throttle=-1
-        self.tmd.throttle=-1
-        self.tard.throttle=-1
+        self.TibiaAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.TibiaMilieuDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
 
-        self.pavg.throttle=-0.1
-        self.pmg.throttle=-0.1
-        self.parg.throttle=-0.1
-        self.pavd.throttle=0.1
-        self.pmd.throttle=0.1
-        self.pard.throttle=0.1
+        self.PointeAvantGauche.throttle=-0.1
+        self.PointeMilieuGauche.throttle=-0.1
+        self.PointeArriereGauche.throttle=-0.1
+        self.PointeAvantDroit.throttle=0.1
+        self.PointeMilieuDroit.throttle=0.1
+        self.PointeArriereDroit.throttle=0.1
 
         time.sleep(2)
 
-        self.targ.throttle=1
-        self.tavg.throttle=1
-        self.tmg.throttle=1
-        self.tavd.throttle=-0.1
-        self.tmd.throttle=-0.1
-        self.tard.throttle=-0.1
+        self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.TibiaAvantDroit.throttle=-0.1
+        self.TibiaMilieuDroit.throttle=-0.1
+        self.TibiaArriereDroit.throttle=-0.1
 
-        self.pavg.throttle=-0.5
-        self.pmg.throttle=-0.5
-        self.parg.throttle=-0.5
+        self.PointeAvantGauche.throttle=-0.5
+        self.PointeMilieuGauche.throttle=-0.5
+        self.PointeArriereGauche.throttle=-0.5
         time.sleep(3)
             
         #Maintiens
-        self.tavg.throttle=0.2
-        self.tmg.throttle=0.2
-        self.targ.throttle=0.2
-        self.tavd.throttle=-0.2
-        self.tmd.throttle=-0.2
-        self.tard.throttle=-0.2
+        self.TibiaAvantGauche.throttle=0.2
+        self.TibiaMilieuGauche.throttle=0.2
+        self.TibiaArriereGauche.throttle=0.2
+        self.TibiaAvantDroit.throttle=-0.2
+        self.TibiaMilieuDroit.throttle=-0.2
+        self.TibiaArriereDroit.throttle=-0.2
 
     def Avance(self):
         """  brief       : Animation permettant au robot d'avancer.
@@ -255,137 +255,137 @@ class Animations(object):
         print("===========================================================")
         #PATTE AVANT GAUCHE
         print("Lever les pattes")
-        self.tavg.throttle=-1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.tavg.throttle=0
+        self.TibiaAvantGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.TibiaAvantGauche.throttle=self.WITHOUTFORCE
 
         print("Tourner les hanches")
-        self.havg.throttle=-1
-        time.sleep(0.003*40) #30 degrés vers l'avant
-        self.havg.throttle=0
-        time.sleep(0.003*180) #180 degrés vers le bas
+        self.HancheAvantGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*40) #30 degrés vers l'avant
+        self.HancheAvantGauche.throttle=self.WITHOUTFORCE
+        time.sleep(self.WAITTIME*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
-        self.pavg.throttle=-0.1
+        self.PointeAvantGauche.throttle=-0.1
 
         print("baisser les pattes")
-        self.tavg.throttle=1
+        self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
         time.sleep(2)
-        self.tavg.throttle=0.2
+        self.TibiaAvantGauche.throttle=0.1
 
 
         # Patte Milieu Gauche
         print("Lever les pattes")
-        self.tmg.throttle=-1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.tmg.throttle=0
+        self.TibiaMilieuGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.TibiaMilieuGauche.throttle=self.WITHOUTFORCE
 
         print("Tourner les hanches")
-        self.hmg.throttle=-1
-        time.sleep(0.003*40) #30 degrés vers l'avant
-        self.hmg.throttle=0
+        self.HancheMilieuGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*40) #30 degrés vers l'avant
+        self.HancheMilieuGauche.throttle=self.WITHOUTFORCE
 
-        time.sleep(0.003*180) #180 degrés vers le bas
+        time.sleep(self.WAITTIME*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
-        self.pmg.throttle=-0.1
+        self.PointeMilieuGauche.throttle=-0.1
 
         print("baisser les pattes")
-        self.tmg.throttle=1
+        self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
         time.sleep(2)
-        self.tmg.throttle=0.2
+        self.TibiaMilieuGauche.throttle=0.1
 
         # Patte Arrière Gauche
         print("Lever les pattes")
-        self.targ.throttle=-1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.targ.throttle=0
+        self.TibiaArriereGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.TibiaArriereGauche.throttle=self.WITHOUTFORCE
 
         print("Tourner les hanches")
-        self.harg.throttle=-1
-        time.sleep(0.003*40) #30 degrés vers l'avant
-        self.harg.throttle=0
+        self.HancheArriereGauche.throttle=self.SENSHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*40) #30 degrés vers l'avant
+        self.HancheArriereGauche.throttle=self.WITHOUTFORCE
 
-        time.sleep(0.003*180) #180 degrés vers le bas
+        time.sleep(self.WAITTIME*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
-        self.parg.throttle=-0.1
+        self.PointeArriereGauche.throttle=-0.1
 
         print("baisser les pattes")
-        self.targ.throttle=1
+        self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
         time.sleep(2)
-        self.targ.throttle=0.2
+        self.TibiaArriereGauche.throttle=0.2
 
         # Patte Avant Droit
         print("Lever les pattes")
-        self.tavd.throttle=1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.tavd.throttle=0
+        self.TibiaAvantDroit.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.TibiaAvantDroit.throttle=self.WITHOUTFORCE
 
         print("Tourner les hanches")
-        self.havd.throttle=1
-        time.sleep(0.003*40) #30 degrés vers l'avant
-        self.havd.throttle=0
+        self.HancheAvantDroit.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*40) #30 degrés vers l'avant
+        self.HancheAvantDroit.throttle=self.WITHOUTFORCE
 
-        time.sleep(0.003*180) #180 degrés vers le bas
+        time.sleep(self.WAITTIME*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
-        self.pavd.throttle=0.1
+        self.PointeAvantDroit.throttle=0.1
 
         print("baisser les pattes")
-        self.tavd.throttle=-1
+        self.TibiaAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
         time.sleep(2)
-        self.tavd.throttle=-0.2
+        self.TibiaAvantDroit.throttle=-0.1
 
         # Patte Milieu Droit
         print("Lever les pattes")
-        self.tmd.throttle=1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.tmd.throttle=0
+        self.TibiaMilieuDroit.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.TibiaMilieuDroit.throttle=self.WITHOUTFORCE
 
         print("Tourner les hanches")
-        self.hmd.throttle=1
-        time.sleep(0.003*40) #30 degrés vers l'avant
-        self.hmd.throttle=0
+        self.HancheMilieuDroit.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*40) #30 degrés vers l'avant
+        self.HancheMilieuDroit.throttle=self.WITHOUTFORCE
 
-        time.sleep(0.003*180) #180 degrés vers le bas
+        time.sleep(self.WAITTIME*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
-        self.pmd.throttle=0.1
+        self.PointeMilieuDroit.throttle=0.1
 
         print("baisser les pattes")
-        self.tmd.throttle=-1
+        self.TibiaMilieuDroit.throttle=self.SENSHORAIREPLEINEFORCE
         time.sleep(2)
-        self.tmd.throttle=-0.2
+        self.TibiaMilieuDroit.throttle=-0.2
 
         # Patte Arrière Droit
         print("Lever les pattes")
-        self.tard.throttle=1
-        time.sleep(0.003*50) #50 degrés vers le haut
-        self.tard.throttle=0
+        self.TibiaArriereDroit.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*50) #50 degrés vers le haut
+        self.TibiaArriereDroit.throttle=self.WITHOUTFORCE
 
         print("Tourner les hanches")
-        self.hard.throttle=1
-        time.sleep(0.003*40) #30 degrés vers l'avant
-        self.hard.throttle=0
+        self.HancheArriereDroit.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*40) #30 degrés vers l'avant
+        self.HancheArriereDroit.throttle=self.WITHOUTFORCE
 
-        time.sleep(0.003*180) #180 degrés vers le bas
+        time.sleep(self.WAITTIME*180) #180 degrés vers le bas
         print("Mettre un peu de force sur les pointes")
-        self.pard.throttle=0.1
+        self.PointeArriereDroit.throttle=0.1
 
         print("baisser les pattes")
-        self.tard.throttle=-1
+        self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
         time.sleep(2)
-        self.tard.throttle=-0.2
+        self.TibiaArriereDroit.throttle=-0.2
 
-        self.havd.throttle=-1
-        self.hmd.throttle=-1
-        self.hard.throttle=-1
-        self.havg.throttle=1
-        self.hmg.throttle=1
-        self.harg.throttle=1
-        time.sleep(0.003*90) #90 degrés vers l'arrière
-        self.havd.throttle=-0
-        self.hmd.throttle=-0
-        self.hard.throttle=-0
-        self.havg.throttle=0
-        self.hmg.throttle=0
-        self.harg.throttle=0
+        self.HancheAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.HancheMilieuDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.HancheArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
+        self.HancheAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.HancheMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        self.HancheArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        time.sleep(self.WAITTIME*90) #90 degrés vers l'arrière
+        self.HancheAvantDroit.throttle=-self.WITHOUTFORCE
+        self.HancheMilieuDroit.throttle=-self.WITHOUTFORCE
+        self.HancheArriereDroit.throttle=-self.WITHOUTFORCE
+        self.HancheAvantGauche.throttle=self.WITHOUTFORCE
+        self.HancheMilieuGauche.throttle=self.WITHOUTFORCE
+        self.HancheArriereGauche.throttle=self.WITHOUTFORCE
 
 
         self.Maintiens()
@@ -418,28 +418,28 @@ class Animations(object):
             
         
             if outputy<0:
-                self.targ.throttle=1
-                self.tmg.throttle=1
-                self.tavg.throttle=1
-                self.tard.throttle=-0.05
-                self.tmd.throttle=-0.05
-                self.tavd.throttle=-0.05
+                self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+                self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+                self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+                self.TibiaArriereDroit.throttle=-0.05
+                self.TibiaMilieuDroit.throttle=-0.05
+                self.TibiaAvantDroit.throttle=-0.05
                 isnotplaty=True
             elif outputy<0.05 and outputy>-0.05:
-                self.targ.throttle=0.2
-                self.tmg.throttle=0.2
-                self.tavg.throttle=0.2
-                self.tard.throttle=-0.2
-                self.tmd.throttle=-0.2
-                self.tavd.throttle=-0.2
+                self.TibiaArriereGauche.throttle=0.2
+                self.TibiaMilieuGauche.throttle=0.2
+                self.TibiaAvantGauche.throttle=0.2
+                self.TibiaArriereDroit.throttle=-0.2
+                self.TibiaMilieuDroit.throttle=-0.2
+                self.TibiaAvantDroit.throttle=-0.2
                 isnotplaty=False
             elif outputy>0:
-                self.tard.throttle=-1
-                self.tmd.throttle=-1
-                self.tavd.throttle=-1
-                self.targ.throttle=0.05
-                self.tmg.throttle=0.05
-                self.tavg.throttle=0.05
+                self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
+                self.TibiaMilieuDroit.throttle=self.SENSHORAIREPLEINEFORCE
+                self.TibiaAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
+                self.TibiaArriereGauche.throttle=0.05
+                self.TibiaMilieuGauche.throttle=0.05
+                self.TibiaAvantGauche.throttle=0.05
                 isnotplaty=True
 
             #Axe X
@@ -458,30 +458,30 @@ class Animations(object):
                 memooutputx=outputx
             difference=outputx-self.initAngles["x"]
             
-            self.pavg.throttle=-0.2
-            self.parg.throttle=-0.1
-            self.pavd.throttle=0.1
-            self.pard.throttle=0.1
+            self.PointeAvantGauche.throttle=-0.2
+            self.PointeArriereGauche.throttle=-0.1
+            self.PointeAvantDroit.throttle=0.1
+            self.PointeArriereDroit.throttle=0.1
 
             if difference<-self.MARGEDIFFERENCE:
-                self.targ.throttle=0.1
-                self.tard.throttle=-0.1
-                self.tavg.throttle=1
-                self.tavd.throttle=-1
+                self.TibiaArriereGauche.throttle=0.1
+                self.TibiaArriereDroit.throttle=-0.1
+                self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+                self.TibiaAvantDroit.throttle=self.SENSHORAIREPLEINEFORCE
                 isnotplatx=True
             elif difference<self.MARGEDIFFERENCE and difference>-self.MARGEDIFFERENCE:
-                self.targ.throttle=0.2
-                self.tmg.throttle=0.2
-                self.tavg.throttle=0.2
-                self.tard.throttle=-0.2
-                self.tmd.throttle=-0.2
-                self.tavd.throttle=-0.2
+                self.TibiaArriereGauche.throttle=0.2
+                self.TibiaMilieuGauche.throttle=0.2
+                self.TibiaAvantGauche.throttle=0.2
+                self.TibiaArriereDroit.throttle=-0.2
+                self.TibiaMilieuDroit.throttle=-0.2
+                self.TibiaAvantDroit.throttle=-0.2
                 isnotplatx=False
             elif difference>self.MARGEDIFFERENCE:
-                self.tavg.throttle=-0.1
-                self.tavd.throttle=0.1
-                self.targ.throttle=1
-                self.tard.throttle=-1
+                self.TibiaAvantGauche.throttle=-0.1
+                self.TibiaAvantDroit.throttle=0.1
+                self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+                self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
                 isnotplatx=True
 
     #self.pcaD.deinit()

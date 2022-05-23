@@ -4,9 +4,9 @@
 ### Date        : 06/05/2022
 ### Description : Classe qui contrôle les pattes de l'hexapode.
 
-from Motor import ServoMoteur
+from Motor import ServoMotor
 
-class Patte(object):
+class Leg(object):
 
     def __init__ (self,Cote,Position) -> None:
         """  brief       : Constructeur de la classe
@@ -16,30 +16,30 @@ class Patte(object):
         """ 
         if Cote=="Gauche":
             if Position=="Avant":
-                self.Pointe=ServoMoteur(Cote,2)
-                self.Tibia=ServoMoteur(Cote,1)
-                self.Hanche=ServoMoteur(Cote,0)
+                self.Pointe=ServoMotor(Cote,2)
+                self.Tibia=ServoMotor(Cote,1)
+                self.Hanche=ServoMotor(Cote,0)
             elif Position=="Milieu":
-                self.Pointe=ServoMoteur(Cote,4)
-                self.Tibia=ServoMoteur(Cote,5)
-                self.Hanche=ServoMoteur(Cote,6)
+                self.Pointe=ServoMotor(Cote,4)
+                self.Tibia=ServoMotor(Cote,5)
+                self.Hanche=ServoMotor(Cote,6)
             elif Position=="Arriere":
-                self.Pointe=ServoMoteur(Cote,15)
-                self.Tibia=ServoMoteur(Cote,13)
-                self.Hanche=ServoMoteur(Cote,12)
+                self.Pointe=ServoMotor(Cote,15)
+                self.Tibia=ServoMotor(Cote,13)
+                self.Hanche=ServoMotor(Cote,12)
         elif Cote=="Droite":
             if Position=="Avant":
-                self.Pointe=ServoMoteur(Cote,15)
-                self.Tibia=ServoMoteur(Cote,14)
-                self.Hanche=ServoMoteur(Cote,13)
+                self.Pointe=ServoMotor(Cote,15)
+                self.Tibia=ServoMotor(Cote,14)
+                self.Hanche=ServoMotor(Cote,13)
             elif Position=="Milieu":
-                self.Pointe=ServoMoteur(Cote,4)
-                self.Tibia=ServoMoteur(Cote,5)
-                self.Hanche=ServoMoteur(Cote,6)
+                self.Pointe=ServoMotor(Cote,4)
+                self.Tibia=ServoMotor(Cote,5)
+                self.Hanche=ServoMotor(Cote,6)
             elif Position=="Arriere":
-                self.Pointe=ServoMoteur(Cote,0)
-                self.Tibia=ServoMoteur(Cote,1)
-                self.Hanche=ServoMoteur(Cote,2)
+                self.Pointe=ServoMotor(Cote,0)
+                self.Tibia=ServoMotor(Cote,1)
+                self.Hanche=ServoMotor(Cote,2)
         self.servos=[self.Pointe,self.Tibia,self.Hanche]
 
     def Lever_Pointe (self,Angle, Force) -> None:

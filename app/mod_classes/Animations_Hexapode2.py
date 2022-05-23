@@ -15,7 +15,7 @@ from adafruit_pca9685 import PCA9685
 sys.path.append("../")
 
 from Gyroscope import Gyroscope
-from Patte import Patte
+from Leg import Leg
 
 class Animations(object):
 
@@ -25,12 +25,12 @@ class Animations(object):
 
 
         # Instantiation des Pattes
-        self.patteAvG=Patte("Gauche", "Avant")
-        self.patteAvD=Patte("Droite", "Avant")
-        self.patteMG=Patte("Gauche", "Milieu")
-        self.patteMD=Patte("Droite", "Milieu")
-        self.patteArG=Patte("Gauche", "Arriere")
-        self.patteArD=Patte("Droite", "Arriere")
+        self.patteAvG=Leg("Gauche", "Avant")
+        self.patteAvD=Leg("Droite", "Avant")
+        self.patteMG=Leg("Gauche", "Milieu")
+        self.patteMD=Leg("Droite", "Milieu")
+        self.patteArG=Leg("Gauche", "Arriere")
+        self.patteArD=Leg("Droite", "Arriere")
         self.pattes=[self.patteAvG, self.patteAvD, self.patteMG, self.patteMD, self.patteArG, self.patteArD]
         
         for item in self.pattes:
@@ -231,7 +231,7 @@ class Animations(object):
         self.tmd.throttle=-0.1
         self.tard.throttle=-0.1
 
-        #Lever la patte avant gauche
+        #Lever la Leg avant gauche
 
         self.tavg.throttle=-1
         self.pavg.throttle=1

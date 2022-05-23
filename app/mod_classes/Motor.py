@@ -11,7 +11,7 @@ from board import SCL, SDA
 import busio
 import time
 
-class ServoMoteur(object):
+class ServoMotor(object):
 
     FREQUENCY = 50
     MINPULSE=1300
