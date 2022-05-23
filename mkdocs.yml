@@ -1,6 +1,18 @@
 site_name: Hexapode
 repo_url: https://github.com/NickVanMarkes/Hexapode
 repo_name: NickVanMarkes/Hexapode
+nav: 
+  - Introduction : abstract.md
+  - Cahier des charges : CDC.md
+  - Documentation technique:
+    - Introduction.md
+    - Planning : Plannification.md
+    - Gestion du projet : Gestion.md
+    - Structure du projet : Structure.md
+  - Composants : Composants.md
+  - Librairies : Librairies.md
+  - Tests: Tests.md
+  - Conclusion: Conclusion.md
 theme:
   name: material
   language: fr
@@ -43,7 +55,7 @@ plugins:
       # headless_chrome_path: headless-chromium
       #
       #output_path: any-place/document.pdf
-      #enabled_if_env: ENABLE_PDF_EXPORT
+      enabled_if_env: ENABLE_PDF_EXPORT
       #
       #debug_html: true
       #show_anchors: true
