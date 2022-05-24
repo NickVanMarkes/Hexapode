@@ -51,8 +51,8 @@ class Radar(object):
             intens = np.array([int(100*meas[2]/self.DMAX) for meas in scan])
             self.line.set_array(intens)
 
-        self.fig.savefig("static/img/plot.jpg")
-        radar = cv2.imread("static/img/plot.jpg")
-        radar = cv2.imencode('.jpg', radar)[1]
+        self.fig.savefig("static/img/plot.png", transparent=True)
+        radar = cv2.imread("static/img/plot.png")
+        radar = cv2.imencode('.png', radar)[1]
         return radar.tobytes()
         
