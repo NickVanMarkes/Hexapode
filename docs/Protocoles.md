@@ -1,6 +1,6 @@
-## Les protocoles
+# Les protocoles
 
-### UART
+## UART
 L'UART (Universal Asynchronous Receiver-Transmitter) qui pour résumer est un protocol de communication composé d'un émetteur et d'un récepteur. L'émetteur se compose d'un registre de maintien d'émission, registre à décalage d'émission et de la logique de contrôle. Pour le récepteur c'est la même chose sauf qu'être pour émission c'est de réception. En commum, l'émetteur et le récepteur sont dotés d'un générateur de vitesse de transmission.
 
 ![UART_Example](img/UART-Block-Diagram.png){width="700"}
@@ -9,22 +9,20 @@ L'UART (Universal Asynchronous Receiver-Transmitter) qui pour résumer est un pr
 
 ![UART_Clock](img/UART-Protocol-format.png){width="700"}
 
-### I2C
+## I2C
 
 L'I2C (Inter-Integrated Circuit), c'est un protocol de communication qui sert beaucoup, si nous avons beaucoup de modules, car nous pouvons chaîner les modules. Ce protocole utilise des adresses afin de s'adresser aux modules, par example le gyroscope est l'adresse 0x68, puis nous lui envoyons en data le registre qui dit au module ce qu'il doit faire. Puis, le module nous renvois une réponse, par exemple avec le gyroscope il nous renvois les angles. 
 
 ![I2C_Exemple](img/Protocol_I2C.png){width="700"}
 
-### SPI
+## SPI
 La communication SPI (Serial Peripheral Interface) est un protocol de communication Master/Slave. Master étant le raspberry pi et le Slave étant le lidar.
-![SPI_Example](img/SPI_single_slave.png)
 ![SPI_Example](img/SPI_single_slave.png){width="700"}
 
  Le raspberry pi lui envois une trame de données avec un registre, qui est compris par le lidar, et fait une action précise. la trame doit respecter le clock(horloge) qu'envois le raspberry pi, car sinon des bits vont se perdre et le message est incomplet.
-![SPI_Clock](img/SPI_timing_diagram.png)
 ![SPI_Clock](img/SPI_timing_diagram.png){width="700"}
 
-### PWM
+## PWM
 
 Le PWM (Pulse With Modulation) est une technique couramment utilisée pour synthétiser des signaux pseudo analogiques à l'aide de circuits numériques.
 

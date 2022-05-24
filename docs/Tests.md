@@ -1,9 +1,9 @@
-## Plan de test et tests
+# Plan de test et tests
 
-### Périmètres des tests
+## Périmètres des tests
 
-### Environnement
+## Environnement
 
-### Scénarios
+## Scénarios
 
-### Suivis journalier des tests
+## Suivis journalier des tests

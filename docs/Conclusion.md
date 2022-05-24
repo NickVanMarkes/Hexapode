@@ -1,5 +1,5 @@
-## Conclusion
+# Conclusion
 
-### Améliorations possibles
+## Améliorations possibles
 
-### Bilan personnel
+## Bilan personnel

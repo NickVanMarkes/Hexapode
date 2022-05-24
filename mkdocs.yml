@@ -2,6 +2,7 @@ site_name: Hexapode
 repo_url: https://github.com/NickVanMarkes/Hexapode
 repo_name: NickVanMarkes/Hexapode
 nav:
+  - index.md
   - Introduction : abstract.md
   - Cahier des charges: CDC.md
   - Documentation technique:
@@ -16,7 +17,12 @@ nav:
       - Librairies : Librairies.md
       - Fonctionalitées : Fonctionalite.md
       - Tests: Tests.md
+      - Difficultés: Difficulte.md
       - Conclusion: Conclusion.md
+  - Annexes : 
+    - Manuel utilisateur : man_utilisateur.md
+    - Manuel d'installation : man_installation.md
+    - Journal de bord : JDB.md
 theme:
   name: material
   language: fr
@@ -27,6 +33,9 @@ theme:
     repo: fontawesome/brands/github
   features:
     - navigation.indexes
+    - navigation.top
+    - navigation.tabs
+    - toc.integrate
 plugins:
   - with-pdf:
       author: Nicolas Oliveira
