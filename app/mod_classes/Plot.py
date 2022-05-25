@@ -52,7 +52,8 @@ class Radar(object):
             self.line.set_array(intens)
 
         self.fig.savefig("static/img/plot.png", transparent=True)
-        radar = cv2.imread("static/img/plot.png")
+        radar=cv2.imread("static/img/plot.png", cv2.IMREAD_UNCHANGED)
         radar = cv2.imencode('.png', radar)[1]
-        return radar.tobytes()
+        radar_encode= np.array(radar)
+        return radar_encode.tobytes()
         

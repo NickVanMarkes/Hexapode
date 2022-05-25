@@ -16,73 +16,79 @@ class VideoCamera(object):
 
     IMAGE_WIDTH = 640
     IMAGE_HEIGHT = 480
-    MIN_ANGLE_VUE= 340
-    MAX_ANGLE_VUE= 38
+    MIN_ANGLE_VUE= 327
+    MAX_ANGLE_VUE= 31
     MAX_DISTANCE=2000
     GRID_END = 130
     GRID_BEGIN = 116
-    GRID_WIDTH = 11
+    GRID_WIDTH = 10
     zone={}
     translator={
-            "340":0,
-            "341":1,
-            "342":2,
-            "343":3,
-            "344":4,
-            "345":5,
-            "346":6,
-            "347":7,
-            "348":8,
-            "349":9,
-            "350":10,
-            "351":11,
-            "352":12,
-            "353":13,
-            "354":14,
-            "355":15,
-            "356":16,
-            "357":17,
-            "358":18,
-            "359":19,
-            "0":20,
-            "1":21,
-            "2":22,
-            "3":23,
-            "4":24,
-            "5":25,
-            "6":26,
-            "7":27,
-            "8":28,
-            "9":29,
-            "10":30,
-            "11":31,
-            "12":32,
-            "13":33,
-            "14":34,
-            "15":35,
-            "16":36,
-            "17":37,
-            "18":38,
-            "19":39,
-            "20":40,
-            "21":41,
-            "22":42,
-            "23":43,
-            "24":44,
-            "25":45,
-            "26":46,
-            "27":47,
-            "28":48,
-            "29":49,
-            "30":50,
-            "31":51,
-            "32":52,
-            "33":53,
-            "34":54,
-            "35":55,
-            "36":56,
-            "37":57,
-            "38":58
+            "327":0,
+            "328":1,
+            "329":2,
+            "330":3,
+            "331":4,
+            "332":5,
+            "333":6,
+            "334":7,
+            "335":8,
+            "336":9,
+            "337":10,
+            "338":11,
+            "339":12,
+            "340":13,
+            "341":14,
+            "342":15,
+            "343":16,
+            "344":17,
+            "345":18,
+            "346":19,
+            "347":20,
+            "348":21,
+            "349":22,
+            "350":23,
+            "351":24,
+            "352":25,
+            "353":26,
+            "354":27,
+            "355":28,
+            "356":29,
+            "357":30,
+            "358":31,
+            "359":32,
+            "0":33,
+            "1":34,
+            "2":35,
+            "3":36,
+            "4":37,
+            "5":38,
+            "6":39,
+            "7":40,
+            "8":41,
+            "9":42,
+            "10":43,
+            "11":44,
+            "12":45,
+            "13":46,
+            "14":47,
+            "15":48,
+            "16":49,
+            "17":50,
+            "18":51,
+            "19":52,
+            "20":53,
+            "21":54,
+            "22":55,
+            "23":56,
+            "24":57,
+            "25":58,
+            "26":59,
+            "27":60,
+            "28":61,
+            "29":62,
+            "30":63,
+            "31":64,
         }
     _memozone={}
 
@@ -117,6 +123,7 @@ class VideoCamera(object):
         # #Draw grid on the frame
         cv2.line(rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
         cv2.line(rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
+        cv2.line(rotated, (int(self.IMAGE_WIDTH/2),0), (int(self.IMAGE_WIDTH/2), self.IMAGE_HEIGHT), (255, 0, 0), 1)
         
         for i in range(0,self.IMAGE_WIDTH,self.GRID_WIDTH):
             cv2.line(rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
@@ -140,8 +147,9 @@ class VideoCamera(object):
         if self.scans!=[]:
             for scan in self.scans:
                 for meas in scan:
-                    if meas[1]>=self.MIN_ANGLE_VUE or meas[1]<=self.MAX_ANGLE_VUE and  meas[2]<self.MAX_DISTANCE:
+                    if meas[1]>=self.MIN_ANGLE_VUE or meas[1]<=self.MAX_ANGLE_VUE:
                         self.zone[self.translator[str(int(meas[1]))]]=meas[2]
+            
             for key in self.zone:
                 self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
                 self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
@@ -155,7 +163,6 @@ class VideoCamera(object):
                 self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
                 self.__color = (0, 0+ self.__increment, 255 - self.__increment)
                 rotated = cv2.rectangle(rotated, self.start_point, self.end_point, self.__color, self.thickness)
-
 
                
         # encode OpenCV raw frame to jpg and displaying it

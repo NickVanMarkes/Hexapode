@@ -122,9 +122,9 @@ def index():
         elif request.form['select-mode']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
-    thread=threading.Thread(target=anim.Init2)
-    thread.start()
-    thread.join(anim.Maintiens)
+    # thread=threading.Thread(target=anim.Init2)
+    # thread.start()
+    # thread.join(anim.Maintiens)
     return render_template('index.html')
 
 
@@ -205,7 +205,7 @@ def generate_radar(radarparam):
         radar()
         frame=radarparam.CreatePlot(radar())
         yield(b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                   b'Content-Type: image/png\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/plot')
 def plot():
