@@ -14,9 +14,9 @@ document.getElementById('plot').addEventListener('click', () => {
 document.getElementById('Radar_Transparency').addEventListener('click', () => {
     toggleBackGroundRadar=!toggleBackGroundRadar
     if(toggleBackGroundRadar){
-        document.getElementById('plot').style.backgroundColor = 'rgb(255, 255, 255, 1);' ;
+        document.getElementById('plot').style.backgroundColor = 'WHITE' ;
     }
     else{
-        document.getElementById('plot').style.backgroundColor = 'rgb(0, 0, 0, 0.2);' ;
+        document.getElementById('plot').style.backgroundColor = 'TRANSPARENT' ;
     }
 });

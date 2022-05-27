@@ -123,7 +123,7 @@ class VideoCamera(object):
         # #Draw grid on the frame
         cv2.line(rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
         cv2.line(rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
-        cv2.line(rotated, (int(self.IMAGE_WIDTH/2),0), (int(self.IMAGE_WIDTH/2), self.IMAGE_HEIGHT), (255, 0, 0), 1)
+        # cv2.line(rotated, (int(self.IMAGE_WIDTH/2),0), (int(self.IMAGE_WIDTH/2), self.IMAGE_HEIGHT), (255, 0, 0), 1)
         
         for i in range(0,self.IMAGE_WIDTH,self.GRID_WIDTH):
             cv2.line(rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
