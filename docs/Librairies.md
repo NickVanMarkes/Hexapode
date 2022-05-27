@@ -1,14 +1,14 @@
 # Librairies et outils externes
 
-## Python Flask ![Logo](img/FlaskLogo.png){width="100", align="right"}
+## Python Flask ![Logo] (img/FlaskLogo.png) {width="100", align=" right"}
 
-Flask est un framework web, qui permet de rédiger les applications web avec du Python. Flask a été créé par Armin Ronacher, membre de Pocoo, un groupe de développeurs Python formé en 2004 - le 1 avril 2010. Pour cette application a utilisé Python 3.8.10.
+Flask est un framework web, qui permet de rédiger les applications web avec du Python. Flask a été créé par Armin Ronacher, membre de Pocoo, un groupe de développeurs Python formé en 2004 — le 1er avril 2010. Pour cette application j’ai utilisé Python 3.8.10.
 
 ### Utilisation
 
 Créez un fichier app.py et insérez ce code:
 
-```python
+``` python
 # save this as app.py
 from flask import Flask
 
@@ -18,7 +18,7 @@ app = Flask(__name__)
 def hello():
     return "Hello, World!"
 ```
-Ensuite, dans un terminal de commande lancez "flask run", ce qui vous répondra avec l'adresse de votre site.
+Ensuite, dans un terminal de commande lancez "flask run", ce qui vous répondra avec l’adresse de votre site.
 
 ```bash
 $ flask run
@@ -27,17 +27,17 @@ $ flask run
 
 ## Turbo Flask
 
-Turbo_flask est une extension Flask qui intègre la bibliothèque JavaScript turbo.js à l'application Flask. L'application utilise majoritairement la fonction push qui actualise juste la partie souhaité de la page.
+Turbo_flask est une extension Flask qui intègre la bibliothèque JavaScript turbo.js à l’application Flask. L’application utilise majoritairement la fonction push qui actualise juste la partie souhaitée de la page.
 
-## OpenCV ![Logo](img/OpenCVLogo.png){width="100", align="right"}
+## OpenCV ![Logo] (img/OpenCVLogo.png) {width="100", align=" right"}
 
-OpenCV (Open Source Computer Vision Library : http://opencv.org) est une bibliothèque open-source qui comprend plusieurs centaines d'algorithmes de vision par ordinateur.
+OpenCV (Open Source Computer Vision Library : http://opencv.org) est une bibliothèque open source qui comprend plusieurs centaines d’algorithmes de vision par ordinateur.
 
 ## Matplotlib 
-![Logo](img/MatplotlibLogo.png){width="150", align="right"}
+![Logo](img/MatplotlibLogo.png){width="150", align=" right"}
 Matplotlib est une bibliothèque Python qui permet de tracer des graphiques. Elle est utilisée pour la visualisation de données et le traçage de graphiques.
 
-## NumPy ![Logo](img/NumpyLogo.png){width="100", align="right"}
+## NumPy ![Logo] (img/NumpyLogo.png) {width="100", align=" right"}
 
 NumPy est une bibliothèque pour langage de programmation Python, destinée à manipuler des matrices ou tableaux multidimensionnels ainsi que des fonctions mathématiques opérant sur ces tableaux.
 
@@ -66,7 +66,7 @@ while True:
 
 ## Servokit adafruit
 
-La librairie "Servokit" d'adafruit, est une librairie qui permet de contrôler les servomoteurs du robot grâce au module PCA9685.
+La librairie ‘Servokit’ d’adafruit est une librairie qui permet de contrôler les servomoteurs du robot grâce au module PCA9685.
 
 ### Utilisation
 
@@ -76,7 +76,7 @@ from adafruit_servokit import ServoKit
 
 # Set channels to the number of servo channels on your kit.
 # 8 for FeatherWing, 16 for Shield/HAT/Bonnet.
-kit = ServoKit(channels=8)
+kit = ServoKit (channels=8)
 
 kit.servo[0].angle = 180
 kit.continuous_servo[1].throttle = 1
@@ -87,9 +87,9 @@ kit.servo[0].angle = 0
 kit.continuous_servo[1].throttle = 0
 ```
 
-## adafruit_rplidar ![Logo](img/AdafruitLogo.png){width="200", align="right"}
+## adafruit_rplidar ![Logo](img/AdafruitLogo.png){width="200", align=" right"}
 
-Adafruit_rplidar est une librairie faite par adafruit qui permet de communiquer avec le lidar, et ainsi permet l'acquisition des données, puis le contrôle du lidar.
+Adafruit_rplidar est une librairie faite par adafruit qui permet de communiquer avec le lidar, et ainsi permet l’acquisition des données, puis le contrôle du lidar.
 
 ### Utilisation
 
@@ -133,12 +133,14 @@ lidar.stop()
 lidar.disconnect()
 ```
 
-## Git ![Logo](img/GitLogo.png){width="100", align="right"}
+## Git ![Logo](img/GitLogo.png){width="100", align=" right"}
 
-Git est un logiciel de gestion de version qui a été utilisé durant la réalisation du projet afin d'avoir un historique du projet. Le code source est disponible [ici](https://github.com/NickVanMarkes).
+Git est un logiciel de gestion de version qui a été utilisé durant la réalisation du projet afin d’avoir un historique du projet. Le code source est disponible [ici] (https://github.com/NickVanMarkes).
 
 ## Trello 
-![Logo](img/TrelloLogo.png){width="100", align="right"}
+![Logo](img/TrelloLogo.png){width="100", align=" right"}
 Trello est un outil de gestion de projet en ligne. Inspiré par la méthode Kanban de Toyota. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches.
 
-![Trello](img/Trello.png){width="500"}
+Vous trouvez <a href=" https://trello.com/invite/b/dmw4lQlU/9abc06465e77b2662f28e3f0651a7323/suivis-de-progression-td">ici</a> le trello du projet.
+
+! [Trello] (img/Trello.png) {width="500"}

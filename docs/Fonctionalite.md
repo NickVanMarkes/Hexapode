@@ -93,7 +93,7 @@ Afin d'utiliser correctement ce module, j'ai utilisé la librairie fait par le f
 
 ### \__init__()
 
-Cette fonction est le constructeur de la classe. Elle me permet instancier le capteur, ainsi qu'initialiser certaines valeurs.
+Cette fonction est le constructeur de la classe. Elle me permet d'instancier le capteur, ainsi qu'initialiser certaines valeurs.
 
 ### get_angle(): dict[str, float]
 
@@ -101,7 +101,7 @@ Cette classe permet récupérer l'inclinaison du robot grâce au gyroscope.
 
 ### get_acceleration(): dict[str, float]
 
-Cette classe permet de récupérer les valeurs de l'acceleromètre.
+Cette classe permet de récupérer les valeurs de l'accéléromètre.
 
 ## Classe ServoMoteur
 
@@ -123,7 +123,7 @@ Position = 0 à 15
 ### SetAngleRel(int, int)
 
 Cette fonction permet de définir l'angle du servomoteur avec une force donnée.
-La force est entrée en pourcent.
+La force est entrée en pour cent.
 
 Angle = -180 à 180
 
@@ -135,11 +135,11 @@ Cette fonction permet de garder le servomoteur avec une légère force, grâce a
 
 ### WithoutForce()
 
-Cette fonction mets le servomoteur sans force.
+Cette fonction met le servomoteur sans force.
 
 ## Classe Patte
 
-Cette classe me sert à faire les mouvements des parties des pattes plus simplement. Les fonctions font des actions précises et que le nécéssaire afin de créer des mouvements.
+Cette classe me sert à faire les mouvements des parties des pattes plus simplement. Les fonctions font des actions précises, et que le nécessaire afin de créer des mouvements.
 
 Voici le diagramme de la classe :
 
@@ -150,7 +150,7 @@ Voici le diagramme de la classe :
 
 Ceci est le constructeur de cette classe. J'initialise les servomoteurs, de la patte selon le branchement hardware.
 
-Le branchement à été fait en sorte que chaque groupe de 3 servomoteurs par patte soit facilement retrouvable.
+Le branchement a été fait en sorte que chaque groupe de 3 servomoteurs par patte soit facilement retrouvable.
 
 Pour l'avant gauche:
 
@@ -170,19 +170,19 @@ Pour l'arrière gauche:
  - Le tibia: Pin 13
  - La Hanche: Pin 12
 
-Pour l'avant droite:
+Pour l'avant droit:
 
  - La pointe: Pin 15
  - Le tibia: Pin 14
  - La Hanche: Pin 13
 
-Pour le milieu droite:
+Pour le milieu droit:
 
  - La pointe: Pin 4
  - Le tibia: Pin 5
  - La Hanche: Pin 6
 
-Pour l'arrière droite:
+Pour l'arrière droit:
 
  - La pointe: Pin 0
  - Le tibia: Pin 1
@@ -190,33 +190,33 @@ Pour l'arrière droite:
 
 ### Lever_Pointe (int, int)
 
-Cette fonction permet de lever la pointe de la patte à un angle préçis et à la force donnée.
+Cette fonction permet de lever la pointe de la patte à un angle précis et à la force donnée.
 
 ### Lever_Tibia (int, int)
 
-Cette fonction permet de lever le tibia de la patte à un angle préçis et à la force donnée.
+Cette fonction permet de lever le tibia de la patte à un angle précis et à la force donnée.
 
 ### Baisser_Pointe (int, int)
 
-Cette fonction permet de Baisser la pointe de la patte à un angle préçis et à la force donnée.
+Cette fonction permet de baisser la pointe de la patte à un angle précis et à la force donnée.
 
 ### Baiser_Tibia (int, int)
 
-Cette fonction permet de baisser le tibia de la patte à un angle préçis et à la force donnée.
+Cette fonction permet de baisser le tibia de la patte à un angle précis et à la force donnée.
 
 ### Tourner (int, int)
 
-Cette fonction permet de tourner la patte à un angle préçis et à la force donnée.
+Cette fonction permet de tourner la patte à un angle précis et à la force donnée.
 
 ## Classe Animations
 
-Cette classe permet d'avoir Toutes les animations du robot. Chaque animation est détaillée étape par étape afin que la compréhension soit plus simple.
+Cette classe permet d'avoir toutes les animations du robot. Chaque animation est détaillée étape par étape afin que la compréhension soit plus simple.
 
 ![Animations](img/Diagramme_Animations.png){width="300"}
 
 ### \__init__(Gyroscope)
 
-Cette fonction est le constructeur de cette classe. Elle permet d'initialiser tout les servomoteurs, la communication I2C avec les modules PCA9685 et le gyroscope.
+Cette fonction est le constructeur de cette classe. Elle permet d'initialiser tous les servomoteurs, la communication I2C avec les modules PCA9685 et le gyroscope.
 
 ### Init()
 
@@ -244,7 +244,7 @@ Cette fonction est l'animation qui permet de faire une rotation de sens horaire 
 
 ### Rotation_AntiHoraire()
 
-Cette fonction est l'animation qui permet de faire une rotation de sens anti-horaire au robot.
+Cette fonction est l'animation qui permet de faire une rotation de sens antihoraire au robot.
 
 ### Maintiens()
 
