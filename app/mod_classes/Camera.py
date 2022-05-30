@@ -11,7 +11,6 @@ import numpy as np
 class VideoCamera(object):
     __color = (0, 0, 0)
     __increment = 0
-    __up_down = 0
     wait1frame=True
 
     IMAGE_WIDTH = 640
@@ -96,25 +95,37 @@ class VideoCamera(object):
     
     def __init__(self):
         """  brief       : Initialisation de la caméra et du flux vidéo
-             param-type  : None
-             return-type : None 
+
+            parameters  : 
+                None
+        
+            returns : 
+                None 
         """ 
        # capturing video
         self.video = cv2.VideoCapture(cv2.CAP_V4L2)
 
     
     def __del__(self):
-        """  brief       : Arrêt de la saisie de la caméra
-             param-type  : None
-             return-type : None 
+        """  brief  : Arrêt de la saisie de la caméra
+
+             parameters  : 
+                None
+
+             returns : 
+                None 
         """ 
         # releasing camera
         self.video.release()
     
     def get_frame(self,scans):
-        """  brief       : capture du flux vidéo de la caméra et retourne le flux vidéo
-             param-type  : None
-             return-type : bytes 
+        """  brief: capture du flux vidéo de la caméra et retourne le flux vidéo
+
+             parameters: 
+                list[int] scans: liste des scans à afficher
+             
+             returns: 
+                bytes : flux vidéo
         """ 
        # extracting frames
         ret, frame = self.video.read()
@@ -129,10 +140,7 @@ class VideoCamera(object):
             cv2.line(rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
 
 
-        self.scans = scans
-
-        #print(self.scans)
-        
+        self.scans = scans        
 
         # Start coordinate, here (5, 5)
         # represents the top left corner of rectangle

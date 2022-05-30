@@ -10,9 +10,9 @@ class Leg(object):
 
     def __init__ (self,Cote,Position) -> None:
         """  brief       : Constructeur de la classe
-                 param-type  : Cote (str)
+                 parameters  : Cote (str)
                                Position (str)
-                 return-type : type 
+                 returns : type 
         """ 
         if Cote=="Gauche":
             if Position=="Avant":
@@ -44,9 +44,9 @@ class Leg(object):
 
     def Lever_Pointe (self,Angle, Force) -> None:
         """  brief       : Lève la pointe de la patte
-             param-type  : Angle (int)
+             parameters  : Angle (int)
                            Force (int) Pourcentage
-             return-type : None 
+             returns : None 
         """ 
         self.Pointe.SetAngleRel(Angle,Force)
         if Force<0:
@@ -56,9 +56,9 @@ class Leg(object):
 
     def Lever_Tibia (self,Angle, Force) -> None:
         """  brief       :  Lève le tibia de la patte
-             param-type  :  Angle (int)
+             parameters  :  Angle (int)
                             Force (int) Pourcentage
-             return-type :  None
+             returns :  None
         """
         self.Tibia.SetAngleRel(Angle,Force)
         if Force<0:
@@ -68,9 +68,9 @@ class Leg(object):
 
     def Baisser_Pointe (self,Angle,Force) -> None:
         """  brief       : Baisse la pointe de la patte
-             param-type  : Angle (int)
+             parameters  : Angle (int)
                             Force (int) Pourcentage
-             return-type : None
+             returns : None
         """
         self.Pointe.SetAngleRel(Angle,Force)
         if Force<0:
@@ -80,9 +80,9 @@ class Leg(object):
 
     def Baisser_Tibia (self,Angle, Force) -> None:
         """  brief       : Baisse le tibia de la patte
-                param-type  : Angle (int)
+                parameters  : Angle (int)
                                 Force (int) Pourcentage
-                return-type : None
+                returns : None
         """
         self.Tibia.SetAngleRel(Angle,Force)
         if Force<0:
@@ -92,9 +92,9 @@ class Leg(object):
 
     def Tourner (self,Angle, Force) -> None:
         """  brief       : Tourne la patte
-             param-type  : Angle (int)
+             parameters  : Angle (int)
                             Force (int) Pourcentage
-             return-type : None
+             returns : None
         """
         self.Hanche.SetAngleRel(Angle,Force)
         if Force<0:
@@ -103,8 +103,8 @@ class Leg(object):
             self.Hanche.StayWithForce("+")
     def WithoutForce(self) -> None:
         """  brief       : Désactive les moteurs
-             param-type  : None
-             return-type : None
+             parameters  : None
+             returns : None
         """
         self.Pointe.WithoutForce()
         self.Tibia.WithoutForce()

@@ -33,8 +33,8 @@ resultwithoutdoubles=[]
 @app.after_request
 def add_header(r):
     """      brief       : Fonction executée après chaque requête.
-             param-type  : request
-             return-type : request
+             parameters  : request
+             returns : request
     """ 
 
     r.headers["Cache-Control"]="no-cache, no-store, must-revalidate"
@@ -47,8 +47,8 @@ def add_header(r):
 @app.context_processor
 def inject_load():
     """      brief       : Fonction permettant d'actualiser les valeurs sur la bannière
-             param-type  : None
-             return-type : dict[string, Any]
+             parameters  : None
+             returns : dict[string, Any]
     """ 
     global mode
 
@@ -85,16 +85,16 @@ def inject_load():
 @app.before_first_request
 def before_first_request():
     """      brief       : Fonction permettant de lancer le rafraîchissement de la page sur un thread.
-             param-type  : None
-             return-type : None
+             parameters  : None
+             returns : None
     """ 
     threading.Thread(target=update_load).start()
 
 
 def update_load():
     """      brief       : Fonction permettant de rafraîchir le site.
-             param-type  : None
-             return-type : None
+             parameters  : None
+             returns : None
     """ 
     with app.app_context():
         while True:
@@ -105,8 +105,8 @@ def update_load():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """      brief       : Route principale du site web.
-             param-type  : None
-             return-type : string
+             parameters  : None
+             returns : string
     """ 
 
     global mode
@@ -133,8 +133,8 @@ def index():
 #Camera
 def generate_frames(camera):
     """      brief       : Fonction permettant de générer les images de la caméra.
-             param-type  : VideoCamera
-             return-type : bytes
+             parameters  : VideoCamera
+             returns : bytes
     """ 
     global resultwithoutdoubles
     while True:
@@ -145,8 +145,8 @@ def generate_frames(camera):
 @app.route('/video')
 def video():
     """      brief       : Route qui affiche le retour de la caméra.
-             param-type  : None
-             return-type : Response
+             parameters  : None
+             returns : Response
     """ 
     return Response(generate_frames(VideoCamera()),mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -177,8 +177,8 @@ def mouvement():
 #Radar
 def radar():
     """      brief       : Fonction récupère les données du lidar, et enlève les doublons.
-             param-type  : None
-             return-type : list(list(float,float,float))
+             parameters  : None
+             returns : list(list(float,float,float))
     """ 
     global lidar
     global resultwithoutdoubles
@@ -198,8 +198,8 @@ def radar():
 
 def generate_radar(radarparam):
     """      brief       : Fonction permettant de générer la vue radar.
-             param-type  : Radar
-             return-type : bytes
+             parameters  : Radar
+             returns : bytes
     """ 
     while True:
         radar()
@@ -210,8 +210,8 @@ def generate_radar(radarparam):
 @app.route('/plot')
 def plot():
     """      brief       : Route qui affiche la vue radar.
-             param-type  : None
-             return-type : Response
+             parameters  : None
+             returns : Response
     """ 
     return Response(generate_radar(radar_view),mimetype='multipart/x-mixed-replace; boundary=frame')
 

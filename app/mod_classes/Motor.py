@@ -18,9 +18,9 @@ class ServoMotor(object):
     MAXPULSE=1890
     def __init__(self,Channel="Gauche",Position=0) -> None:
         """  brief       : Initialisation du module servomoteur
-                param-type  : Channel (str)
+                parameters  : Channel (str)
                               position (int)
-                return-type : None
+                returns : None
         """
         i2c = busio.I2C(SCL, SDA)
         # Création des instances des différents modules PCA9685
@@ -37,9 +37,9 @@ class ServoMotor(object):
     
     def SetAngleRel(self,Angle,Force) -> None:
         """  brief       : Permet de définir l'angle du servomoteur, la force est en pourcentage
-                param-type  : Angle (int)
+                parameters  : Angle (int)
                               Force (int)
-                return-type : None
+                returns : None
         """
 
         self.servo.throttle = Force/100
@@ -47,8 +47,8 @@ class ServoMotor(object):
     
     def StayWithForce(self,direction="+") -> None:
         """  brief       : Permet de garder le servomoteur avec un peu de force vers le sol
-                param-type  : direction (str)
-                return-type : None
+                parameters  : direction (str)
+                returns : None
         """
         if direction=="+":
             self.servo.throttle=0.1
@@ -56,8 +56,8 @@ class ServoMotor(object):
             self.servo.throttle=-0.1
     def WithoutForce(self) -> None:
         """  brief       : Permet de garder le servomoteur sans force
-                param-type  : None
-                return-type : None
+                parameters  : None
+                returns : None
         """
         self.servo.throttle=0
 

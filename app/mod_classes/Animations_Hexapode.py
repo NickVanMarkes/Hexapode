@@ -21,8 +21,8 @@ class Animations(object):
     WITHOUTFORCE=0
     def __init__(self, gyroscope):
         """  brief       : Initialisation des servomoteurs et du gyroscope.
-             param-type  : Gyroscope
-             return-type : None 
+             parameters  : Gyroscope
+             returns : None 
         """
 
         self.i2c = busio.I2C(SCL, SDA)
@@ -201,8 +201,8 @@ class Animations(object):
 
     def Init2(self):
         """  brief       : Animation faisant lever le robot, depuis l'état initial.
-             param-type  : None
-             return-type : None 
+             parameters  : None
+             returns : None 
         """
         print(self.initAngles["y"])
         #Etape 1 baisser les tibias et légère force sur les pointes
@@ -247,8 +247,8 @@ class Animations(object):
 
     def Avance(self):
         """  brief       : Animation permettant au robot d'avancer.
-             param-type  : None
-             return-type : None 
+             parameters  : None
+             returns : None 
         """
 
         print("AVANCE")
@@ -392,8 +392,8 @@ class Animations(object):
 
     def Maintiens(self):
         """  brief       : Fonction qui permet au robot de rester droit grâce aux PID et au gyroscope.
-             param-type  : None
-             return-type : None 
+             parameters  : None
+             returns : None 
         """
         print("MAINTIENS")
         print("===========================================================")

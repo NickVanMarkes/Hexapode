@@ -20,9 +20,13 @@ class Radar(object):
     IMIN = 0
     IMAX = 50
     def __init__(self):
-        """  brief       : Constructeur de la classe Radar, créer la base de l'image.
-             param-type  : None
-             return-type : None
+        """  brief: Constructeur de la classe Radar, créer la base de l'image.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
         """ 
 
        #INIT matplotlib
@@ -39,8 +43,12 @@ class Radar(object):
 
     def CreatePlot(self,scans):
         """  brief       : Grâce aux obstacles détéctés avec le lidar, et mets les points sur le plot.
-             param-type  : scans (list)
-             return-type : Bytes
+
+             parameters  : 
+                list
+             
+             returns : 
+                Bytes
         """ 
 
         for scan in scans:
@@ -56,4 +64,3 @@ class Radar(object):
         radar = cv2.imencode('.png', radar)[1]
         radar_encode= np.array(radar)
         return radar_encode.tobytes()
-        

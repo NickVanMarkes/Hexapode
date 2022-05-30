@@ -13,8 +13,8 @@ class Lidarasync(object):
     _instances = {}
     def __new__(cls):
         """  brief       : Je rends la classe en tant que singleton
-              param-type  : None
-              return-type : instance 
+              parameters  : None
+              returns : instance 
         """ 
         if cls not in cls._instances:
             cls._instances[cls] = super(Lidarasync, cls).__new__(cls)
@@ -22,8 +22,8 @@ class Lidarasync(object):
 
     def __init__ (self):
         """  brief       : Constructeur de la classe RPLidar.
-              param-type  : None
-              return-type : Lidar 
+              parameters  : None
+              returns : Lidar 
         """ 
         
         self.lidar=None
@@ -42,8 +42,8 @@ class Lidarasync(object):
 
     def Get_Data(self):
         """  brief       : Function to get the data.
-              param-type  : None
-              return-type : List(list(float,float,float))
+              parameters  : None
+              returns : List(list(float,float,float))
         """ 
         if len(self.scans)>0:
             return self.scans
@@ -53,8 +53,8 @@ class Lidarasync(object):
 
     def DoScan(self):
         """  brief       : Function to scan with the lidar.
-              param-type  : None
-              return-type : None
+              parameters  : None
+              returns : None
         """
         self.scans=[]
         self.lidar.connect()
@@ -79,15 +79,15 @@ class Lidarasync(object):
 
     def StartLidar(self):
         """  brief       : Function to lauch the motor of the lidar.
-             param-type : None
-             return-type: None
+             parameters : None
+             returns: None
         """
         self.lidar.start_motor()
     
     def StopLidar(self,withmotor=True):
         """  brief       : Function to stop the lidar and disconnect it.
-             param-type : bool (True if you want to stop the motor)
-             return-type: None
+             parameters : bool (True if you want to stop the motor)
+             returns: None
         """
         if withmotor:
             self.lidar.stop_motor()

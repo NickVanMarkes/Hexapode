@@ -23,6 +23,15 @@ nav:
     - Manuel utilisateur : man_utilisateur.md
     - Manuel d'installation : man_installation.md
     - Journal de bord : JDB.md
+    - Code Source : 
+      - Animations_Hexapode.md
+      - Camera.md
+      - Gyroscope.md
+      - Leg.md
+      - LidarAsync.md
+      - Motor.md
+      - Plot.md
+      - RepeatTimer.md
 theme:
   name: material
   language: fr
@@ -37,7 +46,11 @@ theme:
     - navigation.top
     - navigation.tabs
     - toc.integrate
+watch:
+  - app
 plugins:
+  - mkdocstrings
+    
   - with-pdf:
       author: Nicolas Oliveira
       copyright: 2021-2022 cfpt
