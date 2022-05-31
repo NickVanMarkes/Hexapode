@@ -32,10 +32,14 @@ resultwithoutdoubles=[]
 #Header
 @app.after_request
 def add_header(r):
-    """      brief       : Fonction executée après chaque requête.
-             parameters  : request
-             returns : request
-    """ 
+    """  brief: Fonction executée après chaque requête.
+             
+             parameters  :
+                 request  
+             
+             returns :
+                request
+        """  
 
     r.headers["Cache-Control"]="no-cache, no-store, must-revalidate"
     r.headers["Pragma"]="no-cache"
@@ -46,10 +50,14 @@ def add_header(r):
 #Rafraichissement Flask
 @app.context_processor
 def inject_load():
-    """      brief       : Fonction permettant d'actualiser les valeurs sur la bannière
-             parameters  : None
-             returns : dict[string, Any]
-    """ 
+    """  brief: Fonction permettant d'actualiser les valeurs sur la bannière.
+             
+             parameters  :
+                 None 
+             
+             returns :
+                dict[string, Any]
+        """ 
     global mode
 
     if lidar.ShorterScan!= None:
@@ -84,18 +92,26 @@ def inject_load():
 
 @app.before_first_request
 def before_first_request():
-    """      brief       : Fonction permettant de lancer le rafraîchissement de la page sur un thread.
-             parameters  : None
-             returns : None
-    """ 
+    """  brief: Fonction permettant de lancer le rafraîchissement de la page sur un thread.
+             
+             parameters  :
+                 None 
+             
+             returns :
+                None
+        """  
     threading.Thread(target=update_load).start()
 
 
 def update_load():
-    """      brief       : Fonction permettant de rafraîchir le site.
-             parameters  : None
-             returns : None
-    """ 
+    """  brief: Fonction permettant de rafraîchir le site.
+             
+             parameters  :
+                 None 
+             
+             returns :
+                None
+        """ 
     with app.app_context():
         while True:
             time.sleep(1.0)
@@ -104,10 +120,14 @@ def update_load():
 #Home
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    """      brief       : Route principale du site web.
-             parameters  : None
-             returns : string
-    """ 
+    """  brief: Route principale du site web.
+             
+             parameters  :
+                 None 
+             
+             returns :
+                string
+        """ 
 
     global mode
     print(mode)
@@ -132,10 +152,14 @@ def index():
 
 #Camera
 def generate_frames(camera):
-    """      brief       : Fonction permettant de générer les images de la caméra.
-             parameters  : VideoCamera
-             returns : bytes
-    """ 
+    """  brief: Fonction permettant de générer les images de la caméra.
+             
+             parameters  :
+                 VideoCamera 
+             
+             returns :
+                bytes
+        """
     global resultwithoutdoubles
     while True:
         frame=camera.get_frame(resultwithoutdoubles)
@@ -144,10 +168,14 @@ def generate_frames(camera):
 
 @app.route('/video')
 def video():
-    """      brief       : Route qui affiche le retour de la caméra.
-             parameters  : None
-             returns : Response
-    """ 
+    """  brief: Route qui affiche le retour de la caméra.
+             
+             parameters  :
+                 None
+             
+             returns :
+                Response
+        """ 
     return Response(generate_frames(VideoCamera()),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 #Mouvements
@@ -176,10 +204,14 @@ def mouvement():
 
 #Radar
 def radar():
-    """      brief       : Fonction récupère les données du lidar, et enlève les doublons.
-             parameters  : None
-             returns : list(list(float,float,float))
-    """ 
+    """  brief: Fonction récupère les données du lidar, et enlève les doublons.
+             
+             parameters  :
+                 None
+             
+             returns :
+                list(list(float,float,float))
+        """ 
     global lidar
     global resultwithoutdoubles
     resultwithoutdoubles=[]
@@ -197,10 +229,14 @@ def radar():
     return resultwithoutdoubles
 
 def generate_radar(radarparam):
-    """      brief       : Fonction permettant de générer la vue radar.
-             parameters  : Radar
-             returns : bytes
-    """ 
+    """  brief: Fonction permettant de générer la vue radar.
+             
+             parameters  :
+                 Radar
+             
+             returns :
+                bytes
+        """
     while True:
         radar()
         frame=radarparam.CreatePlot(radar())
@@ -209,10 +245,14 @@ def generate_radar(radarparam):
 
 @app.route('/plot')
 def plot():
-    """      brief       : Route qui affiche la vue radar.
-             parameters  : None
-             returns : Response
-    """ 
+    """  brief: Route qui affiche la vue radar.
+             
+             parameters  :
+                 None
+             
+             returns :
+                Response
+        """
     return Response(generate_radar(radar_view),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':

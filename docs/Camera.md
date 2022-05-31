@@ -1,2 +1,2 @@
 # Classe VideoCamera
-::: app.mod_classes.Camera
+::: mod_classes.Camera

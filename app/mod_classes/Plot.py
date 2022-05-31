@@ -42,17 +42,16 @@ class Radar(object):
         ax.grid(True)
 
     def CreatePlot(self,scans):
-        """  brief       : Grâce aux obstacles détéctés avec le lidar, et mets les points sur le plot.
-
-             parameters  : 
-                list
+        """  brief: Grâce aux obstacles détéctés avec le lidar, et mets les points sur le plot.
              
-             returns : 
-                Bytes
+             parameters  :
+                 list
+             
+             returns :
+                bytes
         """ 
 
         for scan in scans:
-            
             #Insertion des points
             offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
             self.line.set_offsets(offsets)

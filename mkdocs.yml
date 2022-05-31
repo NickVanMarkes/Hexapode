@@ -32,6 +32,7 @@ nav:
       - Motor.md
       - Plot.md
       - RepeatTimer.md
+      - Main.md
 theme:
   name: material
   language: fr
@@ -48,8 +49,12 @@ theme:
     - toc.integrate
 watch:
   - app
+  - app/mod_classes
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [./app]
     
   - with-pdf:
       author: Nicolas Oliveira
@@ -84,7 +89,7 @@ plugins:
       # headless_chrome_path: headless-chromium
       #
       #output_path: any-place/document.pdf
-      enabled_if_env: ENABLE_PDF_EXPORT
+      #enabled_if_env: ENABLE_PDF_EXPORT
       #
       #debug_html: true
       #show_anchors: true

@@ -8,6 +8,13 @@ from threading import Timer
 
 class RepeatTimer(Timer):
     def run(self):
-        
+        """  brief: fonction qui permet de faire du mutlithreading avec un Timer.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
         while not self.finished.wait(self.interval):
             self.function(*self.args, **self.kwargs)

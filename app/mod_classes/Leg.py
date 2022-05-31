@@ -9,10 +9,14 @@ from Motor import ServoMotor
 class Leg(object):
 
     def __init__ (self,Cote,Position) -> None:
-        """  brief       : Constructeur de la classe
-                 parameters  : Cote (str)
-                               Position (str)
-                 returns : type 
+        """  brief: Constructeur de la classe Leg, initialise les moteurs par rapport à l'emplacement de la patte.
+             
+             parameters  :
+                 string
+                 string
+             
+             returns :
+                None
         """ 
         if Cote=="Gauche":
             if Position=="Avant":
@@ -43,10 +47,14 @@ class Leg(object):
         self.servos=[self.Pointe,self.Tibia,self.Hanche]
 
     def Lever_Pointe (self,Angle, Force) -> None:
-        """  brief       : Lève la pointe de la patte
-             parameters  : Angle (int)
-                           Force (int) Pourcentage
-             returns : None 
+        """  brief: Lève la pointe de la patte.
+             
+             parameters  :
+                 int
+                 int
+             
+             returns :
+                None
         """ 
         self.Pointe.SetAngleRel(Angle,Force)
         if Force<0:
@@ -55,10 +63,14 @@ class Leg(object):
             self.Pointe.StayWithForce("+")
 
     def Lever_Tibia (self,Angle, Force) -> None:
-        """  brief       :  Lève le tibia de la patte
-             parameters  :  Angle (int)
-                            Force (int) Pourcentage
-             returns :  None
+        """  brief: Lève le tibia de la patte.
+             
+             parameters  :
+                 int
+                 int
+             
+             returns :
+                None
         """
         self.Tibia.SetAngleRel(Angle,Force)
         if Force<0:
@@ -67,10 +79,14 @@ class Leg(object):
             self.Tibia.StayWithForce("+")
 
     def Baisser_Pointe (self,Angle,Force) -> None:
-        """  brief       : Baisse la pointe de la patte
-             parameters  : Angle (int)
-                            Force (int) Pourcentage
-             returns : None
+        """  brief: Baisse la pointe de la patte.
+             
+             parameters  :
+                 int
+                 int
+             
+             returns :
+                None
         """
         self.Pointe.SetAngleRel(Angle,Force)
         if Force<0:
@@ -79,10 +95,14 @@ class Leg(object):
             self.Pointe.StayWithForce("+")
 
     def Baisser_Tibia (self,Angle, Force) -> None:
-        """  brief       : Baisse le tibia de la patte
-                parameters  : Angle (int)
-                                Force (int) Pourcentage
-                returns : None
+        """  brief: Baisse le tibia de la patte.
+             
+             parameters  :
+                 int
+                 int
+             
+             returns :
+                None
         """
         self.Tibia.SetAngleRel(Angle,Force)
         if Force<0:
@@ -91,10 +111,14 @@ class Leg(object):
             self.Tibia.StayWithForce("+")
 
     def Tourner (self,Angle, Force) -> None:
-        """  brief       : Tourne la patte
-             parameters  : Angle (int)
-                            Force (int) Pourcentage
-             returns : None
+        """  brief: Tourne la patte.
+             
+             parameters  :
+                 int
+                 int
+             
+             returns :
+                None
         """
         self.Hanche.SetAngleRel(Angle,Force)
         if Force<0:
@@ -102,9 +126,13 @@ class Leg(object):
         else:
             self.Hanche.StayWithForce("+")
     def WithoutForce(self) -> None:
-        """  brief       : Désactive les moteurs
-             parameters  : None
-             returns : None
+        """  brief: Enlève la force sur les moteurs.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
         """
         self.Pointe.WithoutForce()
         self.Tibia.WithoutForce()

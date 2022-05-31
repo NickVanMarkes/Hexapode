@@ -20,9 +20,13 @@ class Animations(object):
     SENSANTIHORAIREPLEINEFORCE = 1
     WITHOUTFORCE=0
     def __init__(self, gyroscope):
-        """  brief       : Initialisation des servomoteurs et du gyroscope.
-             parameters  : Gyroscope
-             returns : None 
+        """  brief: Initialisation des servomoteurs et du Gyroscope.
+             
+             parameters  :
+                 Gyroscope
+             
+             returns :
+                None
         """
 
         self.i2c = busio.I2C(SCL, SDA)
@@ -114,7 +118,14 @@ class Animations(object):
         self.initAngles=self.gyro.get_angle()
 
     def Init(self):
-
+        """  brief: Animation qui lève le robot.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
         #Etape 1 lever les pattes
         #Pointes
         self.PointeAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
@@ -200,9 +211,13 @@ class Animations(object):
         self.TibiaArriereGauche.throttle=0.1
 
     def Init2(self):
-        """  brief       : Animation faisant lever le robot, depuis l'état initial.
-             parameters  : None
-             returns : None 
+        """  brief: Deuxième animation qui lève le robot.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
         """
         print(self.initAngles["y"])
         #Etape 1 baisser les tibias et légère force sur les pointes
@@ -246,9 +261,13 @@ class Animations(object):
         self.TibiaArriereDroit.throttle=-0.2
 
     def Avance(self):
-        """  brief       : Animation permettant au robot d'avancer.
-             parameters  : None
-             returns : None 
+        """  brief: Animation permettant de faire avancer le robot.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
         """
 
         print("AVANCE")
@@ -391,9 +410,13 @@ class Animations(object):
         self.Maintiens()
 
     def Maintiens(self):
-        """  brief       : Fonction qui permet au robot de rester droit grâce aux PID et au gyroscope.
-             parameters  : None
-             returns : None 
+        """  brief: Fonction qui permet de rester droit grâce au PID et au Gyroscope.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
         """
         print("MAINTIENS")
         print("===========================================================")

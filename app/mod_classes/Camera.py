@@ -94,38 +94,38 @@ class VideoCamera(object):
     
     
     def __init__(self):
-        """  brief       : Initialisation de la caméra et du flux vidéo
-
-            parameters  : 
+        """  brief: Initialisation de la caméra et du flux vidéo.
+             
+             parameters  :
+                 None
+             
+             returns :
                 None
-        
-            returns : 
-                None 
-        """ 
+        """  
        # capturing video
         self.video = cv2.VideoCapture(cv2.CAP_V4L2)
 
     
     def __del__(self):
-        """  brief  : Arrêt de la saisie de la caméra
-
-             parameters  : 
+        """  brief: Arrêt de la saisie de la caméra.
+             
+             parameters  :
+                 None
+             
+             returns :
                 None
-
-             returns : 
-                None 
         """ 
         # releasing camera
         self.video.release()
     
     def get_frame(self,scans):
-        """  brief: capture du flux vidéo de la caméra et retourne le flux vidéo
-
-             parameters: 
-                list[int] scans: liste des scans à afficher
+        """  brief: Capture du flux vidéo de la caméra et retourne le flux vidéo.
              
-             returns: 
-                bytes : flux vidéo
+             parameters  :
+                 list[int]
+             
+             returns :
+                bytes
         """ 
        # extracting frames
         ret, frame = self.video.read()

@@ -12,18 +12,26 @@ PORT_NAME = '/dev/ttyUSB0'
 class Lidarasync(object):
     _instances = {}
     def __new__(cls):
-        """  brief       : Je rends la classe en tant que singleton
-              parameters  : None
-              returns : instance 
+        """  brief: Je rends la classe en tant que singleton.
+             
+             parameters  :
+                 None
+             
+             returns :
+                instance
         """ 
         if cls not in cls._instances:
             cls._instances[cls] = super(Lidarasync, cls).__new__(cls)
         return cls._instances[cls]
 
     def __init__ (self):
-        """  brief       : Constructeur de la classe RPLidar.
-              parameters  : None
-              returns : Lidar 
+        """  brief: Constructeur de la classe Lidar, initialise les valeurs et le lidar.
+             
+             parameters  :
+                 None
+             
+             returns :
+                lidar
         """ 
         
         self.lidar=None
@@ -41,9 +49,13 @@ class Lidarasync(object):
         return self.shorterScan
 
     def Get_Data(self):
-        """  brief       : Function to get the data.
-              parameters  : None
-              returns : List(list(float,float,float))
+        """  brief: Fonction permettant de récupérer les données du lidar.
+             
+             parameters  :
+                 None
+             
+             returns :
+                list(list(float,float,float))
         """ 
         if len(self.scans)>0:
             return self.scans
@@ -52,10 +64,14 @@ class Lidarasync(object):
     
 
     def DoScan(self):
-        """  brief       : Function to scan with the lidar.
-              parameters  : None
-              returns : None
-        """
+        """  brief: Fonction effectuant le scan avec le lidar.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """ 
         self.scans=[]
         self.lidar.connect()
         try:
@@ -78,17 +94,25 @@ class Lidarasync(object):
             print('Stoping RPLidarException.')
 
     def StartLidar(self):
-        """  brief       : Function to lauch the motor of the lidar.
-             parameters : None
-             returns: None
-        """
+        """  brief: Fonction qui permet de démarrer le moteur du lidar.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """ 
         self.lidar.start_motor()
     
     def StopLidar(self,withmotor=True):
-        """  brief       : Function to stop the lidar and disconnect it.
-             parameters : bool (True if you want to stop the motor)
-             returns: None
-        """
+        """  brief: Fonction permettant d'arrêter le lidar, et le déconnecte.
+             
+             parameters  :
+                 bool
+             
+             returns :
+                None
+        """ 
         if withmotor:
             self.lidar.stop_motor()
         self.lidar.stop()

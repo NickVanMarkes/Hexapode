@@ -1,1 +1,2 @@
-:::app.mod_classes.Plot
+# Classe Radar
+:::mod_classes.Plot
