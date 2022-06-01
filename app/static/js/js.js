@@ -20,3 +20,45 @@ document.getElementById('Radar_Transparency').addEventListener('click', () => {
         document.getElementById('plot').style.backgroundColor = 'TRANSPARENT' ;
     }
 });
+
+//si j'appuye sur W sur le clavier, le bouton "Avance" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'w') {
+        document.getElementById('Avance').click();
+    }
+});
+
+//si j'appuye sur A sur le clavier, le bouton "Gauche" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'a') {
+        document.getElementById('Gauche').click();
+    }
+});
+
+//si j'appuye sur S sur le clavier, le bouton "Arrière" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 's') {
+        document.getElementById('Arrière').click();
+    }
+});
+
+//si j'appuye sur D sur le clavier, le bouton "Droit" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'd') {
+        document.getElementById('Droit').click();
+    }
+});
+
+//si j'appuye sur flèche gauche sur le clavier, le bouton "Anti-Horaire" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'ArrowLeft') {
+        document.getElementById('Anti-Horaire').click();
+    }
+});
+
+//si j'appuye sur flèche droit sur le clavier, le bouton "Horaire" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'ArrowRight') {
+        document.getElementById('Horaire').click();
+    }
+});

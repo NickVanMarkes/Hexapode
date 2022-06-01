@@ -132,7 +132,7 @@ def index():
     global mode
     print(mode)
     if request.method=="POST":
-        if request.form['select-mode']=="controle":
+        if request.form['select-mode']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire'):
             print('controle ',0)
             mode="controle"
             mouvement()
@@ -182,23 +182,23 @@ def video():
 def mouvement():
     if request.method == 'POST':
         if request.form['submit_button'] == 'Avance':
-            threading.Thread(target=anim.Avance).start()
-            pass
+            # threading.Thread(target=anim.Avance).start()
+            print("Avance")
         elif request.form['submit_button'] == 'Recule':
             #sense.set_pixels(clean_LED)
-            pass
+            print("Recule")
         elif request.form['submit_button'] == 'Droite':
             #sense.set_pixels(Fleche_D)
-            pass
+            print("Droite")
         elif request.form['submit_button'] == 'Gauche':
             #sense.set_pixels(Fleche_G)
-            pass
+            print("Gauche")
         elif request.form['submit_button'] == 'Rotation_AntiHoraire':
             #sense.set_pixels(Fleche_AH)
-            pass
+            print("Rotation_AntiHoraire")
         elif request.form['submit_button'] == 'Rotation_Horaire':
             #sense.set_pixels(Fleche_H)
-            pass
+            print("Rotation_Horaire")
         else:
             pass # unknown
 
