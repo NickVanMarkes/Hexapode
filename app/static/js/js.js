@@ -21,6 +21,14 @@ document.getElementById('Radar_Transparency').addEventListener('click', () => {
     }
 });
 
+
+//si j'appuye sur T sur le clavier, le bouton "Radar_Transparency" s'active
+document.addEventListener('keydown', (event) => {
+    if (event.key == 't') {
+        document.getElementById('Radar_Transparency').click();
+    }
+});
+
 //si j'appuye sur W sur le clavier, le bouton "Avance" s'active
 document.addEventListener('keydown', (event) => {
     if (event.key == 'w') {
