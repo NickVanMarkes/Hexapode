@@ -178,3 +178,7 @@ Aujourd'hui, durant la matinée j'ai recommencé à travailler sur le JavaScript
 ### 30.05.2022
 
 Aujourd'hui, j'ai passé la journée en faisant de la documentation, j'ai fait tout le manuel d'installation. Puis, j'ai essayé de faire fonctionner le plugin de mkdocs "mkdocstring", ça fonctionne pour certaines classes mais pas pour toutes, il faut que demain j'essaie de faire fonctione cela.
+
+### 31.05.2022
+
+Ce matin, j'ai passé toute la matinée à encore avancer la documentation. Mkdocstring n'est pas très simple à utiliser, mais j'ai finalement réussi à le faire fonctionner. Sauf que dès qu'il y a des librairies pas installer sur l'ordinateur, il crash. Du coup, il beaucoup crasher, car j'ai des librairies qui sont de raspbian, et donc je ne peux pas les avoir sur mon pc windows avec lequel je fait ma documentation. J'ai cherché un bon moment, et j'ai trouvé une de leur version spécialisé pour le python qui ne prend pas en compte des librairies. Ensuite, j'ai refait la mise en page de chaque script afin que ça paraisse correct sur le pdf et le site mkdocs. L'après-midi, j'ai essayé de faire fonctionner le binding des touches en JS. Elle marchent, sauf qu'elles ne vont pas jusqu'à la fonction pour faire bouger le robot.  
