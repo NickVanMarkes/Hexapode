@@ -143,7 +143,9 @@ def index():
         elif request.form['select-mode']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
-        elif request.form['submit_buttons']=="Shut_Down":
+        elif request.form['submit_button']=="Shut_Down":
+            lidar.StopLidar()
+            anim.Off()
             subprocess.call(["sudo", "shutdown", "-h", "now"])
     # thread=threading.Thread(target=anim.Init2)
     # thread.start()

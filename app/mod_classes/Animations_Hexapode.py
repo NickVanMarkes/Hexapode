@@ -259,6 +259,7 @@ class Animations(object):
         self.TibiaAvantDroit.throttle=-0.2
         self.TibiaMilieuDroit.throttle=-0.2
         self.TibiaArriereDroit.throttle=-0.2
+        self.Maintiens()
 
     def Avance(self):
         """  brief: Animation permettant de faire avancer le robot.
@@ -506,7 +507,7 @@ class Animations(object):
                 self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
                 self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
                 isnotplatx=True
-    def Recule():
+    def Recule(self):
         """  brief: Animation qui permet au robot de reculer.
              
              parameters  :
@@ -524,7 +525,7 @@ class Animations(object):
         #mettre de la force vers le sol sur la pointe
         pass
 
-    def Droite():
+    def Droite(self):
         """  brief: Animation qui permet au robot de se déplacer vers la droite comme un crabe.
              
              parameters  :
@@ -550,7 +551,7 @@ class Animations(object):
         #pousser avec les pointes vers la droite
         pass
 
-    def Gauche():
+    def Gauche(self):
         """  brief: Animation qui permet au robot de se déplacer vers la gauche comme un crabe.
              
              parameters  :
@@ -576,7 +577,7 @@ class Animations(object):
         #pousser avec les pointes vers la gauche
         pass
 
-    def Rotation_Horaire():
+    def Rotation_Horaire(self):
         """  brief: Animation qui permet au robot de se tourner vers la droite.
              
              parameters  :
@@ -597,7 +598,7 @@ class Animations(object):
         #baisser le tibia
         pass
 
-    def Rotation_AntiHoraire():
+    def Rotation_AntiHoraire(self):
         """  brief: Animation qui permet au robot de se tourner vers la gauche.
              
              parameters  :
@@ -616,6 +617,34 @@ class Animations(object):
         #lever le tibia
         #déplacer la hanche vers l'arrière
         #baisser le tibia
+        pass
+    def Off(self):
+        """  brief: Animation qui permet au robot d'arrêter tout les servomoteurs.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
+        self.PointeAvantGauche.throttle=0
+        self.PointeArriereGauche.throttle=0
+        self.PointeAvantDroit.throttle=0
+        self.PointeArriereDroit.throttle=0
+        self.PointeMilieuDroit.throttle=0
+        self.PointeMilieuGauche.throttle=0
+        self.TibiaAvantGauche.throttle=0
+        self.TibiaAvantDroit.throttle=0
+        self.TibiaArriereGauche.throttle=0
+        self.TibiaArriereDroit.throttle=0
+        self.TibiaMilieuGauche.throttle=0
+        self.TibiaMilieuDroit.throttle=0
+        self.HancheArriereDroit.throttle=0
+        self.HancheArriereGauche.throttle=0
+        self.HancheAvantDroit.throttle=0
+        self.HancheAvantGauche.throttle=0
+        self.HancheMilieuDroit.throttle=0
+        self.HancheMilieuGauche.throttle=0
         pass
 
     #self.pcaD.deinit()
