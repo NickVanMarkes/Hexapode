@@ -13,6 +13,7 @@ import random
 
 import math
 import threading
+import subprocess
 
 # Mes Classes
 from mod_classes.Camera import VideoCamera
@@ -132,7 +133,7 @@ def index():
     global mode
     print(mode)
     if request.method=="POST":
-        if request.form['select-mode']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire'):
+        if request.form['select-mode']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire' or request.form['submit_button']== 'Init'):
             print('controle ',0)
             mode="controle"
             mouvement()
@@ -142,6 +143,8 @@ def index():
         elif request.form['select-mode']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
+        elif request.form['submit_buttons']=="Shut_Down":
+            subprocess.call(["sudo", "shutdown", "-h", "now"])
     # thread=threading.Thread(target=anim.Init2)
     # thread.start()
     # thread.join(anim.Maintiens)
@@ -184,21 +187,30 @@ def mouvement():
         if request.form['submit_button'] == 'Avance':
             # threading.Thread(target=anim.Avance).start()
             print("Avance")
+            anim.Avance()
         elif request.form['submit_button'] == 'Recule':
             #sense.set_pixels(clean_LED)
             print("Recule")
+            anim.Recule()
         elif request.form['submit_button'] == 'Droite':
             #sense.set_pixels(Fleche_D)
             print("Droite")
+            anim.Droite()
         elif request.form['submit_button'] == 'Gauche':
             #sense.set_pixels(Fleche_G)
             print("Gauche")
+            anim.Gauche()
         elif request.form['submit_button'] == 'Rotation_AntiHoraire':
             #sense.set_pixels(Fleche_AH)
             print("Rotation_AntiHoraire")
+            anim.Rotation_AntiHoraire()
         elif request.form['submit_button'] == 'Rotation_Horaire':
             #sense.set_pixels(Fleche_H)
             print("Rotation_Horaire")
+            anim.Rotation_Horaire()
+        elif request.form['submit_button'] == 'Init':
+            print("Init")
+            anim.Init2()
         else:
             pass # unknown
 
