@@ -1,6 +1,13 @@
 let toggleRadar=false 
 let toggleBackGroundRadar=false 
 
+/**
+ * @function toggleSizeRadar
+ * @description Toggle la taille du radar.
+ * @param {void}
+ * @returns {void}
+ * @author Nicolas Oliveira
+ */
 document.getElementById('plot').addEventListener('click', () => {
     toggleRadar=!toggleRadar
     if(toggleRadar){
@@ -10,7 +17,13 @@ document.getElementById('plot').addEventListener('click', () => {
         document.getElementById('plot').style.transform = "scale(1) translate(0, 0)";
     }
 });
-
+/**
+ * @function toggleBGRadar
+ * @description Toggle l'arrière plan du radar.
+ * @param {void}
+ * @returns {void}
+ * @author Nicolas Oliveira
+ */
 document.getElementById('Radar_Transparency').addEventListener('click', () => {
     toggleBackGroundRadar=!toggleBackGroundRadar
     if(toggleBackGroundRadar){
@@ -21,7 +34,13 @@ document.getElementById('Radar_Transparency').addEventListener('click', () => {
     }
 });
 
-
+/**
+ * @function binding
+ * @description Bind les évènements sur les boutons.
+ * @param {void}
+ * @returns {void}
+ * @author Nicolas Oliveira
+ */
 //si j'appuye sur T sur le clavier, le bouton "Radar_Transparency" s'active
 document.addEventListener('keydown', (event) => {
     if (event.key == 't') {

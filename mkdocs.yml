@@ -23,16 +23,22 @@ nav:
     - Manuel utilisateur : man_utilisateur.md
     - Manuel d'installation : man_installation.md
     - Journal de bord : JDB.md
-    - Code Source : 
-      - Animations_Hexapode.md
-      - Camera.md
-      - Gyroscope.md
-      - Leg.md
-      - LidarAsync.md
-      - Motor.md
-      - Plot.md
-      - RepeatTimer.md
-      - Main.md
+    - Code Source :
+      - python:
+        - Animations_Hexapode.md
+        - Camera.md
+        - Gyroscope.md
+        - Leg.md
+        - LidarAsync.md
+        - Motor.md
+        - Plot.md
+        - RepeatTimer.md
+        - Main.md
+      - Web:
+        - Interface.md
+        - javascript.md
+        - css.md
+
 theme:
   name: material
   language: fr

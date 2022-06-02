@@ -506,6 +506,117 @@ class Animations(object):
                 self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
                 self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
                 isnotplatx=True
+    def Recule():
+        """  brief: Animation qui permet au robot de reculer.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
+        #Préparation de la fonction
+        #faire sur chaque patte
+        #lever le tibia
+        #enlever la force sur la pointe
+        #deplacer la hanche vers l'arrière
+        #baisser le tibia
+        #mettre de la force vers le sol sur la pointe
+        pass
+
+    def Droite():
+        """  brief: Animation qui permet au robot de se déplacer vers la droite comme un crabe.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
+        #Préparartion de la fonction
+        #faire sur chaque patte du coté droit
+        #lever le tibia
+        #ouvrir la pointe direction l'extérieur du robot
+        #baisser le tibia
+        #mettre de la force vers le sol sur la pointe
+
+        #faire sur chaque patte du coté gauche
+        #lever le tibia
+        #ouvrir la pointe direction l'intérieur du robot
+        #baisser le tibia
+        #mettre de la force vers le sol sur la pointe
+
+        #faire avec toutes les pattes du robot
+        #pousser avec les pointes vers la droite
+        pass
+
+    def Gauche():
+        """  brief: Animation qui permet au robot de se déplacer vers la gauche comme un crabe.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
+        #Préparartion de la fonction
+        #faire sur chaque patte du coté droit
+        #lever le tibia
+        #ouvrir la pointe direction l'intérieur du robot
+        #baisser le tibia
+        #mettre de la force vers le sol sur la pointe
+
+        #faire sur chaque patte du coté gauche
+        #lever le tibia
+        #ouvrir la pointe direction l'extérieur du robot
+        #baisser le tibia
+        #mettre de la force vers le sol sur la pointe
+
+        #faire avec toutes les pattes du robot
+        #pousser avec les pointes vers la gauche
+        pass
+
+    def Rotation_Horaire():
+        """  brief: Animation qui permet au robot de se tourner vers la droite.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
+        #Préparartion de la fonction
+        #faire sur chaque patte du coté droit l'une après l'autre 
+        #lever le tibia
+        #déplacer la hanche vers l'arrière
+        #baisser le tibia
+
+        #faire sur chaque patte du coté gauche l'une après l'autre
+        #lever le tibia
+        #déplacer la hanche vers l'avant
+        #baisser le tibia
+        pass
+
+    def Rotation_AntiHoraire():
+        """  brief: Animation qui permet au robot de se tourner vers la gauche.
+             
+             parameters  :
+                 None
+             
+             returns :
+                None
+        """
+        #Préparartion de la fonction
+        #faire sur chaque patte du coté droit l'une après l'autre 
+        #lever le tibia
+        #déplacer la hanche vers l'avant
+        #baisser le tibia
+
+        #faire sur chaque patte du coté gauche l'une après l'autre
+        #lever le tibia
+        #déplacer la hanche vers l'arrière
+        #baisser le tibia
+        pass
 
     #self.pcaD.deinit()
     #self.pcaG.deinit()
