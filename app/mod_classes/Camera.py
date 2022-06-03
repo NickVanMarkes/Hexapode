@@ -176,7 +176,7 @@ class VideoCamera(object):
 
                
         # encode OpenCV raw frame to jpg and displaying it
-        ret, jpeg = cv2.imencode('.jpg', QRCodeDetect())
+        ret, jpeg = cv2.imencode('.jpg', self.QRCodeDetect())
         return jpeg.tobytes()
 
     def QRCodeDetect(self):
