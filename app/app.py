@@ -220,6 +220,44 @@ def mouvement():
             anim.Init2()
         else:
             pass # unknown
+def mouvement_auto():
+    bloque=False
+    global resultwithoutdoubles
+    if mode=="auto":
+        if resultwithoutdoubles!=None:
+            for scan in resultwithoutdoubles:
+                for meas in scan:
+                    # Si l'angle est en face du robot
+                    if meas[1]>327 and meas[1]<31 and bloque==False:
+                        # Si la distance est inférieur à 5 cm
+                        if meas[2]<50:
+                            # Bloque le robot
+                            bloque=True
+                            anim.Maintiens()
+                            print("bloque")
+                        else:
+                            # Continue à avancer
+                            print("avance")
+                            anim.Avance()
+                    # s'il est bloqué
+                    if bloque:
+                        #Verifie à droite s'il y a un obstacle    
+                        if meas[1]>31 and meas[1]<121 and meas[2]>50:
+                            print("droite")
+                            bloque=False
+                            anim.Rotation_Horaire()
+                        #Verifie à gauche s'il y a un obstacle
+                        elif meas[1]>327 and meas[1]<237 and meas[2]>50:
+                            print("gauche")
+                            bloque=False
+                            anim.Rotation_AntiHoraire()
+                        # Sinon il recule
+                        else:
+                            bloque=False
+                            print("recule")
+                            anim.Recule()
+                        
+                        
 
 #Radar
 def radar():
