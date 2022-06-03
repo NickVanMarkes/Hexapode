@@ -104,6 +104,8 @@ class VideoCamera(object):
         """  
        # capturing video
         self.video = cv2.VideoCapture(cv2.CAP_V4L2)
+        self.frame=None
+        self.rotated=None
 
     
     def __del__(self):
@@ -128,16 +130,16 @@ class VideoCamera(object):
                 bytes
         """ 
        # extracting frames
-        ret, frame = self.video.read()
-        rotated=cv2.rotate(frame,cv2.ROTATE_180)
+        ret, self.frame = self.video.read()
+        self.rotated=cv2.rotate(self.frame,cv2.ROTATE_180)
 
         # #Draw grid on the frame
-        cv2.line(rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
-        cv2.line(rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
+        cv2.line(self.rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
+        cv2.line(self.rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
         # cv2.line(rotated, (int(self.IMAGE_WIDTH/2),0), (int(self.IMAGE_WIDTH/2), self.IMAGE_HEIGHT), (255, 0, 0), 1)
         
         for i in range(0,self.IMAGE_WIDTH,self.GRID_WIDTH):
-            cv2.line(rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
+            cv2.line(self.rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
 
 
         self.scans = scans        
@@ -163,16 +165,38 @@ class VideoCamera(object):
                 self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
                 self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
                 self.__color = (0, 0+ self.__increment, 255 - self.__increment)
-                rotated = cv2.rectangle(rotated, self.start_point, self.end_point, self.__color, self.thickness)
+                self.rotated = cv2.rectangle(self.rotated, self.start_point, self.end_point, self.__color, self.thickness)
         else:
             for key in self.zone:
                 self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
                 self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
                 self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
                 self.__color = (0, 0+ self.__increment, 255 - self.__increment)
-                rotated = cv2.rectangle(rotated, self.start_point, self.end_point, self.__color, self.thickness)
+                self.rotated = cv2.rectangle(self.rotated, self.start_point, self.end_point, self.__color, self.thickness)
 
                
         # encode OpenCV raw frame to jpg and displaying it
-        ret, jpeg = cv2.imencode('.jpg', rotated)
+        ret, jpeg = cv2.imencode('.jpg', QRCodeDetect())
         return jpeg.tobytes()
+
+    def QRCodeDetect(self):
+        """  brief: Detecte les QR Code dans une image.
+             
+             parameters  :
+                 None
+             
+             returns :
+                Image
+        """
+        img=self.rotated
+        decoder=cv2.QRCodeDetector()
+        data,points,_=decoder.detectAndDecode(img)
+        if points is not None:
+            print('Decoded data:', data)
+            points=points[0]
+
+            for i in range(len(points)):
+                pt1=[int(val)for val in points[i]]
+                pt2=[int(val)for val in points[(i+1)%len(points)]]
+                cv2.line(img,tuple(pt1),tuple(pt2),(255,0,0),1)
+        return img
