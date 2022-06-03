@@ -143,6 +143,7 @@ def index():
         elif request.form['select-mode']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
+
         elif request.form['submit_button']=="Shut_Down":
             lidar.StopLidar()
             anim.Off()
@@ -167,6 +168,8 @@ def generate_frames(camera):
         """
     global resultwithoutdoubles
     while True:
+        if mode=="suiveur":
+            camera.QRCodeActivated=True
         frame=camera.get_frame(resultwithoutdoubles)
         yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
