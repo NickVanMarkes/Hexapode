@@ -4,7 +4,7 @@ import time
 
 sys.path.append("../")
 
-from mod_classes.LidarAsync import Lidarasync
+from LidarAsync import Lidarasync
 from RepeatTimer import RepeatTimer
 
 #Test du singleton
