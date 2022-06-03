@@ -170,6 +170,8 @@ def generate_frames(camera):
     while True:
         if mode=="suiveur":
             camera.QRCodeActivated=True
+        else:
+            camera.QRCodeActivated=False
         frame=camera.get_frame(resultwithoutdoubles)
         yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
