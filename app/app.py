@@ -133,14 +133,14 @@ def index():
     global mode
     print(mode)
     if request.method=="POST":
-        if request.form['select-mode']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire' or request.form['submit_button']== 'Init'):
+        if request.form['submit_button']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire' or request.form['submit_button']== 'Init'):
             print('controle ',0)
             mode="controle"
             mouvement()
-        elif request.form['select-mode']=="auto":
+        elif request.form['submit_button']=="auto":
             print('auto ', 1)
             mode="auto"
-        elif request.form['select-mode']=="suiveur":
+        elif request.form['submit_button']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
 
