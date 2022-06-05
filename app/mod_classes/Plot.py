@@ -19,6 +19,8 @@ class Radar(object):
     DMAX = 2000
     IMIN = 0
     IMAX = 50
+    COLORS=[(1, 0.2, 0.3), (1, 0.8, 0), (0.1, 0.5, 0.1)]  # near -> mid -> far
+    CMAP_NAME="distance_warning"
     def __init__(self):
         """  brief: Constructeur de la classe Radar, créer la base de l'image.
              
@@ -36,8 +38,9 @@ class Radar(object):
         ax = plt.subplot(111, projection='polar')
         ax.set_theta_zero_location('N')
         ax.set_theta_direction(-1)
+        cmap = plt.colors.LinearSegmentedColormap.from_list(self.CMAP_NAME, self.COLORS)
         self.line = ax.scatter([0, 0], [0, 0], s=5, c=[self.IMIN, self.IMAX],
-                               cmap=plt.cm.jet, lw=0)
+                               cmap=cmap, lw=0)
         ax.set_rmax(self.DMAX)
         ax.grid(True)
 
