@@ -190,14 +190,17 @@ class VideoCamera(object):
                 Image
         """
         img=self.rotated
-        if self.QRCodeActivated:
-            decoder=cv2.QRCodeDetector()
-            data,points,_=decoder.detectAndDecode(img)
-            if points is not None:
-                points=points[0]
+        img=cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        if img!=None:
+            if self.QRCodeActivated:
+                decoder=cv2.QRCodeDetector()
+                data,points,_=decoder.detectAndDecode(img)
+                print(data)
+                if points is not None:
+                    points=points[0]
 
-                for i in range(len(points)):
-                    pt1=[int(val)for val in points[i]]
-                    pt2=[int(val)for val in points[(i+1)%len(points)]]
-                    cv2.line(img,tuple(pt1),tuple(pt2),(255,0,0),1)
+                    for i in range(len(points)):
+                        pt1=[int(val)for val in points[i]]
+                        pt2=[int(val)for val in points[(i+1)%len(points)]]
+                        cv2.line(self.rotated,tuple(pt1),tuple(pt2),(255,0,0),1)
         return img

@@ -282,7 +282,6 @@ def radar():
         for scans in result:
             if scans not in resultwithoutdoubles:
                 resultwithoutdoubles.append(scans)
-        time.sleep(0.05) #Attendre 0.05 secondes
     return resultwithoutdoubles
 
 def generate_radar(radarparam):
