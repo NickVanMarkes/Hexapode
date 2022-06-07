@@ -1,1 +1,2 @@
-![POSTER](img/JDB/PosterV3_1.png){Height="800"}
+# Poster
+![POSTER](img/JDB/PosterV3_1.png){width="500"}

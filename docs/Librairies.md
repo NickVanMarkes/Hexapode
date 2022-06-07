@@ -6,15 +6,15 @@ Flask est un framework web, qui permet de rédiger les applications web avec du 
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers mon <a href="../Main">code source</a>
+Pour l'utilisation voici un lien vers mon <a href="../Main">code source</a>
 
 ## Turbo Flask
 
-Turbo_flask est une extension Flask qui intègre la bibliothèque JavaScript turbo.js à l’application Flask. L’application utilise majoritairement la fonction push qui actualise juste la partie souhaitée de la page.
+Turbo_flask est une extension Flask qui intègre la bibliothèque JavaScript turbo.js à l’application Flask. Le programme utilise majoritairement la fonction push qui actualise juste la partie souhaitée de la page.
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers mon <a href="../Main">code source</a>
+Pour l’utilisation voici un lien vers mon <a href="../Main">code source</a>
 
 ## OpenCV ![Logo](img/OpenCVLogo.png){width="100", align="right"}
 
@@ -22,15 +22,15 @@ OpenCV (Open Source Computer Vision Library : http://opencv.org) est une bibliot
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers deux scripts qui l'utilisent: <a href="../Camera">Camera</a> et <a href="../Plot">Plot</a>
+Pour l’utilisation voici un lien vers deux scripts qui l’utilisent: <a href="../Camera">Camera</a> et <a href="../Plot">Plot</a>
 
 ## Matplotlib 
 ![Logo](img/MatplotlibLogo.png){width="150", align=" right"}
-Matplotlib est une bibliothèque Python qui permet de tracer des graphiques. Elle est utilisée pour la visualisation de données et le traçage de graphiques.
+Matplotlib est une bibliothèque Python qui permet de dessiner des diagrammes. Elle est utilisée pour la visualisation de données et le traçage de graphiques.
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers mon <a href="../Plot">code source</a>
+Pour l’utilisation voici un lien vers mon <a href="../Plot">code source</a>
 
 ## NumPy ![Logo](img/NumpyLogo.png){width="100", align="right"}
 
@@ -42,31 +42,31 @@ Simple PID est une librairie destinée à aider afin de faire facilement et rapi
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers mon <a href="../Animations_Hexapode">code source</a>
+Pour l’utilisation voici un lien vers mon <a href="../Animations_Hexapode">code source</a>
 
 ## Servokit adafruit
 
-La librairie ‘Servokit’ d’adafruit est une librairie qui permet de contrôler les servomoteurs du robot grâce au module PCA9685.
+Servokit d’adafruit est une librairie qui permet de contrôler les servomoteurs du robot grâce au module PCA9685.
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers mon <a href="../Motor">code source</a>
+Pour l’utilisation voici un lien vers mon <a href="../Motor">code source</a>
 
 ## adafruit_rplidar ![Logo](img/AdafruitLogo.png){width="200", align="right"}
 
-Adafruit_rplidar est une librairie faite par adafruit qui permet de communiquer avec le lidar, et ainsi permet l’acquisition des données, puis le contrôle du lidar.
+Adafruit_rplidar est une librairie faite par adafruit qui permet de communiquer avec le lidar, et est efficace pour l’acquisition des données, puis le contrôle du lidar.
 
 ### Utilisation
 
-pour l'utilisation voici un lien vers mon <a href="../LidarAsync">code source</a>
+Pour l’usage voici un lien vers mon <a href="../LidarAsync">code source</a>
 
 ## Git ![Logo](img/GitLogo.png){width="100", align="right"}
 
-Git est un logiciel de gestion de version qui a été utilisé durant la réalisation du projet afin d’avoir un historique du projet. Le code source est disponible <a href="https://github.com/NickVanMarkes">ici</a>.
+Git est un logiciel de gestion de version qui a été utilisé durant la réalisation du projet afin d’avoir un historique de celui-ci. Le code source est disponible <a href="https://github.com/NickVanMarkes">ici</a>.
 
 ## Trello 
 ![Logo](img/TrelloLogo.png){width="100", align="right"}
-Trello est un outil de gestion de projet en ligne. Inspiré par la méthode Kanban de Toyota. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches.
+Trello est un outil de gestion de projet en ligne. Inspiré par la méthode Kanban de Toyota. Il repose sur une organisation des projets en planches, listant des cartes, chacune représentant des tâches.
 
 Vous trouvez <a href="https://trello.com/invite/b/dmw4lQlU/9abc06465e77b2662f28e3f0651a7323/suivis-de-progression-td">ici</a> le trello du projet.
 

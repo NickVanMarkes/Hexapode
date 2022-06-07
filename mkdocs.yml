@@ -2,9 +2,8 @@ site_name: Hexapode
 repo_url: https://github.com/NickVanMarkes/Hexapode
 repo_name: NickVanMarkes/Hexapode
 nav:
-  - index.md
+  - Home : index.md
   - Introduction : abstract.md
-  - Cahier des charges: CDC.md
   - Documentation technique:
       - Introduction.md
       - Planning: Plannification.md
@@ -19,6 +18,7 @@ nav:
       - Tests: Tests.md
       - Difficultés: Difficulte.md
       - Conclusion: Conclusion.md
+  - Cahier des charges: CDC.md
   - Annexes : 
     - Manuel utilisateur : man_utilisateur.md
     - Manuel d'installation : man_installation.md
