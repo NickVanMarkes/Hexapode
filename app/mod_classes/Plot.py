@@ -7,6 +7,7 @@
 #MatPlotLib
 
 import matplotlib.pyplot as plt
+import matplotlib
 
 # Autres librairies
 import numpy as np
@@ -38,7 +39,7 @@ class Radar(object):
         ax = plt.subplot(111, projection='polar')
         ax.set_theta_zero_location('N')
         ax.set_theta_direction(-1)
-        cmap = plt.colors.LinearSegmentedColormap.from_list(self.CMAP_NAME, self.COLORS)
+        cmap = matplotlib.colors.LinearSegmentedColormap.from_list(self.CMAP_NAME, self.COLORS)
         self.line = ax.scatter([0, 0], [0, 0], s=5, c=[self.IMIN, self.IMAX],
                                cmap=cmap, lw=0)
         ax.set_rmax(self.DMAX)
