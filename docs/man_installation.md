@@ -365,7 +365,7 @@ Pour commencer, accéder à *Préférences -> Configuration du Raspberry Pi*.
 
 |Nom|État|
 |----|----|
-|SSH|Disabled|
+|SSH|Enabled|
 |VNC|Enabled|
 |SPI|Enabled|
 |I2C|Enabled|
@@ -385,3 +385,11 @@ Allez dans *Interface options*.
 Puis, activer la camera.
 
 Ensuite, accepter le redémarrage du raspberry pi.
+
+Et finalement, dès que le raspberry pi aura redémarrer. Relancez un terminal de commande et tapez :
+
+```bash
+
+git clone https://github.com/NickVanMarkes/Hexapode.git
+
+```

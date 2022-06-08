@@ -165,7 +165,7 @@ Aujourd’hui, j’avais commencé à travailler sur les autres points que m’a
 
 ### 24.05.2022
 
-Aujourd’hui, j’ai continué à travailler sur la propreté de la documentation technique, et ajouté plein d’explications sur certains composants et librairies. Puis, sur le reste de la journée, M. Bonvin est passé et m’a dit que ce que j’ai fait était de la merde et que ça ne marchait pas. Alors, que ça marche, mais pas comme il l’avait imaginé. Du coup, j’ai travaillé sur la ligne de carré pour faire en sorte que ce soit plus ou moins comme ce qu’il souhaite. En le faisant, j’ai vu qu’il fallait que je fasse des dérivées afin d’agrandir ou de rapticir les carrés dépendement de la distance que le lidar détecte. Je ne sais pas faire de dérivées et je ne comprends pas cela. J’ai donc fait de mon mieux pour corriger l’affiche, et que ce soit droit par rapport à la caméra.
+Aujourd’hui, j’ai continué à travailler sur la propreté de la documentation technique, et ajouté plein d’explications sur certains composants et librairies. Puis, sur le reste de la journée, M. Bonvin est passé et m’a dit que ce que j’ai fait n'était pas adapté pour mes connaissances et que ça ne marchait pas. Alors, que ça marche, mais pas comme il l’avait imaginé. Du coup, j’ai travaillé sur la ligne de carré pour faire en sorte que ce soit plus ou moins comme ce qu’il souhaite. En le faisant, j’ai vu qu’il fallait que je fasse des dérivées afin d’agrandir ou de rapticir les carrés dépendement de la distance que le lidar détecte. Je ne sais pas faire de dérivées et je ne comprends pas cela. J’ai donc fait de mon mieux pour corriger l’affiche, et que ce soit droit par rapport à la caméra.
 
 ### 25.05.2022
 
@@ -196,3 +196,11 @@ Aujourd'hui, j'ai essayé de debugger le freeze du raspberry, et en le faisant j
 ### 03.06.2022
 
 Aujourd'hui, j'ai debuggé un problème que je viens de remarqué. Les selections ne marchent plus. Je ne peux plus changer de mode, alors j'ai regardé et pourtant mes boutons pour me déplacer fonctionnent. j'ai donc mis le même nom pour le select que pour les boutons, et ça a fonctionné. Ensuite, je me suis lancé sur la détéction de des QRCodes grâce à la caméra pour essayer d'implémenter quand même la logique du suiveur. À ma grande surprise, l'implémentation de celui-ci fut assez simple. je n'ai eu que très peu de difficulté à le faire. Mais, je n'arrivais pas à faire en sorte qu'avec le lidar je puisse différencier la personne à suivre avec le QRCode et s'il y avait un obstacle entre les deux. J'ai donc laissé la logique du suiveur pour lundi, en espérant qu'un jour ou deux me suffiront pour l'implémenter. Ensuite, vers la fin de la journée, j'ai fait tout la logique pour le mode autonome. Ce n'est pas un algorithme très poussé mais ça suffit pour qu'il puisse marcher continuellement.
+
+### 07.06.2022
+
+Aujourd'hui j'ai avancé un maximum ma documentation technique, car le temps commence à devenir court. J'ai commencé à faire le manuel utilisateur, étape par étape. Ensuite, plus tard dans la matinée, M. Bonvin est venu, et nous a un peu tiré les oreilles, et qu'on était cuit avec notre code, donc il fallait que l'on gère au maximum la documentation. J'ai donc continué la journée, a revoir mes tournures de phrases, ajouter des images, etc...
+
+### 08.06.2022
+
+Aujourd'hui, rebolote je continue a travaillé sur la documentation et j'ai bien changé toute l'introduction, et je l'ai rendu beaucoup plus technique qu'avant. Puis, j'ai remis à jour mon planning, créer plein de diagramme qui explique mon code. Puis demain, j'essayerais de finir le manuel utilisateur, ainsi que rendre le code un peu plus propre.

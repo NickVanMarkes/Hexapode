@@ -56,6 +56,8 @@ theme:
 watch:
   - app
   - app/mod_classes
+extra_css:
+  - main.css
 plugins:
   - mkdocstrings:
       handlers:
@@ -70,7 +72,7 @@ plugins:
       #back_cover: true
       cover_title: Travail de diplôme
       cover_subtitle: Documentation Interface Flask
-      cover_logo: "./images/logo.png"
+      cover_logo: "./img/logo.png"
       #custom_template_path: TEMPLATES PAT
       #
       toc_title: Table des matières
@@ -95,7 +97,7 @@ plugins:
       # headless_chrome_path: headless-chromium
       #
       #output_path: any-place/document.pdf
-      enabled_if_env: ENABLE_PDF_EXPORT
+      #enabled_if_env: ENABLE_PDF_EXPORT
       #
       #debug_html: true
       #show_anchors: true
