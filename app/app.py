@@ -133,18 +133,19 @@ def index():
     global mode
     print(mode)
     if request.method=="POST":
-        if request.form['submit_button']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire' or request.form['submit_button']== 'Init'):
+        print(request.form['submit_button'])
+        if request.form['Select_Modes']=="controle" or (request.form['submit_button']== 'Avance' or request.form['submit_button']== 'Gauche' or request.form['submit_button']== 'Droite' or request.form['submit_button']== 'Recule' or request.form['submit_button']== 'Rotation_Horaire' or request.form['submit_button']== 'Rotation_AntiHoraire' or request.form['submit_button']== 'Init'):
             print('controle ',0)
             mode="controle"
-            mouvement(request.form['submit_button'])
-        elif request.form['submit_button']=="auto":
+            mouvement()
+        elif request.form['Select_Modes']=="auto":
             print('auto ', 1)
             mode="auto"
-        elif request.form['submit_button']=="suiveur":
+        elif request.form['Select_Modes']=="suiveur":
             print('follow ', 2)
             mode="suiveur"
 
-        elif request.form['submit_button']=="Shut_Down":
+        elif request.form['Select_Modes']=="Shut_Down":
             lidar.StopLidar()
             anim.Off()
             subprocess.call(["sudo", "shutdown", "-h", "now"])
@@ -189,21 +190,21 @@ def video():
     return Response(generate_frames(VideoCamera()),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 #Mouvements
-def mouvement(requete):
-    if requete.method == 'POST':
-        if requete.form['submit_button'] == 'Avance':
+def mouvement():
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'Avance':
             # threading.Thread(target=anim.Avance).start()
             print("Avance")
             anim.Avance()
-        elif requete.form['submit_button'] == 'Recule':
+        elif request.form['submit_button'] == 'Recule':
             #sense.set_pixels(clean_LED)
             print("Recule")
             anim.Recule()
-        elif requete.form['submit_button'] == 'Droite':
+        elif request.form['submit_button'] == 'Droite':
             #sense.set_pixels(Fleche_D)
             print("Droite")
             anim.Droite()
-        elif requete.form['submit_button'] == 'Gauche':
+        elif request.form['submit_button'] == 'Gauche':
             #sense.set_pixels(Fleche_G)
             print("Gauche")
             anim.Gauche()
@@ -215,7 +216,7 @@ def mouvement(requete):
             #sense.set_pixels(Fleche_H)
             print("Rotation_Horaire")
             anim.Rotation_Horaire()
-        elif requete.form['submit_button'] == 'Init':
+        elif request.form['submit_button'] == 'Init':
             print("Init")
             anim.Init2()
         else:
