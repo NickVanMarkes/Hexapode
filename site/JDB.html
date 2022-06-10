@@ -82,8 +82,7 @@
   <nav class="md-header__inner md-grid" aria-label="En-tête">
     <a href="index.html" title="Hexapode" class="md-header__button md-logo" aria-label="Hexapode" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="img/WhiteLogo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -230,8 +229,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="index.html" title="Hexapode" class="md-nav__button md-logo" aria-label="Hexapode" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="img/WhiteLogo.png" alt="logo">
 
     </a>
     Hexapode
@@ -366,7 +364,7 @@
   
     <li class="md-nav__item">
       <a href="Structure.html" class="md-nav__link">
-        Structure
+        Arborescence
       </a>
     </li>
   
@@ -1293,7 +1291,7 @@ Après les cours, j’ai fait le programme que m’avait dit M. Bonvin, et j’
 <p>Ce matin, j’ai continué à travailler sur le débogage de la vue radar, et M. Bonvin m’a appelé en me disant de faire un autre script, et m’a dit de prendre le code d’exemple. Puis, ne voyant toujours pas le bout de la solution à ce problème, j’ai commencé à faire le câblage pour les rallonges des servos moteurs, car aujourd’hui, j’ai reçu la commande avec les gaines thermorétractables. Ensuite, je les ai essayées, en regardant dans les pires positions voir si tout était assez long, et tout est comme il faut. Puis, vers la fin de la journée, je me suis réattaqué sur la solution de la vue radar. En testant, j’ai vu que même avec l’exemple cela prenait 30 secondes pour avec 400 scans. Mais en regardant ce qu’il y avait dans les 400 scans, il y avait 400*360°, ce qui est problématique. J’ai essayé alors avec 1 seul scan, il y manque beaucoup d’information, car il prend que de là où il est en ° jusqu’à ~360°. De ce fait, pour être sûr d’avoir toutes les infos, 2 scans sont nécessaires, ce qui prend 0.46 seconde.</p>
 <h3 id="11042022">11.04.2022</h3>
 <p>Aujourd’hui, j’ai continué à travailler sur le programme pour le lidar. Ensuite, pendant la matinée, M. Bonvin m’envoie un mail, en me disant d’utiliser une autre librairie pour communiquer avec le lidar, et de le faire marcher parfaitement. Au début, j’avais plein de problèmes, car le baudrate n’était pas le bon (il avait spécifié dans son mail, d’essayer de prendre le baudrate le plus rapide.), alors je suis allé voir dans la documentation qu’il m’avait envoyée aussi, et elle n’explique pas grand-chose, elle ne fait qu’une brève présentation des fonctions, sans vraiment dire comment elle fait. Mais dans l’après-midi, j’ai réussi à régler le souci. Ensuite, j’ai essayé d’en faire une classe et de faire une version asynchrone, car je pense que ça serait très utile que le lidar soit en asynchrone, afin que dès qu’il a de nouvelles données, il envoie à la classe matplotlib, et celle-ci créer le plot et l’envoi sur l’interface. Comme représenté dans le schéma ci-dessous.</p>
-<p><img alt="Schema" src="img/JDB/Schema11_04.png" /></p>
+<p><img alt="Schema" src="img/JDB/Schema11_04.png" width="700" /></p>
 <p>Et enfin, à la fin de la journée, j’ai décidé d’avancer le câblage du robot. Avec du veroboard, j’ai soudé tous les câbles utiles pour l’I2C (SDA et SCL). Et demain, je vais faire la même chose, mais pour les alimentations des modules, ainsi, je pourrais tester les modules des servos moteurs et commencer à faire bouger le robot.</p>
 <h3 id="12042022">12.04.2022</h3>
 <p>Aujourd’hui, j’ai commencé la journée et continuant de transformer ma classe Lidar en asynchrone. Puis avec certains problèmes, j’ai décidé d’avancer le câblage et de le finir, car ainsi, je pourrais commencer à travailler sur les servos. Dès le début de l’après-midi, j’avais fini avec le câblage, et j’ai commencé à tester les servomoteurs. Ils marchent tous correctement. Mais, habitué à n’avoir que des servos non continus, j’ai un peu peiné au début, pour les faire bouger. Ils se tapaient sur tout, car ils allaient toujours de la min au max, ou du max au min, mais jamais le degré que je voulais. Ensuite, je suis allé voir la documentation de la librairie adafruit, et ils expliquent implicitement comment ils fonctionnent. J’ai calculé, ensuite, le temps que prennent les servos pour faire un degré:</p>
@@ -1325,19 +1323,19 @@ Au début de l’après-midi, j’ai branché et testé les servos du côté dro
 <p>Aujourd’hui, j’ai commencé la journée par tester la technique de M. Bonvin pour lever le robot. Forcer sur les deux pattes avant, ensuite sur les deux pattes arrière, et dès que c’est levé, ajouter les pattes du milieu pour la stabilité. À ma surprise, il a de la peine à se lever. Je pense donc continuer à utiliser la technique des 6 pattes en même temps. Et en parlant avec mes camarades, ils m’ont rappelé qu’il fallait faire le poster, pour que demain M. Bonvin puisse les examiner, comme ça on peut les changer jusqu’à lundi. Faire le poster, m’a pris toute la journée, et demain, j’essayerai de faire l’abstract, comme ça tout ce dont j’ai à rendre sera fait, et je pourrai me concentrer sur le robot.</p>
 <h3 id="05052022">05.05.2022</h3>
 <p>Aujourd’hui, au début de la matinée, j’ai continué à travailler sur l’animation d’initialisation du robot. Puis, après la grande pause, M. Bonvin, est venu, pour qu’on lui montre nos posters, et de ce fait, je lui aie montré le mien, et étonnement, il a été assez gentil, et il m’a juste dit que je devais changer quelques détails et rajouter le dessin du lidar sur le poster, ce que j’ai fait jusqu’au début de l’après-midi. Ensuite, j’ai recommencé à travailler sur le robot, et je me suis dit qu’il faudrait utiliser le gyroscope afin de savoir quand le robot est droit. En testant, j’ai eu un très joli résultat:</p>
-<p><img alt="Robot Debout" src="img/JDB/Robot_leve_Face.jpg" /> {width="700"}</p>
-<p><img alt="Robot Debout" src="img/JDB/Robot_Leve_iso.jpg" /> {width="700"}</p>
+<p><img alt="Robot Debout" src="img/JDB/Robot_leve_Face.jpg" width="700" /></p>
+<p><img alt="Robot Debout" src="img/JDB/Robot_Leve_iso.jpg" width="700" /></p>
 <p>Et ce résultat sans le gyroscope. J’ai implémenté le gyroscope après ce résultat-là.</p>
 <h3 id="06052022">06.05.2022</h3>
 <p>Ce matin, j’ai continué à travailler sur l’implémentation du gyroscope sur le mouvement d’initialisation, sauf que le gyroscope me rend des valeurs, on dirait de l’aléatoire. Je peux passer de -3° à 20°. Puis, j’ai fait quand même quelques essais, et ils étaient assez concluants, le robot était droit. Mais plus j’essayais, moins ça marchait. Je pense que lundi, il faut que j’implémente une façon pour ne pas forcer sur tous les servomoteurs en même temps, et les faire forcer 2 par 2 ou patte par patte, cela très rapidement, ainsi, je consommerais moins. Même si les servos veulent consommer plus, ils auront de la marge. Cette après-midi, j’ai continué à travailler sur les mouvements, et j’ai essayé de faire avancer déjà une patte, mais le robot ne se lève pas assez haut. Je dois donc le faire monter assez pour que la patte puisse bouger aisément. Puis, comme j’ai dit ce matin, plus je force sur les servos en un temps court, plus j’ai l’impression qu’ils ont de la peine à forcer. Ce weekend, je vais essayer d’avancer un maximum la documentation, car lundi nous devons rendre le poster et la documentation ainsi que le résumé/abstract. J’ai déjà fait le poster. Je me suis inspiré du blueprint d’Iron Man. Mon poster ressemble à un dessin technique avec toutes les pièces en 3D que j’ai réalisé, avec aussi les logos des librairies/composants les plus importants.</p>
 <p>V1 du poster:</p>
-<p><img alt="PosterV1" src="img/JDB/Poster2_1.png" /> {width="700"}</p>
+<p><img alt="PosterV1" src="img/JDB/Poster2_1.png" width="700" /></p>
 <p>Il y a le robot en 2D avec les pattes tendues, mais quand M. Bonvin a vu, il m’a conseillé de plutôt mettre une vue en 3D en position. Voici donc la V2:</p>
-<p><img alt="PosterV2" src="img/JDB/PosterV2_1.png" /> {width="700"}</p>
+<p><img alt="PosterV2" src="img/JDB/PosterV2_1.png" width="700" /></p>
 <h3 id="09052022">09.05.2022</h3>
 <p>Aujourd’hui, j’ai envoyé mon poster ainsi que mon abstract à M. Bonvin. Il m’a demandé de l’appeler, puis on a fait un débrifing par téléphone. Il m’a dit que le poster était pas mal, sauf que je ne présente rien d’informatique, je ne montre que des pièces mécaniques. Il m’a alors conseillé de faire un schéma qui explique ce qui communique ensemble, et de l’ajouter sur le poster. Ensuite, pour l’abstract, il m’a dit que mon français n’était vraiment pas bon, ce que je conçois, car j’ai écrit comme je pense. Il m’a ordonné de ne rien faire d’autre que ces deux choses toute la journée, ce que j’ai fait. 
 Voici donc la version finale de mon poster:</p>
-<p><img alt="PosterV3" src="img/JDB/PosterV3_1.png" /> {width="700"}</p>
+<p><img alt="PosterV3" src="img/JDB/PosterV3_1.png" width="700" /></p>
 <h3 id="10052022">10.05.2022</h3>
 <p>Aujourd’hui, j’ai aidé un moment durant la matinée un camarade, car il avait besoin d’aide sur certaines notions d’électronique. J’ai donc passé un moment avec lui pour l’aider et l’orienter sur les bons choix. Ensuite, avec M. Hürlimann, nous avons eu notre réunion avec M. Bonvin. Heureusement, on ne reçoit pas la lettre chez nous, mais il faut que l’on s’active beaucoup plus, car on n’a rien de présentable pour l’instant. Durant l’après-midi, j’ai commencé à travailler sur les mouvements du robot, mais avec la classe «Patte», sauf que j’ai vite remarqué qu’en fait, cette classe mets inutile, car j’ai besoin de contrôler plusieurs pattes en même temps, et pas une à la fois. Je suis alors reparti sur le programme de base pour les animations, et j’ai remarqué que c’était très bizarre les valeurs que je recevais du gyroscope, je suis alors allé essayer, mais avec une boucle qui me montre en continu ce qu’il se passe. J’ai remarqué que les valeurs ne bougeaient plus dès que je bougeais plus le robot dans mes mains, alors que si je le bouge, là les valeurs changent. J’ai ainsi compris, que la librairie que j’utilise pour communiquer avec le MPU6050, avait inversé entre le gyroscope et l’accéléromètre. Ensuite, j’ai expliqué à M. Bonvin ce que je voulais faire, qui est d’utiliser le gyroscope pour stabiliser le robot, et ainsi qu’il peut lui-même mettre plus ou moins de puissance sur les servos. Il m’a alors parlé de boucles d’asservissement (je connaissais ce terme seulement par PID), connaissant la difficulté de faire un système asservi, j’ai fait mes recherches sur le Web, je n’ai rien qui m’explique bien la marche à suivre en programmation d’un PID, mais je pense savoir un peu près comment le faire.</p>
 <h3 id="11052022">11.05.2022</h3>
@@ -1354,7 +1352,7 @@ Voici donc la version finale de mon poster:</p>
 <p>Aujourd’hui, j’ai commencé la journée à regarder comment faire le quadrillage sur le retour caméra avec opencv. Puis, j’ai vu que je ne pouvais pas changer l’opacité du quadrillage, de ce fait, il y aura toujours un quadrillage vert, et quand un objet détecté par le lidar, ça changera la couleur. Ensuite, je me suis dit, pour que l’utilisateur comprenne, il faut que sur la vue radar, ce soit pareil. J’ai réussi à créer le quadrillage, et j’ai testé d’où à où le lidar détecte, comme ça le lidar ne prend pas toute la page, mais une ligne. Ensuite, je me suis dit qu’il faut que je rende le site responsive, ce que j’ai fait tout le reste de la journée.</p>
 <h3 id="19052022">19.05.2022</h3>
 <p>Aujourd’hui, j’ai passé ma journée à faire en sorte que le quadrillage change de couleur selon les valeurs du lidar. Ce que j’ai fait, c’est que je dessine des carrés (vert de base), puis en faisant un calcul en prenant en compte la largeur de l’image, les degrés et plein d’autres paramètres. Il y avait plein de problèmes, ce n’était pas centré, des fois c’était à l’envers, d’autres il manquait plein de carrés. Puis, en affinant de plus en plus le calcul, j’ai réussi à avoir un résultat, mais pas comme je le voulais. Basiquement, je ne peux pas remettre à zéro les valeurs, car sinon ça clignote de partout. voici à quoi ressemble la ligne des carrés:</p>
-<p><img alt="Ligne Carrés" src="img/JDB/Ligne_Carre.png" /></p>
+<p><img alt="Ligne Carrés" src="img/JDB/Ligne_Carre.png" width="700" /></p>
 <h3 id="20052022">20.05.2022</h3>
 <p>Aujourd’hui, j’ai continué à travailler sur la ligne de carré, sauf que je n’arrivais pas à empêcher le clignotement. J’ai donc essayé toute la journée plusieurs façons de faire, sauf que pas grand-chose ne marchait. J’ai parlé un petit moment avec M. Bonvin, il m’a vite expliqué comment faire et la logique à avoir. J’ai essayé, mais ça ne marchait pas. J’ai donc demandé de l’aide à mes camarades, puis ils m’ont conseillé de faire juste un else dans ma condition qui pourrait régler mon souci. Résultat, ça marche.</p>
 <h3 id="23052022">23.05.2022</h3>

@@ -1,6 +1,6 @@
 # Librairies et outils externes
 
-## Python Flask ![Logo](img/FlaskLogo.png){width=100, align="right"}
+## Python Flask ![Logo](img/FlaskLogo.png){width="100", align="right"}
 
 Flask est un framework web, qui permet de rédiger les applications web avec du Python. Flask a été créé par Armin Ronacher, membre de Pocoo, un groupe de développeurs Python formé en 2004 — le 1er avril 2010. Pour cette application j’ai utilisé Python 3.8.10.
 
@@ -24,8 +24,7 @@ OpenCV (Open Source Computer Vision Library : http://opencv.org) est une bibliot
 
 Pour l’utilisation voici un lien vers deux scripts qui l’utilisent: <a href="../Camera">Camera</a> et <a href="../Plot">Plot</a>
 
-## Matplotlib 
-![Logo](img/MatplotlibLogo.png){width="150", align=" right"}
+## Matplotlib ![Logo](img/MatplotlibLogo.png){width="150", align=" right"}
 Matplotlib est une bibliothèque Python qui permet de dessiner des diagrammes. Elle est utilisée pour la visualisation de données et le traçage de graphiques.
 
 ### Utilisation

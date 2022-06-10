@@ -30,3 +30,7 @@ Je pourrais changer les servomoteurs et en prendre des plus puissants, sauf que 
 - Changer la mécanique
 
 Je pourrais changer la mécanique du robot, et ainsi les moments de force seront moins importants, et aussi réduire le poids des pièces en enlevant les espaces inutiles.
+
+## Raspap
+
+Durant le développement du projet, il y a eu un problème suite à l'installation de raspap. Si nous laissions les valeurs par défaut, et qu'un de mes camarades faisait l'installation de raspap en laissant tout par défaut aussi, celui qui a émis en dernier est le dominant. Ce qui veut dire que tout les autres raspberry pi, ne pouvaient plus émettre, ce qui m'empêchait de communiquer avec mon raspberry pi.

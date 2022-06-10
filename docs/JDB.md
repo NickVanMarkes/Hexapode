@@ -31,7 +31,7 @@ Ce matin, j’ai continué à travailler sur le débogage de la vue radar, et M.
 
 Aujourd’hui, j’ai continué à travailler sur le programme pour le lidar. Ensuite, pendant la matinée, M. Bonvin m’envoie un mail, en me disant d’utiliser une autre librairie pour communiquer avec le lidar, et de le faire marcher parfaitement. Au début, j’avais plein de problèmes, car le baudrate n’était pas le bon (il avait spécifié dans son mail, d’essayer de prendre le baudrate le plus rapide.), alors je suis allé voir dans la documentation qu’il m’avait envoyée aussi, et elle n’explique pas grand-chose, elle ne fait qu’une brève présentation des fonctions, sans vraiment dire comment elle fait. Mais dans l’après-midi, j’ai réussi à régler le souci. Ensuite, j’ai essayé d’en faire une classe et de faire une version asynchrone, car je pense que ça serait très utile que le lidar soit en asynchrone, afin que dès qu’il a de nouvelles données, il envoie à la classe matplotlib, et celle-ci créer le plot et l’envoi sur l’interface. Comme représenté dans le schéma ci-dessous.
 
-![Schema](img/JDB/Schema11_04.png)
+![Schema](img/JDB/Schema11_04.png){width=700}
 
 Et enfin, à la fin de la journée, j’ai décidé d’avancer le câblage du robot. Avec du veroboard, j’ai soudé tous les câbles utiles pour l’I2C (SDA et SCL). Et demain, je vais faire la même chose, mais pour les alimentations des modules, ainsi, je pourrais tester les modules des servos moteurs et commencer à faire bouger le robot.
 
@@ -95,9 +95,9 @@ Aujourd’hui, j’ai commencé la journée par tester la technique de M. Bonvi
 
 Aujourd’hui, au début de la matinée, j’ai continué à travailler sur l’animation d’initialisation du robot. Puis, après la grande pause, M. Bonvin, est venu, pour qu’on lui montre nos posters, et de ce fait, je lui aie montré le mien, et étonnement, il a été assez gentil, et il m’a juste dit que je devais changer quelques détails et rajouter le dessin du lidar sur le poster, ce que j’ai fait jusqu’au début de l’après-midi. Ensuite, j’ai recommencé à travailler sur le robot, et je me suis dit qu’il faudrait utiliser le gyroscope afin de savoir quand le robot est droit. En testant, j’ai eu un très joli résultat:
 
-![Robot Debout](img/JDB/Robot_leve_Face.jpg) {width="700"}
+![Robot Debout](img/JDB/Robot_leve_Face.jpg){width="700"}
 
-![Robot Debout](img/JDB/Robot_Leve_iso.jpg) {width="700"}
+![Robot Debout](img/JDB/Robot_Leve_iso.jpg){width="700"}
 
 Et ce résultat sans le gyroscope. J’ai implémenté le gyroscope après ce résultat-là.
 
@@ -107,18 +107,18 @@ Ce matin, j’ai continué à travailler sur l’implémentation du gyroscope su
 
 V1 du poster:
 
-![PosterV1](img/JDB/Poster2_1.png) {width="700"}
+![PosterV1](img/JDB/Poster2_1.png){width="700"}
 
 Il y a le robot en 2D avec les pattes tendues, mais quand M. Bonvin a vu, il m’a conseillé de plutôt mettre une vue en 3D en position. Voici donc la V2:
 
-![PosterV2](img/JDB/PosterV2_1.png) {width="700"}
+![PosterV2](img/JDB/PosterV2_1.png){width="700"}
 
 ### 09.05.2022
 
 Aujourd’hui, j’ai envoyé mon poster ainsi que mon abstract à M. Bonvin. Il m’a demandé de l’appeler, puis on a fait un débrifing par téléphone. Il m’a dit que le poster était pas mal, sauf que je ne présente rien d’informatique, je ne montre que des pièces mécaniques. Il m’a alors conseillé de faire un schéma qui explique ce qui communique ensemble, et de l’ajouter sur le poster. Ensuite, pour l’abstract, il m’a dit que mon français n’était vraiment pas bon, ce que je conçois, car j’ai écrit comme je pense. Il m’a ordonné de ne rien faire d’autre que ces deux choses toute la journée, ce que j’ai fait. 
 Voici donc la version finale de mon poster:
 
-![PosterV3](img/JDB/PosterV3_1.png) {width="700"}
+![PosterV3](img/JDB/PosterV3_1.png){width="700"}
 
 ### 10.05.2022
 
@@ -152,7 +152,7 @@ Aujourd’hui, j’ai commencé la journée à regarder comment faire le quadril
 
 Aujourd’hui, j’ai passé ma journée à faire en sorte que le quadrillage change de couleur selon les valeurs du lidar. Ce que j’ai fait, c’est que je dessine des carrés (vert de base), puis en faisant un calcul en prenant en compte la largeur de l’image, les degrés et plein d’autres paramètres. Il y avait plein de problèmes, ce n’était pas centré, des fois c’était à l’envers, d’autres il manquait plein de carrés. Puis, en affinant de plus en plus le calcul, j’ai réussi à avoir un résultat, mais pas comme je le voulais. Basiquement, je ne peux pas remettre à zéro les valeurs, car sinon ça clignote de partout. voici à quoi ressemble la ligne des carrés:
 
-![Ligne Carrés](img/JDB/Ligne_Carre.png)
+![Ligne Carrés](img/JDB/Ligne_Carre.png){width=700}
 
 
 ### 20.05.2022

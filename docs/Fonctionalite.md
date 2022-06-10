@@ -2,7 +2,7 @@
 
 Voici un schéma qui représente la communication entre les composants hardware et leurs protocoles de communication.
 
-![Communication](img/Diagramme_Communication.png)
+![Communication](img/Diagramme_Communication.png){width=700}
 
 ## Classe Lidar
 

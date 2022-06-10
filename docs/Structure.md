@@ -20,6 +20,8 @@ Voici la structure pour ce projet:
 
 * **app/static/icon** Ce dossier contient l'icône du site.
 
+* **app/static/javascript** Ce dossier contient le script javascript du site.
+
 * **app/static/img** Ce dossier contient les images utilisées sur le site.
 
 * **app/templates** Ce dossier contient les vues du site, puis le morceau d'html avec lequel on rafraîchit le site.
@@ -28,4 +30,6 @@ Voici la structure pour ce projet:
 
 * **docs/img** Ce dossier contient les images utilisées pour la documentation, ou pour le cahier des charges.
 
-* **docs/bootstrap_templates/** Ce dossier contient les maquettes du site généré par Bootstrap studio.
+* **mecanique** Ce dossier contient tout les fichiers qui ont servis à la mécanique du robot. 
+
+* **site** Ce dossier contient la documentation transformée en site web.

@@ -7,7 +7,7 @@ nav:
   - Documentation technique:
       - Introduction.md
       - Gestion du projet: Gestion.md
-      - Structure : Structure.md
+      - Arborescence : Structure.md
       - Composants : Composants.md
       - Protocoles : Protocoles.md
       - Librairies : Librairies.md
@@ -50,6 +50,7 @@ theme:
     - navigation.top
     - navigation.tabs
     - toc.integrate
+  logo: ./img/WhiteLogo.png
 watch:
   - app
   - app/mod_classes
