@@ -1,114 +1,23 @@
 # Gestion du projet
 
-## Hardware
+## Planning
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Câblage des modules |
-| **Description** | Je dois cabler les modules aux raspberry pi afin de pouvoir les tester, et vérifier qu'ils soient tous fonctionnels |
-| **Importance** | 10/10 |
+Afin de pouvoir faire le planning prévisionnel, j'ai utilisé un diagramme Gantt qui se présente comme ceci:
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Finir les impressions |
-| **Description** | Je dois lancer les dernières impressions de ce fait, je peux commencer la prochaine tâche |
-| **Importance** | 10/10 |
+![Planning Prévisionnel](img/Planning_Pr%C3%A9visionnel.png){width=900}
 
-|  |  |
-| ---- | ---- |
-| **Nom** | montage du robot |
-| **Description** | Mettre tout les modules, pièces 3D ensemble, ainsi le robot sera complètement monté et prêt à être programmé |
-| **Importance** | 10/10 |
+Dans ce planning, j'ai mis les grandes étapes que je pensais les plus utiles mais comme vous pouvez voir en comparaison avec le planning effectif, beaucoup plus de tâches ont été ajoutées. Et ce manque de préparation m'as porté préjudice durant la conception du robot.
 
-## Software
+![Planning effectif](img/Planning_Effectif.png){width=900}
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Mise en place de l'interface web |
-| **Description** | Reprendre le projet de semestre, et l'adapter au travail de diplôme |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
+## Gestion du projet
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Rendre le raspberry en acces point Wifi |
-| **Description** | Rendre le raspberry en access point Wifi, ainsi l'utilisateur n'a qu'a se connecter au raspberry pi pour acceder au site afin de contrôler le robot |
-| **Test** | Réussi |
-| **Importance** | 8/10 |
+Durant la réalisation de ce projet, j'ai utilisé l'outil Trello. Trello m'a servis à utiliser une méthode Kanban. Ceci marche en faisant des cartes qui représentent les tâches que l'on doit faire. Puis, les cartes, il faut les mettres selon l'avancement de la tâche. Pour mon cas, j'ai séparé ça en trois parties:
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Insertion des informations sur la bannière du haut |
-| **Description** | Inserer les information de position du robot, le pourcentage de chaque batterie, et l'obstacle le plus proche |
-| **Test** | Réussi |
-| **Importance** | 6/10 |
+- À faire
+- Commencée
+- Finie
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Test des servos |
-| **Description** | Tester les servos, afin de savoir s'il sont fonctionnels |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
+Voici comment est représenté mon Trello:
 
-|  |  |
-| ---- | ---- |
-| **Nom** | Trouver la force minimal pour que les servos maintiennent le robot |
-| **Description** | Trouver cette force minimal est utile pour les animations |
-| **Test** | Réussi |
-| **Importance** | 7/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Fonctionnement du multi-threading |
-| **Description** | Comprendre et utiliser le mutli-threading |
-| **Test** | Réussi |
-| **Importance** | 9/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Optimisation de l'inteface |
-| **Description** | Régler tout les problèmes, ainsi qu'ajouter certaines fonctionnalités |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Création de la classe Lidar |
-| **Description** | Créer une classe qui gère le lidar, et renvois les informations nécessaire |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Création de la classe VideoCaméra |
-| **Description** | Créer une classe qui gère la caméra, et renvois les informations nécessaire |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Création de la classe Radar |
-| **Description** | Créer une classe qui gère la vue radar, et renvois la vue |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Création de la classe Animations |
-| **Description** | Créer une classe qui gère toutes les animations du robot |
-| **Test** | Réussi |
-| **Importance** | 10/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Création d'un Timer |
-| **Description** | Créer une classe qui appelle une classe selon un certain nombre de temps définis |
-| **Test** | Réussi |
-| **Importance** | 7/10 |
-
-|  |  |
-| ---- | ---- |
-| **Nom** | Création de la classe Gyroscope |
-| **Description** | Créer une classe qui gère le gyroscope et l'acceleromètre, puis renvois les valeurs si demandé |
-| **Test** | Réussi |
-| **Importance** | 7/10 |
+![Trello](img/Trello_FinProjet.png){width=900}

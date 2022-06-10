@@ -5,7 +5,7 @@ L’UART (Universal Asynchronous Receiver-Transmitter) qui pour résumer est un 
 
 ![UART_Example](img/UART-Block-Diagram.png){width="700"}
 
- Le raspberry pi lui envois une trame de données avec 7 bits d’information, qui est compris par le lidar, et fait une action précise. La trame doit le fait de mettre un bit de début et ceux de fin de communication, car s’il en manque un des deux, soit l’information n’a jamais été écoutée, soit le périphérique est en continu entrain d’écouter.
+ Le raspberry pi lui envois une trame de données avec 7 bits d’information, qui est comprise par le lidar, et fait une action précise. La trame doit avoir un bit de début et ceux de fin de communication, car s’il en manque un des deux, soit l’information n’a jamais été écoutée, soit le périphérique est en continu entrain d’écouter.
 
 ![UART_Clock](img/UART-Protocol-format.png){width="700"}
 
@@ -19,7 +19,7 @@ L’I2C (Inter-Integrated Circuit), c’est un protocole de communication qui se
 La communication SPI (Serial Peripheral Interface) est un protocole de communication Master/Slave. Master étant le raspberry pi et le Slave étant le lidar.
 ![SPI_Example](img/SPI_single_slave.png){width="700"}
 
- Le raspberry pi lui envois une trame de données avec un registre, qui est compris par le lidar, et fait une action précise. La trame doit respecter le clock(horloge) qu’envois le raspberry pi, car sinon des bits vont se perdre et le message est incomplet.
+ Le raspberry pi lui envois une trame de données avec un registre, qui est comprise par le lidar, et fait une action précise. La trame doit respecter le clock(horloge) qu’envois le raspberry pi, car sinon des bits vont se perdre et le message est incomplet.
 ![SPI_Clock](img/SPI_timing_diagram.png){width="700"}
 
 ## PWM

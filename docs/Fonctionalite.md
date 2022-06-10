@@ -8,7 +8,7 @@ Voici un schéma qui représente la communication entre les composants hardware 
 
 Pour le projet j’ai placé le <a href="../Composants">lidar</a> sur le haut du robot, car si je le mettais en dessous j’allais toujours détecter les pattes ce qui nous enlèverait beaucoup trop de vision. Le lidar tourne en continu, car, ainsi les informations prennent moins de temps à être prises.
 
-Ensuite, pour la programmation de cette classe, à l’initialisation du script «app.py» je lance le moteur du lidar, puis, de manière asynchrone, j’envoie les informations reçues du lidar dans une liste, ce qui les actualise régulièrement. Pour l’acquisition des données, il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois depuis sa position actuelle jusqu’à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu’à enregistrer le tour complet d’après, c’est pour ça que je fais 2 tours. Puis dès qu’une classe en a besoin, elle appelle la fonction «Get_Data()» qui lui envois une liste des dernières valeurs recueillies.
+Ensuite, pour la programmation de cette classe, à l’initialisation du script «app.py» je lance le moteur du lidar, puis, de manière asynchrone, j’envoie les informations reçues du lidar dans une liste, ce qui les actualise régulièrement. Pour l’acquisition des données, il faut prendre toujours 2 tours du lidar, car au premier tour le lidar nous envois depuis sa position actuelle jusqu’à ~360°, donc si on veut avoir un tour complet sûr, nous avons qu’à enregistrer le tour complet d’après, c’est pour ça que je fais 2 tours. Puis dès qu’une classe en a besoin, elle appelle la fonction «Get_Data()» qui lui envoie une liste des dernières valeurs recueillies.
 
 ![Class Diagram](img/Lidar_Diagram.png){width="300"}
 

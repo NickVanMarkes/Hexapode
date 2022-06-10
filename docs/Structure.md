@@ -1,4 +1,4 @@
-# Structure du projet
+# Arborescence du projet
 
 Du fait que le projet est réalisé grâce à la librairie <a href="../Librairies">Flask</a>.
 

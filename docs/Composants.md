@@ -32,13 +32,13 @@ La télédétection par laser ou lidar est une technique de mesures à distance 
 
 ![Lidar fonctionnement](img/Lidar_fonctionnement.jpg)
 
-Le lidar que j’ai utilisé vient de chez <a href="https://www.slamtec.com/en/lidar/a2">Slamtec</a>. De la catégorie RPLidar, j’ai utilisé le modèle A2, qui a une portée de détection de 0,2 m à 16m, ce qui est utile afin d’avoir un robot qui se déplace de manière autonome. Voltage à 5V, parfait pour le monter avec un raspberry pi. Enfin, la communication utilisée est le protocole <a href="../Protocoles"> UART</a>.
+Le lidar que j’ai utilisé vient de chez <a href="https://www.slamtec.com/en/lidar/a2">Slamtec</a>. De la catégorie RPLidar, j’ai utilisé le modèle A2, qui a une portée de détection de 0,2 m à 16m, ce qui est utile afin d’avoir un robot qui se déplace de manière autonome. Tension à 5V, parfait pour le monter avec un raspberry pi. Enfin, la communication utilisée est le protocole <a href="../Protocoles"> UART</a>.
 
 ## PCA9685
 
 ![PCA9685](img/PCA9685.jpg){width="400"}
 
-Ce module est un contrôleur de Servomoteurs PWM à 16 Canaux.
+Ce module est un contrôleur de Servomoteurs PWM à 16 canaux.
 
 Ce module me sert à pouvoir plus facilement contrôler plusieurs servomoteurs en même temps. Il vient de la marque <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all"> adafruit </a>. L’un des points positifs et le fait que j’ai choisi ce module, c’est qu’il ne consomme pas sur le raspberry, pour les servomoteurs, il a une alimentation différente, chose qui n’est pas à négliger quand on travaille avec autant de servomoteurs. Ce module communique avec le raspberry grâce au protocole <a href="../Protocoles">I2C</a> ce qui me facilite le câblage, en pouvant mettre les câbles en série.
 
@@ -57,4 +57,4 @@ Ce module me permet d’avoir la position du robot à tout moment, ce qui m’es
 
 Imprimante 3D permettant d’imprimer les pièces du robot.
 
-L’imprimante de la marque <a href="https://www.creality.com/products/cr-10s-pro-v2-3d-printer">Creality</a> a été choisie, car ayant une grande surface, je n’allais pas être embêté pour la taille de mes pièces.
+L’imprimante de la marque <a href="https://www.creality.com/products/cr-10s-pro-v2-3d-printer">Creality</a> a été choisie, car ayant une grande surface, je n’allais pas être importuné pour la taille de mes pièces.

@@ -105,12 +105,12 @@
                                     
                                 </div>
                                 <div id="div_Select" class="col d-lg-flex justify-content-lg-center align-items-lg-end" >
-                                    <select id="Select_Modes" name="select-mode" onchange='if(this.value!=0) {this.form.submit();}'>
+                                    <select id="Select_Modes" name="Select_Modes" onchange='if(this.value!=0) {this.form.submit();}'>
                                         <optgroup label="Modes">
                                             <option value="0">Sélection des modes</option>
-                                            <option value="1">Mode Contrôle utilisateur</option>
-                                            <option value="2">Mode Autonome</option>
-                                            <option value="3">Mode Suiveur</option>
+                                            <option value="controle">Mode Contrôle utilisateur</option>
+                                            <option value="auto">Mode Autonome</option>
+                                            <option value="suiveur">Mode Suiveur</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -165,8 +165,8 @@
             </div>
         </div>
     </div>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/js.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/javascript/js.js"></script>
 </body>
 
 </html>

@@ -84,3 +84,84 @@ Tapez cette adresse sur votre navigateur puis vous verrez l'interface web:
 
 ![App Interface](img/man_Utilisateur/InterfaceWeb.png){width=700}
 
+## Utilisation de l'interface
+
+### Bannière
+Tout d'abord je vous explique les informations que vous retrouvez sur la bannière du haut:
+
+![Interface_Bannière](img/man_Utilisateur/InterfaceWeb_Banni%C3%A8re.png){width=700}
+
+En rouge, nous avons l'orientation du robot sur l'axe X. L'axe X est l'orientation direction la caméra, savoir si le robot est incliné vers l'avant ou vers l'arrière.
+
+En vert, nous avons l'orientation du robot sur l'axe Y. L'axe X est l'orientation direction des pattes, savoir si le robot est incliné vers la gauche ou vers la droite.
+
+En bleu, nous avons l'orientation du robot sur l'axe Z. L'axe Z est l'orientation de rotation du robot, savoir si le robot est tourné vers le nord, sud, est ou ouest.
+
+En violet, il y a le pourcentage de batterie restant sur les deux batteries. La batterie de gauche, est celle pour le raspberry pi (le cerveau du robot), et celle de droite pour les servomoteurs (les muscles du robot).
+
+En brun, nous avons la distance de l'obstacle détécté le plus proche. La distance est toujours affichée en millimètres.
+
+### Boutons de directions
+
+Dans cette partie, je vous explique quels sont les boutons de directions et à quoi ils servent.
+
+![Interface_Boutons](img/man_Utilisateur/InterfaceWeb_Boutons.png){width=700}
+
+En rouge, nous avons quatres boutons. Ces quatres boutons servent à se déplacer comme sur un cadrillage.
+
+- La flèche du haut:
+
+Ce bouton sert à faire avancer le robot d'un pas. Cette touche peut être activée aussi avec la touche **W** du clavier.
+
+- La flèche de gauche:
+
+Ce bouton sert à faire un pas vers la gauche (comme un crabe). Cette touche peut être activée aussi avec la touche **A** du clavier.
+
+- La flèche de droite:
+
+Ce bouton sert à faire un pas vers la droite (comme un crabe). Cette touche peut être activée aussi avec la touche **D** du clavier.
+
+- La flèche du bas:
+
+Ce bouton sert à faire reculer le robot d'un pas.Cette touche peut être activée aussi avec la touche **S** du clavier.
+
+En bleu, nous avons deux boutons qui servent à faire les rotations du robot. 
+
+- La flèche de gauche:
+
+Ce bouton fait faire au robot une rotation anti-horaire. Cette touche peut être activée aussi avec la touche **Flèche de gauche** du clavier.
+
+- La flèche de droite:
+
+Ce bouton fait faire au robot une rotation horaire. Cette touche peut être activée aussi avec la touche **Flèche de droite** du clavier.
+
+### Bandeau
+
+Dans le bandeau, il y a quelques boutons ainsi que le selecteur de modes.
+
+![Bandeau](img/man_Utilisateur/InterfaceWeb_Boutons_Mid.png){width=700}
+
+En rouge, c'est le bouton qui sert à éteindre le raspberry pi(ce qui éteindra le robot). Cette touche peut être activée aussi avec la touche **X** du clavier.
+
+En vert, c'est le bouton d'initialisation du robot. Il sert au démarrage de faire lever le robot. Cette touche peut être activée aussi avec la touche **I** du clavier.
+
+En bleu, c'est le selecteur de modes. Il faut cliquer dessus et plusieurs choix de modes s'afficheront, et vous n'avez qu'à cliquer sur le mode que vous voulez et ça le changera.
+
+En violet, c'est le bouton pour changer la transparence de la vue radar. Elle change de blanc à transparent ou vice-versa la vue radar. Cette touche peut être activée aussi avec la touche **T** du clavier.
+
+### Vue Radar
+
+Sur l'interface, en haut à droite, il y a une vue radar, qui montre où sont les obstacles autour du robot.
+
+![Vue Radar](img/man_Utilisateur/InterfaceWeb_VueRadar.png){width=700}
+
+Dans le cercle rouge, nous avons une vue radar des obstacles autour du robot. Si vous voulez voir plus précisément les obstacles, cliquez dessus et la vue s'agrandira.
+
+### Détecteur d'obstacles Caméra
+
+Sur le retour de la caméra, il y a une ligne de carré qui représente les obstacles les plus proches du robot.
+
+![Ligne verte](img/man_Utilisateur/InterfaceWeb_LigneCarre.png){width=700}
+
+Plus un obstacle sera proche, plus le carré deviendra rouge. Plus il est loin, plus il sera vert.
+

@@ -91,4 +91,18 @@ document.addEventListener('keydown', (event) => {
         document.getElementById('Horaire').click();
     }
 });
+
+//si j'appuye sur I sur le clavier, le bouton "Init" s'active
+document.addEventListener('keydown', (event)=>{
+    if (event.key == 'i'){
+        document.getElementById('btn_Up_Robot').click()
+    }
+});
+
+//si j'appuye sur X sur le clavier, le bouton "ShutDown" s'active
+document.addEventListener('keydown', (event)=>{
+    if (event.key == 'x'){
+        document.getElementById('btn_ShutDown').click()
+    }
+});
 ````
