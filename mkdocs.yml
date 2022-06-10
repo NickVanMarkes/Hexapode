@@ -6,11 +6,8 @@ nav:
   - Introduction : abstract.md
   - Documentation technique:
       - Introduction.md
-      - Planning: Plannification.md
       - Gestion du projet: Gestion.md
       - Structure : Structure.md
-      # - Analyse fonctionnelle: technique/functionnal-analysis.md
-      # - Analyse organique: technique/organic-analysis.md
       - Composants : Composants.md
       - Protocoles : Protocoles.md
       - Librairies : Librairies.md
@@ -63,6 +60,7 @@ plugins:
       handlers:
         python:
           paths: [./app]
+      
     
   - with-pdf:
       author: Nicolas Oliveira

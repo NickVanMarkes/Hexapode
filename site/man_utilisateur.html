@@ -1,0 +1,1176 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+    
+    
+      
+        <title>Manuel utilisateur - Hexapode</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.f7951f6f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="main.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#manuel-utilisateur" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="index.html" title="Hexapode" class="md-header__button md-logo" aria-label="Hexapode" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hexapode
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Manuel utilisateur
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NickVanMarkes/Hexapode/" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NickVanMarkes/Hexapode
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="index.html" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="abstract.html" class="md-tabs__link">
+      Introduction
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="Introduction.html" class="md-tabs__link">
+        Documentation technique
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="CDC.html" class="md-tabs__link">
+      Cahier des charges
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="man_utilisateur.html" class="md-tabs__link md-tabs__link--active">
+        Annexes
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Hexapode" class="md-nav__button md-logo" aria-label="Hexapode" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexapode
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NickVanMarkes/Hexapode/" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NickVanMarkes/Hexapode
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="abstract.html" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Documentation technique
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Documentation technique" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Documentation technique
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Introduction.html" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Gestion.html" class="md-nav__link">
+        Gestion du projet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Structure.html" class="md-nav__link">
+        Structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Composants.html" class="md-nav__link">
+        Composants
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Protocoles.html" class="md-nav__link">
+        Protocoles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Librairies.html" class="md-nav__link">
+        Librairies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Fonctionalite.html" class="md-nav__link">
+        Fonctionalitées
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Tests.html" class="md-nav__link">
+        Tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Difficulte.html" class="md-nav__link">
+        Difficultés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Conclusion.html" class="md-nav__link">
+        Conclusion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CDC.html" class="md-nav__link">
+        Cahier des charges
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Annexes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Annexes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Annexes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Manuel utilisateur
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="man_utilisateur.html" class="md-nav__link md-nav__link--active">
+        Manuel utilisateur
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#connection-au-raspberry-pi" class="md-nav__link">
+    Connection au raspberry pi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lancement-du-programme" class="md-nav__link">
+    Lancement du programme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilisation-du-programme" class="md-nav__link">
+    Utilisation du programme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilisation-de-linterface" class="md-nav__link">
+    Utilisation de l'interface
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilisation de l'interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banniere" class="md-nav__link">
+    Bannière
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boutons-de-directions" class="md-nav__link">
+    Boutons de directions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bandeau" class="md-nav__link">
+    Bandeau
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vue-radar" class="md-nav__link">
+    Vue Radar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detecteur-dobstacles-camera" class="md-nav__link">
+    Détecteur d'obstacles Caméra
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="man_installation.html" class="md-nav__link">
+        Manuel d'installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="JDB.html" class="md-nav__link">
+        Journal de bord
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Code Source
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Code Source" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Code Source
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4_1" type="checkbox" id="__nav_5_4_1" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_4_1">
+          python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Animations_Hexapode.html" class="md-nav__link">
+        Classe Animations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Camera.html" class="md-nav__link">
+        Classe VideoCamera
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Gyroscope.html" class="md-nav__link">
+        Classe Gyroscope
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Leg.html" class="md-nav__link">
+        Classe Leg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="LidarAsync.html" class="md-nav__link">
+        Classe LidarAsync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Motor.html" class="md-nav__link">
+        Classe Motor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Plot.html" class="md-nav__link">
+        Classe Radar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RepeatTimer.html" class="md-nav__link">
+        Classe RepeatTimer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Main.html" class="md-nav__link">
+        Script principal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4_2" type="checkbox" id="__nav_5_4_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_4_2">
+          Web
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Web" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Web
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Interface.html" class="md-nav__link">
+        Interface Web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="javascript.html" class="md-nav__link">
+        Script Javascript
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="css.html" class="md-nav__link">
+        CSS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/NickVanMarkes/Hexapode/edit/master/docs/man_utilisateur.md" title="Editer cette page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="manuel-utilisateur">Manuel utilisateur</h1>
+<h2 id="connection-au-raspberry-pi">Connection au raspberry pi</h2>
+<p>la première étape pour pouvoir utiliser est de vous connecter en ssh au raspberry pi.</p>
+<p>Veuillez l'allumer</p>
+<p>Pendant que le raspberry pi s'allume téléchargez et installez le logiciel <a href="https://putty.org/">puTTY</a>.</p>
+<p>Ensuite, allez sur un ordinateur et cherchez votre rasperry pi dans les connections WiFi</p>
+<p><img alt="Connect" src="img/man_Utilisateur/Connection_au_raspi.png" width="500" /></p>
+<p>Puis, si vous avez bien suivis l'installation, vous pouvez vous connectez au raspberry pi. </p>
+<p>Dès que vous êtes connecté, lancez le programme puTTY et entrez-y l'ip de votre raspberry pi.</p>
+<p><img alt="Insert IP" src="img/man_Utilisateur/puTTy_Insert_IP.png" width="500" /></p>
+<p>Vérifiez que vous soyez bien en SSH.</p>
+<p><img alt="SSH" src="img/man_Utilisateur/puTTy_Select_SSH.png" width="500" /></p>
+<p>Puis, entrez le numéro de port 22.</p>
+<p><img alt="PORTNB" src="img/man_Utilisateur/puTTy_NBPort.png" width="500" /></p>
+<p>Afin que ce soit plus simple pour les prochaines fois je vous conseille de l'enregistrer en bas, ainsi, les prochaines fois vous n'avez qu'à cliquer dessus pour vous connecter.</p>
+<p><img alt="Save" src="img/man_Utilisateur/puTTy_Save.png" width="500" /></p>
+<p>Maintenant que vous êtes connecté en SSH au raspberry pi, il vous demandera de vous identifier (comme sur l'image en dessous). Si vous avez tout laisser par défaut voici le login est <em>pi</em>.</p>
+<p><img alt="Login Raspi" src="img/man_Utilisateur/Login_Raspi.png" width="500" /></p>
+<p>Ensuite il vous demandera le mot de passe qui, si vous ne l'avez pas changer, est <em>raspberry</em>.</p>
+<p><img alt="Login mdp" src="img/man_Utilisateur/Login_Raspi_mdp.png" width="500" /></p>
+<h2 id="lancement-du-programme">Lancement du programme</h2>
+<p>Dans cette étape, on va lancer le programme.</p>
+<p>Dans le terminal pyTTY, tapez :</p>
+<div class="highlight"><pre><span></span><code>python3 Hexapode/app/app.py
+</code></pre></div>
+<p>Voilà le programme est lancé!</p>
+<p>S'il ne s'est pas lancé vérifiez bien que vous avez cloner le répertoire git dans le home du raspberry pi.</p>
+<p>Si ce n'est pas le cas, tapez juste</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>
+</code></pre></div>
+<p>Cette commande vous enverra à l'home du raspberry pi. </p>
+<p>Et maintenant tapez:</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/NickVanMarkes/Hexapode.git
+</code></pre></div>
+<p>Puis refaite l'étape du lancement du programme.</p>
+<h2 id="utilisation-du-programme">Utilisation du programme</h2>
+<p>Dès que tout seras bon, le programme vous montrera plein de message, mais surtout l'adresse ip à vous connecter sur vôtre navigateur web.</p>
+<p><img alt="App launch" src="img/man_Utilisateur/App_Launch.png" width="500" /></p>
+<p>Tapez cette adresse sur votre navigateur puis vous verrez l'interface web:</p>
+<p><img alt="App Interface" src="img/man_Utilisateur/InterfaceWeb.png" width="700" /></p>
+<h2 id="utilisation-de-linterface">Utilisation de l'interface</h2>
+<h3 id="banniere">Bannière</h3>
+<p>Tout d'abord je vous explique les informations que vous retrouvez sur la bannière du haut:</p>
+<p><img alt="Interface_Bannière" src="img/man_Utilisateur/InterfaceWeb_Banni%C3%A8re.png" width="700" /></p>
+<p>En rouge, nous avons l'orientation du robot sur l'axe X. L'axe X est l'orientation direction la caméra, savoir si le robot est incliné vers l'avant ou vers l'arrière.</p>
+<p>En vert, nous avons l'orientation du robot sur l'axe Y. L'axe X est l'orientation direction des pattes, savoir si le robot est incliné vers la gauche ou vers la droite.</p>
+<p>En bleu, nous avons l'orientation du robot sur l'axe Z. L'axe Z est l'orientation de rotation du robot, savoir si le robot est tourné vers le nord, sud, est ou ouest.</p>
+<p>En violet, il y a le pourcentage de batterie restant sur les deux batteries. La batterie de gauche, est celle pour le raspberry pi (le cerveau du robot), et celle de droite pour les servomoteurs (les muscles du robot).</p>
+<p>En brun, nous avons la distance de l'obstacle détécté le plus proche. La distance est toujours affichée en millimètres.</p>
+<h3 id="boutons-de-directions">Boutons de directions</h3>
+<p>Dans cette partie, je vous explique quels sont les boutons de directions et à quoi ils servent.</p>
+<p><img alt="Interface_Boutons" src="img/man_Utilisateur/InterfaceWeb_Boutons.png" width="700" /></p>
+<p>En rouge, nous avons quatres boutons. Ces quatres boutons servent à se déplacer comme sur un cadrillage.</p>
+<ul>
+<li>La flèche du haut:</li>
+</ul>
+<p>Ce bouton sert à faire avancer le robot d'un pas. Cette touche peut être activée aussi avec la touche <strong>W</strong> du clavier.</p>
+<ul>
+<li>La flèche de gauche:</li>
+</ul>
+<p>Ce bouton sert à faire un pas vers la gauche (comme un crabe). Cette touche peut être activée aussi avec la touche <strong>A</strong> du clavier.</p>
+<ul>
+<li>La flèche de droite:</li>
+</ul>
+<p>Ce bouton sert à faire un pas vers la droite (comme un crabe). Cette touche peut être activée aussi avec la touche <strong>D</strong> du clavier.</p>
+<ul>
+<li>La flèche du bas:</li>
+</ul>
+<p>Ce bouton sert à faire reculer le robot d'un pas.Cette touche peut être activée aussi avec la touche <strong>S</strong> du clavier.</p>
+<p>En bleu, nous avons deux boutons qui servent à faire les rotations du robot. </p>
+<ul>
+<li>La flèche de gauche:</li>
+</ul>
+<p>Ce bouton fait faire au robot une rotation anti-horaire. Cette touche peut être activée aussi avec la touche <strong>Flèche de gauche</strong> du clavier.</p>
+<ul>
+<li>La flèche de droite:</li>
+</ul>
+<p>Ce bouton fait faire au robot une rotation horaire. Cette touche peut être activée aussi avec la touche <strong>Flèche de droite</strong> du clavier.</p>
+<h3 id="bandeau">Bandeau</h3>
+<p>Dans le bandeau, il y a quelques boutons ainsi que le selecteur de modes.</p>
+<p><img alt="Bandeau" src="img/man_Utilisateur/InterfaceWeb_Boutons_Mid.png" width="700" /></p>
+<p>En rouge, c'est le bouton qui sert à éteindre le raspberry pi(ce qui éteindra le robot). Cette touche peut être activée aussi avec la touche <strong>X</strong> du clavier.</p>
+<p>En vert, c'est le bouton d'initialisation du robot. Il sert au démarrage de faire lever le robot. Cette touche peut être activée aussi avec la touche <strong>I</strong> du clavier.</p>
+<p>En bleu, c'est le selecteur de modes. Il faut cliquer dessus et plusieurs choix de modes s'afficheront, et vous n'avez qu'à cliquer sur le mode que vous voulez et ça le changera.</p>
+<p>En violet, c'est le bouton pour changer la transparence de la vue radar. Elle change de blanc à transparent ou vice-versa la vue radar. Cette touche peut être activée aussi avec la touche <strong>T</strong> du clavier.</p>
+<h3 id="vue-radar">Vue Radar</h3>
+<p>Sur l'interface, en haut à droite, il y a une vue radar, qui montre où sont les obstacles autour du robot.</p>
+<p><img alt="Vue Radar" src="img/man_Utilisateur/InterfaceWeb_VueRadar.png" width="700" /></p>
+<p>Dans le cercle rouge, nous avons une vue radar des obstacles autour du robot. Si vous voulez voir plus précisément les obstacles, cliquez dessus et la vue s'agrandira.</p>
+<h3 id="detecteur-dobstacles-camera">Détecteur d'obstacles Caméra</h3>
+<p>Sur le retour de la caméra, il y a une ligne de carré qui représente les obstacles les plus proches du robot.</p>
+<p><img alt="Ligne verte" src="img/man_Utilisateur/InterfaceWeb_LigneCarre.png" width="700" /></p>
+<p>Plus un obstacle sera proche, plus le carré deviendra rouge. Plus il est loin, plus il sera vert.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Retour en haut de la page
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pied de page">
+      
+        
+        <a href="CDC.html" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Cahier des charges" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              Cahier des charges
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="man_installation.html" class="md-footer__link md-footer__link--next" aria-label="Suivant: Manuel d&#39;installation" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              Manuel d'installation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.indexes", "navigation.top", "navigation.tabs", "toc.integrate"], "translations": {"clipboard.copy": "Copier dans le presse-papier", "clipboard.copied": "Copi\u00e9 dans le presse-papier", "search.config.lang": "fr", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Rechercher", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.term.missing": "Non trouv\u00e9", "select.version.title": "S\u00e9lectionner la version"}, "search": "assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="assets/javascripts/bundle.649a939e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+    
+  </body>
+</html>
