@@ -4,7 +4,6 @@
 ### Date        : 03/05/2022
 ### Description : Classe qui contient les animations du hexapode.
 
-import sys
 import time
 
 from board import SCL, SDA
@@ -19,6 +18,8 @@ class Animations(object):
     SENSHORAIREPLEINEFORCE = -1
     SENSANTIHORAIREPLEINEFORCE = 1
     WITHOUTFORCE=0
+    MAXPULSE=1890
+    MARGEDIFFERENCE=0.5
     def __init__(self, gyroscope):
         """  brief: Initialisation des servomoteurs et du Gyroscope.
              
@@ -36,9 +37,6 @@ class Animations(object):
         # Création des instances des différents modules PCA9685
         self.pcaG = PCA9685(self.i2c, address=65)
         self.pcaD = PCA9685(self.i2c, address=66)
-
-        self.MAXPULSE=1890
-        self.MARGEDIFFERENCE=0.5
 
         self.pcaG.frequency = 50
         self.pcaD.frequency = 50
@@ -91,29 +89,7 @@ class Animations(object):
         #Hanche
         self.HancheArriereDroit = servo.ContinuousServo(self.pcaD.channels[2], min_pulse=1300, max_pulse=self.MAXPULSE)
 
-        #Hanches à 0
-        self.HancheAvantGauche.throttle=self.WITHOUTFORCE
-        self.HancheAvantDroit.throttle=self.WITHOUTFORCE
-        self.HancheMilieuDroit.throttle=self.WITHOUTFORCE
-        self.HancheMilieuGauche.throttle=self.WITHOUTFORCE
-        self.HancheArriereGauche.throttle=self.WITHOUTFORCE
-        self.HancheArriereDroit.throttle=self.WITHOUTFORCE
-
-        #Pointes à 0
-        self.PointeAvantGauche.throttle=self.WITHOUTFORCE
-        self.PointeAvantDroit.throttle=self.WITHOUTFORCE
-        self.PointeMilieuGauche.throttle=self.WITHOUTFORCE
-        self.PointeMilieuDroit.throttle=self.WITHOUTFORCE
-        self.PointeArriereGauche.throttle=self.WITHOUTFORCE
-        self.PointeArriereDroit.throttle=self.WITHOUTFORCE
-
-        #Tibias à 0
-        self.TibiaAvantGauche.throttle=self.WITHOUTFORCE
-        self.TibiaAvantDroit.throttle=self.WITHOUTFORCE
-        self.TibiaMilieuGauche.throttle=self.WITHOUTFORCE
-        self.TibiaMilieuDroit.throttle=self.WITHOUTFORCE
-        self.TibiaArriereGauche.throttle=self.WITHOUTFORCE
-        self.TibiaArriereDroit.throttle=self.WITHOUTFORCE
+        self.Off()
 
         self.initAngles=self.gyro.get_angle()
 
@@ -219,7 +195,6 @@ class Animations(object):
              returns :
                 None
         """
-        print(self.initAngles["y"])
         #Etape 1 baisser les tibias et légère force sur les pointes
         #Tibias Gauche
 
@@ -238,25 +213,25 @@ class Animations(object):
         self.PointeMilieuDroit.throttle=0.1
         self.PointeArriereDroit.throttle=0.1
 
-        time.sleep(2)
+        # time.sleep(2)
 
-        self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
-        self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
-        self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
-        self.TibiaAvantDroit.throttle=-0.1
-        self.TibiaMilieuDroit.throttle=-0.1
-        self.TibiaArriereDroit.throttle=-0.1
+        # self.TibiaArriereGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        # self.TibiaAvantGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        # self.TibiaMilieuGauche.throttle=self.SENSANTIHORAIREPLEINEFORCE
+        # self.TibiaAvantDroit.throttle=-0.1
+        # self.TibiaMilieuDroit.throttle=-0.1
+        # self.TibiaArriereDroit.throttle=-0.1
 
-        self.PointeAvantGauche.throttle=-0.5
-        self.PointeMilieuGauche.throttle=-0.5
-        self.PointeArriereGauche.throttle=-0.5
-        time.sleep(3)
+        # self.PointeAvantGauche.throttle=-0.5
+        # self.PointeMilieuGauche.throttle=-0.5
+        # self.PointeArriereGauche.throttle=-0.5
+        time.sleep(15)
             
         #Maintiens
-        self.TibiaAvantGauche.throttle=0.2
+        self.TibiaAvantGauche.throttle=0.1
         self.TibiaMilieuGauche.throttle=0.2
         self.TibiaArriereGauche.throttle=0.2
-        self.TibiaAvantDroit.throttle=-0.2
+        self.TibiaAvantDroit.throttle=-0.1
         self.TibiaMilieuDroit.throttle=-0.2
         self.TibiaArriereDroit.throttle=-0.2
         self.Maintiens()
@@ -452,10 +427,10 @@ class Animations(object):
             elif outputy<0.05 and outputy>-0.05:
                 self.TibiaArriereGauche.throttle=0.2
                 self.TibiaMilieuGauche.throttle=0.2
-                self.TibiaAvantGauche.throttle=0.2
+                self.TibiaAvantGauche.throttle=0.1
                 self.TibiaArriereDroit.throttle=-0.2
                 self.TibiaMilieuDroit.throttle=-0.2
-                self.TibiaAvantDroit.throttle=-0.2
+                self.TibiaAvantDroit.throttle=-0.1
                 isnotplaty=False
             elif outputy>0:
                 self.TibiaArriereDroit.throttle=self.SENSHORAIREPLEINEFORCE
@@ -627,25 +602,24 @@ class Animations(object):
              returns :
                 None
         """
-        self.PointeAvantGauche.throttle=0
-        self.PointeArriereGauche.throttle=0
-        self.PointeAvantDroit.throttle=0
-        self.PointeArriereDroit.throttle=0
-        self.PointeMilieuDroit.throttle=0
-        self.PointeMilieuGauche.throttle=0
-        self.TibiaAvantGauche.throttle=0
-        self.TibiaAvantDroit.throttle=0
-        self.TibiaArriereGauche.throttle=0
-        self.TibiaArriereDroit.throttle=0
-        self.TibiaMilieuGauche.throttle=0
-        self.TibiaMilieuDroit.throttle=0
-        self.HancheArriereDroit.throttle=0
-        self.HancheArriereGauche.throttle=0
-        self.HancheAvantDroit.throttle=0
-        self.HancheAvantGauche.throttle=0
-        self.HancheMilieuDroit.throttle=0
-        self.HancheMilieuGauche.throttle=0
-        pass
+        self.PointeAvantGauche.throttle=self.WITHOUTFORCE
+        self.PointeArriereGauche.throttle=self.WITHOUTFORCE
+        self.PointeAvantDroit.throttle=self.WITHOUTFORCE
+        self.PointeArriereDroit.throttle=self.WITHOUTFORCE
+        self.PointeMilieuDroit.throttle=self.WITHOUTFORCE
+        self.PointeMilieuGauche.throttle=self.WITHOUTFORCE
+        self.TibiaAvantGauche.throttle=self.WITHOUTFORCE
+        self.TibiaAvantDroit.throttle=self.WITHOUTFORCE
+        self.TibiaArriereGauche.throttle=self.WITHOUTFORCE
+        self.TibiaArriereDroit.throttle=self.WITHOUTFORCE
+        self.TibiaMilieuGauche.throttle=self.WITHOUTFORCE
+        self.TibiaMilieuDroit.throttle=self.WITHOUTFORCE
+        self.HancheArriereDroit.throttle=self.WITHOUTFORCE
+        self.HancheArriereGauche.throttle=self.WITHOUTFORCE
+        self.HancheAvantDroit.throttle=self.WITHOUTFORCE
+        self.HancheAvantGauche.throttle=self.WITHOUTFORCE
+        self.HancheMilieuDroit.throttle=self.WITHOUTFORCE
+        self.HancheMilieuGauche.throttle=self.WITHOUTFORCE
 
     #self.pcaD.deinit()
     #self.pcaG.deinit()

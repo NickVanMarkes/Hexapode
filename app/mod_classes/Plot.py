@@ -21,6 +21,7 @@ class Radar(object):
     IMIN = 0
     IMAX = 50
     COLORS=[(1, 0.2, 0.3), (1, 0.8, 0), (0.1, 0.5, 0.1)]  # near -> mid -> far
+    FILENAME="static/img/plot.png"
     CMAP_NAME="distance_warning"
     def __init__(self):
         """  brief: Constructeur de la classe Radar, créer la base de l'image.
@@ -62,8 +63,8 @@ class Radar(object):
             intens = np.array([int(100*meas[2]/self.DMAX) for meas in scan])
             self.line.set_array(intens)
 
-        self.fig.savefig("static/img/plot.png", transparent=True)
-        radar=cv2.imread("static/img/plot.png", cv2.IMREAD_UNCHANGED)
+        self.fig.savefig(self.FILENAME, transparent=True)
+        radar=cv2.imread(self.FILENAME, cv2.IMREAD_UNCHANGED)
         radar = cv2.imencode('.png', radar)[1]
         radar_encode= np.array(radar)
         return radar_encode.tobytes()

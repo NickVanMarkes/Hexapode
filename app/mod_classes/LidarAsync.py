@@ -58,9 +58,11 @@ class Lidarasync(object):
                 list(list(float,float,float))
         """ 
         if len(self.scans)>0:
-            return self.scans
+            result= self.scans
         else:
-            return []
+            result= []
+        
+        return result
     
 
     def DoScan(self):

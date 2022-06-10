@@ -11,7 +11,6 @@ from turbo_flask import Turbo
 import time
 import random
 
-import math
 import threading
 import subprocess
 
@@ -72,11 +71,13 @@ def inject_load():
     _angleZ=round(angles["z"],2)
     
     #Vitesse
+    ## Récupération des données de l'accéléromètre
     #accel=gyroscope.get_acceleration()
     # vx=0
     # vy=0
     # vz=0
 
+    ## Calcul de la vitesse
     # vx+=accel["x"]*1
     # vy+=accel["y"]*1
     # vz+=accel["z"]*1
@@ -101,7 +102,7 @@ def before_first_request():
              returns :
                 None
         """  
-    threading.Thread(target=update_load).start()
+    RepeatTimer(1, update_load).start()
 
 
 def update_load():
@@ -114,9 +115,7 @@ def update_load():
                 None
         """ 
     with app.app_context():
-        while True:
-            time.sleep(1.0)
-            turbo.push(turbo.replace(render_template('index_update.html'), 'load'))
+        turbo.push(turbo.replace(render_template('index_update.html'), 'load'))
 
 #Home
 @app.route('/', methods=['GET', 'POST'])

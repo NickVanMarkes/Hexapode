@@ -6,7 +6,6 @@
 
 # import the necessary packages
 import cv2
-import numpy as np
 
 class VideoCamera(object):
     __color = (0, 0, 0)
@@ -15,6 +14,9 @@ class VideoCamera(object):
 
     IMAGE_WIDTH = 640
     IMAGE_HEIGHT = 480
+    COLORGREEN=(0,255,0)
+    COLORRED=(0,0,255)
+    MAX8BIT=255
     MIN_ANGLE_VUE= 327
     MAX_ANGLE_VUE= 31
     MAX_DISTANCE=2000
@@ -22,74 +24,9 @@ class VideoCamera(object):
     GRID_BEGIN = 116
     GRID_WIDTH = 10
     zone={}
-    translator={
-            "327":0,
-            "328":1,
-            "329":2,
-            "330":3,
-            "331":4,
-            "332":5,
-            "333":6,
-            "334":7,
-            "335":8,
-            "336":9,
-            "337":10,
-            "338":11,
-            "339":12,
-            "340":13,
-            "341":14,
-            "342":15,
-            "343":16,
-            "344":17,
-            "345":18,
-            "346":19,
-            "347":20,
-            "348":21,
-            "349":22,
-            "350":23,
-            "351":24,
-            "352":25,
-            "353":26,
-            "354":27,
-            "355":28,
-            "356":29,
-            "357":30,
-            "358":31,
-            "359":32,
-            "0":33,
-            "1":34,
-            "2":35,
-            "3":36,
-            "4":37,
-            "5":38,
-            "6":39,
-            "7":40,
-            "8":41,
-            "9":42,
-            "10":43,
-            "11":44,
-            "12":45,
-            "13":46,
-            "14":47,
-            "15":48,
-            "16":49,
-            "17":50,
-            "18":51,
-            "19":52,
-            "20":53,
-            "21":54,
-            "22":55,
-            "23":56,
-            "24":57,
-            "25":58,
-            "26":59,
-            "27":60,
-            "28":61,
-            "29":62,
-            "30":63,
-            "31":64,
-        }
+    translator={}
     _memozone={}
+    reseter=0
 
     
     
@@ -108,6 +45,14 @@ class VideoCamera(object):
         self.rotated=None
         self.QRCodeActivated=False
 
+        # Initialisation du dictionnaire de zones
+        value = 0
+        for i in range(327,360):
+            self.translator[str(i)]=value
+            value+=1
+        for i in range(0,32):
+            self.translator[str(i)]=value
+            value+=1
     
     def __del__(self):
         """  brief: Arrêt de la saisie de la caméra.
@@ -135,12 +80,12 @@ class VideoCamera(object):
         self.rotated=cv2.rotate(self.frame,cv2.ROTATE_180)
 
         # #Draw grid on the frame
-        cv2.line(self.rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), (0, 255, 0), 1)
-        cv2.line(self.rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), (0, 255, 0), 1)
+        cv2.line(self.rotated, (0, self.GRID_END), (self.IMAGE_WIDTH, 130), self.COLORGREEN, 1)
+        cv2.line(self.rotated, (0, self.GRID_BEGIN), (self.IMAGE_WIDTH, 116), self.COLORGREEN, 1)
         # cv2.line(rotated, (int(self.IMAGE_WIDTH/2),0), (int(self.IMAGE_WIDTH/2), self.IMAGE_HEIGHT), (255, 0, 0), 1)
         
         for i in range(0,self.IMAGE_WIDTH,self.GRID_WIDTH):
-            cv2.line(self.rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), (0, 255, 0), 1)
+            cv2.line(self.rotated, (i, int(self.IMAGE_HEIGHT-350)), (i, self.IMAGE_HEIGHT-364), self.COLORGREEN, 1)
 
 
         self.scans = scans        
@@ -162,19 +107,27 @@ class VideoCamera(object):
                         self.zone[self.translator[str(int(meas[1]))]]=meas[2]
             
             for key in self.zone:
-                self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
+                # calcul of the color by the distance
+                self.__increment= int((self.MAX8BIT*self.zone[key])/self.MAX_DISTANCE)
                 self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
                 self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
-                self.__color = (0, 0+ self.__increment, 255 - self.__increment)
+                self.__color = (0, 0+ self.__increment, self.MAX8BIT - self.__increment)
+                
                 self.rotated = cv2.rectangle(self.rotated, self.start_point, self.end_point, self.__color, self.thickness)
         else:
             for key in self.zone:
-                self.__increment= int((255*self.zone[key])/self.MAX_DISTANCE)
+                self.__increment= int((self.MAX8BIT*self.zone[key])/self.MAX_DISTANCE)
                 self.start_point = ((key*self.GRID_WIDTH), self.GRID_BEGIN)
                 self.end_point = (((key*self.GRID_WIDTH)+self.GRID_WIDTH), self.GRID_END)
-                self.__color = (0, 0+ self.__increment, 255 - self.__increment)
+                self.__color = (0, 0+ self.__increment, self.MAX8BIT - self.__increment)
                 self.rotated = cv2.rectangle(self.rotated, self.start_point, self.end_point, self.__color, self.thickness)
 
+        if self.reseter==100:
+            self.zone={}
+            self.scans=[]
+            self.reseter=0
+
+        self.reseter+=1
                
         # encode OpenCV raw frame to jpg and displaying it
         ret, jpeg = cv2.imencode('.jpg', self.QRCodeDetect())
@@ -202,5 +155,5 @@ class VideoCamera(object):
                         for i in range(len(points)):
                             pt1=[int(val)for val in points[i]]
                             pt2=[int(val)for val in points[(i+1)%len(points)]]
-                            cv2.line(self.rotated,tuple(pt1),tuple(pt2),(255,0,0),1)
+                            cv2.line(self.rotated,tuple(pt1),tuple(pt2),(self.MAX8BIT,0,0),1)
         return self.rotated
