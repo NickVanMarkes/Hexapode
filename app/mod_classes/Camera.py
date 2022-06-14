@@ -104,7 +104,8 @@ class VideoCamera(object):
             for scan in self.scans:
                 for meas in scan:
                     if meas[1]>=self.MIN_ANGLE_VUE or meas[1]<=self.MAX_ANGLE_VUE:
-                        self.zone[self.translator[str(int(meas[1]))]]=meas[2]
+                        if int(meas[1])<360:
+                            self.zone[self.translator[str(int(meas[1]))]]=meas[2]
             
             for key in self.zone:
                 # calcul of the color by the distance
